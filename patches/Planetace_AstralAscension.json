@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "mod_id": "Planetace_AstralAscension",
+  "mod_name": "Astral Ascension",
+  "tested_versions": [
+    "1.2.7"
+  ],
+  "changes": [
+    {
+      "id": "aa-max-industries",
+      "title": "A size 3 colony has one industry, as in the base game",
+      "why": "A new colony is size 3 and Survival keeps its income small, so the second industry waits until size 4 as in the base game.",
+      "before": "Sizes 3 / 8 / 9 / 10 allow 2 / 5 / 5 / 6 industries",
+      "after": "Sizes 3 / 8 / 9 / 10 allow 1 / 5 / 5 / 6 industries",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "maxIndustries",
+            2
+          ],
+          "expect": 2,
+          "set": 1
+        }
+      ]
+    }
+  ]
+}

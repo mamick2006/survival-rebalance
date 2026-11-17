@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "mod_id": "looted_sector",
+  "mod_name": "Orky Sector",
+  "tested_versions": [
+    "0.71c"
+  ],
+  "changes": [
+    {
+      "id": "teef-battle-loot",
+      "title": "Fewer teef after battles with orks",
+      "why": "Teef added straight to the loot skip Survival's 0.4 post-combat salvage.",
+      "before": "0.3 teef per fleet point destroyed",
+      "after": "0.12 teef per fleet point destroyed",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/looted.jar",
+          "class": "data/items/listeners/ls_teef_loot_manager",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 0.3,
+          "to": 0.12,
+          "count": 1,
+          "method_fp": "38577ea730d9005b"
+        }
+      ]
+    }
+  ]
+}

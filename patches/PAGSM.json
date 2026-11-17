@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "mod_id": "PAGSM",
+  "mod_name": "Phillip Andrada: Gas Station Manager",
+  "tested_versions": [
+    "1.14.1aa"
+  ],
+  "changes": [
+    {
+      "id": "ore-turn-in",
+      "title": "Ore turn-in pays 1.1x ore value",
+      "why": "Bringing ore to Cruor still pays a little more than selling it at a market.",
+      "before": "1.5x ore value",
+      "after": "1.1x ore value",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SFC.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/sfcoreturnin",
+          "method": "execute",
+          "type": "float",
+          "from": 1.5,
+          "to": 1.1,
+          "count": 1,
+          "method_fp": "d7b35617ecdf850a"
+        }
+      ]
+    },
+    {
+      "id": "survey-turn-in",
+      "title": "Survey data turn-in pays 1.4x survey data value",
+      "why": "Survival's open market tariff is 10 points higher, so the bonus for bringing survey data here is 10 points lower.",
+      "before": "1.5x survey data value",
+      "after": "1.4x survey data value",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SFC.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/sfcplanetdataturnin",
+          "method": "execute",
+          "type": "float",
+          "from": 1.5,
+          "to": 1.4,
+          "count": 1,
+          "method_fp": "55ae6fc4bd5bd860"
+        }
+      ]
+    }
+  ]
+}

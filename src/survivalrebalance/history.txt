@@ -1,0 +1,618 @@
+# Survival Rebalance history. A file line is the sha256 and the path of a file a released
+# version of the tool shipped, once for each set of bytes it shipped with. A mod or change line
+# is one that a released patch set had. The tool removes a file another version left in its
+# folder only when its path and its bytes match a file line, and it reads the mod and change
+# lines to tell a customize.txt line for an older change from a typo. make_history.py add <zip>
+# adds each delivered zip; build.bat refuses a release that ships a path this file does not name.
+file 4ea42df2dcf1e0cce1a6059db46a0fc1e344600aa3670d645a631146448aa652 app/apply.bat
+file 6bb23da2922147b92b660a43ccbdc56b20e851ef6554d9ecd85f648360b311d7 app/apply.bat
+file bd00af409e3a5c10e84c087e0fe1fe14139c43030837c3c9d051e15ee2596b66 app/ASM-LICENSE.txt
+file 47a1341ba43e2bef65cbbe028f2ccc84af84eae5462bc4dfdd1ff22948b4722f app/check.bat
+file e286eb0c5bfea66d2ef077b42c709425ee4637820be388efa1b4686edfe43707 app/check.bat
+file 176d43d7b8122b5cbcb4024442d6a1a0cd88ee7da4d3bb376f0561aed6d6868c app/customize.bat
+file 48dfb72ef89521712b6fe290993db74f643fe155c6125201839e287608daa824 app/customize.bat
+file 14de1299fffc77eefe367ed8ba34a558b740bf9f5284560380f087756f8e1cd1 app/manifest.json
+file 175dfded9fcf76bfdd8281eff7cb3efa48977643da624240c154ea2d6cd7f52a app/manifest.json
+file 1d32cfe81a0c4c282016d9b95d9a2aff66973c9040b7965b30fb6a789b4b2366 app/manifest.json
+file 20ca67795b4ed57a19a29bee75dc68d908fa7839e0fb020b81db48f7d360ba58 app/manifest.json
+file 30dc4dbfa4977cec91e9d62dea26d264f4f456edc1735476685f735cf446eb01 app/manifest.json
+file 7062931747e882972cb65edf169f66d52cdbba4bb57d408f26b6327c537c1958 app/manifest.json
+file 89bcd40498e9af76e3a4f4abd68016764758100cf67943d7a60e810cea84aed9 app/manifest.json
+file c3e08a31502987c67b8cb33b7984a84a7a755910af9517e56b56eb2867ca3f38 app/manifest.json
+file c6f3ac199263b3e3e2035d9f050719492c606772ff0d08c7bb2c2502e565b87e app/manifest.json
+file 179941e12b687fa2103a2fc73a2b5d08b53c7c9242ffb6cc34152a8ee62ba1ab app/patches/armaa.json
+file f53aaa5d733663132944878b835b7d3fb16091165675cf5ca0e1b8f21a157452 app/patches/armaa.json
+file 05cdba8dc44d278dd94ead7c87c95cda8ea63265912ea92515de926a28220ef5 app/patches/assortment_of_things.json
+file d67b2cd9fd9bdd5c445bc0980494681a4bcd4ef3b58019c2ec0af50beda6c887 app/patches/assortment_of_things.json
+file 6e5685ca0f475559c73819a7ea3e29a2846f4664766bbcf606c61b4f2d88c5de app/patches/chief_navigator.json
+file d76e30265972d411c2909d87faec3ec5384c09ff8668ef8398c8a5dd4607e3ce app/patches/chief_navigator.json
+file 142ac2efc83818eddcfe047bce7e223ceb9f520e10dc18e69fe759392132adbd app/patches/DA_Mistral.json
+file 6e47bfb0a828d522ec0a71f5710bbc92209646c5af4722252c34deb3768d48f2 app/patches/DA_Mistral.json
+file 5262d891a4c839dd555ea7bcc7dfa091d9dd768dd9aa0b2f9228a7989de8faf2 app/patches/diableavionics.json
+file 35427f710e984adb15fff3a0cd3fbf6565d622c0bb7a5a464f4956feb38d841c app/patches/EmergentThreats_IX_Revival.json
+file d091f9323484026af42f18afa60c9cc52d449e03a441411c497fc4f03280c786 app/patches/EmergentThreats_IX_Revival.json
+file 53cf3b311cedc17f7bfd296ce2e02db6ade55e06fbb4ed5adb4a34ee47972117 app/patches/EmergentThreats_Vice.json
+file a780b82ab604280080b488fb96de83da2e3bc36a5dcf613661854365e0f89b4c app/patches/EmergentThreats_Vice.json
+file 5dd3f438095c7a8407264852d9d21877520c6eb7a46b4dabb43e51e29c6399ac app/patches/exiledSector.json
+file c00395ccc62dad847d3f1c6b6035c467b144fe7dd8ed9f4505eb958773c2a1ce app/patches/exiledSector.json
+file aae8c41b1a0c6093d67cb5513e19181a5c9b46eeb83730299c1aef90d1de243e app/patches/GrandColonies.json
+file 624906e2624ada38ba1e5b1df8c06d1deeeb6ed8a5a2f50e23b0d5a339843bdc app/patches/gwyvern_trailstc.json
+file e50dec98db2c447c06fbe5e9b349ff9377877be4c1532a7accd2d5c608bc8a16 app/patches/IndEvo.json
+file eddd8520b55f8b969be60ed5fc11f2526ecc5e3ed465db43546699d6ec84788d app/patches/IndEvo.json
+file dced58ddeaf1b20d98bc6766e2ba81ad420fa26a2c5e0e6a8a4fd41293c86b14 app/patches/jaydeepiracy.json
+file fb435eeec33228eb176c527c19ff5bf63f22db8091d5a3be803d5e2eba220f21 app/patches/jaydeepiracy.json
+file 4af112733bf0ce08729a50cf75c2f24075b064196c28313ee52d9ca66b2c3bb1 app/patches/JaydeeProficiencies.json
+file 8fd1c0bc93cb8e0a2c9e45f88af1a0dbb33b2c736bb8c523d2be67abe4c4fa30 app/patches/kadur_remnant.json
+file 15903a8e59f36fe2921b421ca21c9d539c11f9e487f173d2b2ef363a3147d798 app/patches/knights_of_ludd.json
+file 1e06546f34c7686b8fbce4e6689b06bd3fc709e2b0642b45a60cfaf3214a166b app/patches/knights_of_ludd.json
+file 8beb7b850955887cb79d7b29afcb2c90a8fbafcccbb10d01d0d79c3c4a449726 app/patches/levianeer_draconis.json
+file ba2664369f11f3f4c7ca237e53235894ed5dbc85d736431ae16cc152691a5da9 app/patches/levianeer_draconis.json
+file b38aeecbd8507a996836ebf1867faba3893d393781b86b2a2449527cbabae686 app/patches/looted_sector.json
+file 3d7b3ab7905e570ae8dd3dd9c540e3742e57f68f90a3d04f688efba106b1829e app/patches/mayu_specialupgrades.json
+file ae0f83dc4faae0175f488733c6321745569774fb3c0c8fd0c8129aa419ab64a8 app/patches/mayu_specialupgrades.json
+file 52bb6a4c8c7a27cd4c3b1dfc559b4fb18c07280a5a07fb59d8dc0bf21726bafe app/patches/MoreMilitaryMissions.json
+file bfb532de08c1b77ea37432aaccf5dab6644a7f09ef0dc46ad71699bff62b36b4 app/patches/MoreMilitaryMissions.json
+file 17cc75fac6d5229e44f8b628bdc4f6fb631a9575d42b7502a6d98ac335b56cc5 app/patches/N84_Phase_Pack.json
+file e03785c3d54d7e74364c3c9be32145127bc8731292314633d92183663aa0f22a app/patches/N84_Phase_Pack.json
+file 618d19306c4bb6bfba15d22bc5893129b2864ee0e05afc32fb0f61b6b1c0f80c app/patches/navarchy_of_tania.json
+file 786948c0d27b684546e0cc97deab193a64bbfadf1082c519708f5744c200f1b5 app/patches/navarchy_of_tania.json
+file 110168f7645dfba63a5a14a33cbe2f735e1f67d46536d8b6fc472949ee16b558 app/patches/nexerelin.json
+file 2a8e63a0098c1823df2bb9f3b3dad16bac222538eda8c4afbe607173037b9f66 app/patches/nexerelin.json
+file 114664bfa3c7b3ab19bfbeadfe4f9bdff0493711c0cc1cbb86557f321b708ae4 app/patches/Nightcross.json
+file 33f91411bf2d46208954dde6162db13f292a95622db6c484fec05d82469774cb app/patches/Nightcross.json
+file 1fba62bc8f2b6c34e9c62bf766a8feaab7d39bbe920f4f2d44c127db4dc735dd app/patches/PAGSM.json
+file 7608c2e50c72a5c712d05600b285bb58caa65d0b5b38f20cacea3ba3706dc44f app/patches/PAGSM.json
+file 4f9891716b0a6f866253f4123ea63112093df75e4e789a6507c7e76ac0e731c4 app/patches/Planetace_AstralAscension.json
+file 6e1e19a944e0f5c39ee37a9e8d429b0ad18d59824cecd99763ce0860c7f33c52 app/patches/Planetace_AstralAscension.json
+file 7f533150ff4bc22c7cb8e6092832cc953dddd736ce068c12cd3e5d9acabf064f app/patches/privateering.json
+file adffb2dc9a2dfdbdb56166c15306daf78b2a00d1008f318176783a985d234534 app/patches/privateering.json
+file 2e2e4a53b6c6b671434f8ec38781b6335b21b2cf519f6e6957eaec12f41d36bc app/patches/salvage_magnet.json
+file d2f467e0695d36f78d78be77b4f155860ed2386d7d7648a9e6c41d04439e09b7 app/patches/SCE.json
+file 0ac40cac6d61f8702dcc58a51ba23fd940ea99fdcda0e6f4c97a574c9f03ccf4 app/patches/second_in_command.json
+file 5d8062be9d3ed5a4d708a49f9328165d8027e1847702df14e7540d7495f27113 app/patches/second_in_command.json
+file 13a805bc928a99a656e5fd91565992effc40bec7d74c288a04a89361f0e66eca app/patches/secretsofthefrontier.json
+file e78e4c077db97eb95c2a3a8faaedd88e926ea7ea52c20d2e767433a829a371b7 app/patches/secretsofthefrontier.json
+file c94939be26df5be6b06f31ca18d0bcbc027ed6158a37c7fd2d7696814590274a app/patches/selkie_eis.json
+file dcac4465181ebfa6f746b33a0ca837f5bab356e2e79ccaf18a9ee0d30d9f1a47 app/patches/selkie_eis.json
+file 46d6b026f23810832e82fd04507476190c4b73d2e592f0abacf392baecb30cc1 app/patches/sic-auxiliaries.json
+file eeb850cd460bcae138a5e120f855bbb8c6ff46378904949795360a8575665bfe app/patches/sic-auxiliaries.json
+file 44c02d024a151d0c518db387a79de2b6d35e4d69830d2f8726b094779b87928c app/patches/sicdustkeeper.json
+file 783cefb3cf58b75b42fd507b2732e89660ebde3386e88d9bb23e8f32dc664c31 app/patches/Solsector.json
+file a49044e4761077d9229405d815813538d5d014076c3d55b4f0986f5b89b5bc39 app/patches/stelnet.json
+file 048b01b50a3fc1744f4c1d528dad819d36f0ee1f772f761151f98a80a7ce4db3 app/patches/Sunrider.json
+file 4de78aaa44268be9fb482d19941056e557b153ce20fa882644e80bc84eb1114b app/patches/Sunrider.json
+file bebbb3e513cc913be9a0655d76b44d520970057142afad2aa357471d35345975 app/patches/swp.json
+file 0d21e8ff6404bde3d8268f204b5001241c5396c74d4deb8dceff0f04125fac39 app/patches/takeshido.json
+file 1953589a1f04d9a6705933cc22c5994b996834aad2a6c60256ba01838218aa46 app/patches/takeshido.json
+file b4c12144e18106203d598052deaf617c9641bb1af2a2330a4d0123e6af7ede3b app/patches/terraformingmadeeasy.json
+file 02774674217474ee67c60276b364686707658faf58ea2f1afd5791b2c46208d7 app/patches/uaf.json
+file 701a2a023d33af4153a3d6373ebcb02bc8f1b018423ee958193e25bae2768aed app/patches/uaf.json
+file 3daa499b3ef312295d25abf543fafc0d68ffc618647f18f278fc9e89ab17640c app/patches/US.json
+file 1c47e62a3e063161a1597d9de88a51bbb871f42a02abcd3d771dd3da54a1b48f app/patches/WideHorizons.json
+file f6bd958a2d177f604847694c8cc109224717da96e9702a033f7ca9c3b691b059 app/patches/WideHorizons.json
+file 78b6e92fc964dd755d45ba1b4edb60097f84fa63227abdc2175b21695ecc734a app/patches/WideHorizonsContent.json
+file 488810a3a0e1ad8ddb3443b9e979ddb62e85a37d5b3ddeaf87f3af58593804ff app/patches/zoeyea.json
+file 654e899c77c620ab2c1e5983b7f52366ee7a2d06c758a738c99caeff7428c599 app/status.bat
+file 72862ef29899010d0cada40013e10a285103fb352773e86fa193ff7c7f555d76 app/status.bat
+file 5b761711dd6468233377dd7a101515a1b51dfdd9fc8ba0d249b89da077d71989 app/Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file 67f2c1f7aa58bbb3fa267bfa55c8ca614e942d17dd299c4f5265f102614b3772 app/Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file 7670e1cfc3b5adfa3aa61ed8cf69460e096dbeffeb6154a0d837cad4e778d3b9 app/Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file e930a2e182c47774a74428f4b2ecc7f30571e4e295dd47200790450dd2d32433 app/Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file edb7387a5fbee736f12004abf215c8722e8d5734db0d4170b1dace40b16f74b3 app/Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file 4cd071ad58239ed9c4a678f95b5cca4c4f3ebafb9a8556ba5b735609ecd6037f app/Survival Rebalance Monitor/jars/SurvivalRebalanceMonitor.jar
+file c282db9219571d784782866420e2525ed6fe78e41415dd990543e194b1e20c5c app/Survival Rebalance Monitor/jars/SurvivalRebalanceMonitor.jar
+file d186587e853312ce5661bdd28586d7f58157905f9f5adc5ac03b22f448aa4a07 app/Survival Rebalance Monitor/jars/SurvivalRebalanceMonitor.jar
+file fc3c03f5c1388361e925e21987f8c37ce2be22b8a4fc8bd43de31a7b0e7b51a4 app/Survival Rebalance Monitor/jars/SurvivalRebalanceMonitor.jar
+file 0d7a48d5f3f1273d7f2eb0652728c4795de6edec52ce43f9d182d11639bd55a6 app/Survival Rebalance Monitor/mod_info.json
+file 4252c9a51c478793ea440088ae6bc41920bdbc05c98dc6b44da317cd7f2a37c9 app/Survival Rebalance Monitor/mod_info.json
+file ec246330bd0987031cf02d2e484d6b90bab202652f56ab7625ea461cf092a056 app/Survival Rebalance Monitor/mod_info.json
+file 06d9174ec3cbf35d22f92bda1cb40b0172517fc14c06094d04c00173cfb82b7f app/SurvivalRebalance.jar
+file 1f381fffae5ee55f57072cd9b690d8d675de9febe66ed4948ce4c226313d025e app/SurvivalRebalance.jar
+file 7f08264a865316cca5d6f75bafe9b424b9d450b7fbafdc7092df2ee9c92e7969 app/SurvivalRebalance.jar
+file 98161f36e01eb1cf03274727dec3aff705cf1265bc1bf3135dbd7720511b622f app/SurvivalRebalance.jar
+file a3525c1c2cf1fa1db1e3bf8c6fddc83cb409dad9a9af9bfb8ccfd81a11300e71 app/SurvivalRebalance.jar
+file a4add6b291cd7e9cb68023d67ff6744a4294fc7215c4a99413081ec472314946 app/SurvivalRebalance.jar
+file da1f49b11bc71c06254924b453ce3d1f2a5866d6b70d0cef4ffa962e837a0c98 app/SurvivalRebalance.jar
+file dbf85d8b7e868f9e08bc3f5da82c6f27340df86ca0f2c3422c5507428d6249db app/SurvivalRebalance.jar
+file f9c83be467ae4d1f22bbcc29d9cd2a16673d3d91b3a1d6f8b243c977a4ca9652 app/SurvivalRebalance.jar
+file a43b7483882329dca75fdfd70c7ef80653f6ea9cbc39e8d09dc56316a65e541b app/undo.bat
+file e233f7dc0734b887587bbcb0c8b9ded4bf76cd5fd98b348ed6807e2fb1d6b995 app/undo.bat
+file 5739448f2300d76c5b89cd0e20f8d6edbda673f643bdaed5c703f8a71aa7959f app/update.bat
+file f7160b286a907caa490aa66e9b35419923cfef6e67848e93a710d2514e0870ba app/update.bat
+file a227234f24eb280a8307462aadd76f71e9e9916a76afe9d6fdee094857b6c94a app/version-1.3.4.txt
+file 118d174fc6ec5e8d69dc2694ba8e402a0d8000d04237ed27e66425fb75bc977b apply.bat
+file bd00af409e3a5c10e84c087e0fe1fe14139c43030837c3c9d051e15ee2596b66 ASM-LICENSE.txt
+file 456f48ff65e72d5a582dbf357940e06a2c2fb549aee501d53cf2866b63b68a8a check.bat
+file 58f30220eb9d841e29e4a9f3c635c67011af6489e2c9fc24a80e408e00c22556 customize.bat
+file 7988f6be2ade479cf9d39738a974309793c8eeafad2c0d768c7c4751f6cfc609 manifest.json
+file f2bafebcbfc07281503984cff3fa9b3f220f3539f611000ef498e4b5b44cc007 manifest.json
+file f53aaa5d733663132944878b835b7d3fb16091165675cf5ca0e1b8f21a157452 patches/armaa.json
+file 6ffa7df4683fc86308c14f1ac053a0a2756a30e21fb22d651ea9dae3db146bd9 patches/assortment_of_things.json
+file d67b2cd9fd9bdd5c445bc0980494681a4bcd4ef3b58019c2ec0af50beda6c887 patches/assortment_of_things.json
+file 6e5685ca0f475559c73819a7ea3e29a2846f4664766bbcf606c61b4f2d88c5de patches/chief_navigator.json
+file 6e47bfb0a828d522ec0a71f5710bbc92209646c5af4722252c34deb3768d48f2 patches/DA_Mistral.json
+file 347b647836982d43585ae934744fe1e2753ba6b63f9b9037f3c2d14f30cac2f9 patches/diableavionics.json
+file 5262d891a4c839dd555ea7bcc7dfa091d9dd768dd9aa0b2f9228a7989de8faf2 patches/diableavionics.json
+file 35427f710e984adb15fff3a0cd3fbf6565d622c0bb7a5a464f4956feb38d841c patches/EmergentThreats_IX_Revival.json
+file a780b82ab604280080b488fb96de83da2e3bc36a5dcf613661854365e0f89b4c patches/EmergentThreats_Vice.json
+file bf59ae829395c253f4f536d1fc22e179d256c58ade1f446783eabae2dd3c1e45 patches/EmergentThreats_Vice.json
+file dc376be51869ebf2ba8f3e420d7ca8b608ab3a44183f35823a452c505e12d03c patches/exiledSector.json
+file aae8c41b1a0c6093d67cb5513e19181a5c9b46eeb83730299c1aef90d1de243e patches/GrandColonies.json
+file 624906e2624ada38ba1e5b1df8c06d1deeeb6ed8a5a2f50e23b0d5a339843bdc patches/gwyvern_trailstc.json
+file cc1770edb91e0f3f975b13cdba35c68b2959fc731c9578f37114002fc6fc040a patches/IndEvo.json
+file eddd8520b55f8b969be60ed5fc11f2526ecc5e3ed465db43546699d6ec84788d patches/IndEvo.json
+file dced58ddeaf1b20d98bc6766e2ba81ad420fa26a2c5e0e6a8a4fd41293c86b14 patches/jaydeepiracy.json
+file 4af112733bf0ce08729a50cf75c2f24075b064196c28313ee52d9ca66b2c3bb1 patches/JaydeeProficiencies.json
+file 8fd1c0bc93cb8e0a2c9e45f88af1a0dbb33b2c736bb8c523d2be67abe4c4fa30 patches/kadur_remnant.json
+file 15903a8e59f36fe2921b421ca21c9d539c11f9e487f173d2b2ef363a3147d798 patches/knights_of_ludd.json
+file ba2664369f11f3f4c7ca237e53235894ed5dbc85d736431ae16cc152691a5da9 patches/levianeer_draconis.json
+file b38aeecbd8507a996836ebf1867faba3893d393781b86b2a2449527cbabae686 patches/looted_sector.json
+file 0d00e6f0ff16668d2cd76d877ad8d32ce9dc247b61f58de253d8ae0c9f1a4afc patches/mayu_specialupgrades.json
+file 3d7b3ab7905e570ae8dd3dd9c540e3742e57f68f90a3d04f688efba106b1829e patches/mayu_specialupgrades.json
+file bfb532de08c1b77ea37432aaccf5dab6644a7f09ef0dc46ad71699bff62b36b4 patches/MoreMilitaryMissions.json
+file 17cc75fac6d5229e44f8b628bdc4f6fb631a9575d42b7502a6d98ac335b56cc5 patches/N84_Phase_Pack.json
+file 618d19306c4bb6bfba15d22bc5893129b2864ee0e05afc32fb0f61b6b1c0f80c patches/navarchy_of_tania.json
+file 841c1eb9951d20d91324f65ef73a1874380f2dd41ca8a1cec5e80294a87b79b3 patches/navarchy_of_tania.json
+file 2a8e63a0098c1823df2bb9f3b3dad16bac222538eda8c4afbe607173037b9f66 patches/nexerelin.json
+file 114664bfa3c7b3ab19bfbeadfe4f9bdff0493711c0cc1cbb86557f321b708ae4 patches/Nightcross.json
+file 5a4976cd5ceaff228bbef4f22b99f3c895952a0692f569087fec7a6600c28ec4 patches/Nightcross.json
+file 7608c2e50c72a5c712d05600b285bb58caa65d0b5b38f20cacea3ba3706dc44f patches/PAGSM.json
+file 4f9891716b0a6f866253f4123ea63112093df75e4e789a6507c7e76ac0e731c4 patches/Planetace_AstralAscension.json
+file adffb2dc9a2dfdbdb56166c15306daf78b2a00d1008f318176783a985d234534 patches/privateering.json
+file 2e2e4a53b6c6b671434f8ec38781b6335b21b2cf519f6e6957eaec12f41d36bc patches/salvage_magnet.json
+file d2f467e0695d36f78d78be77b4f155860ed2386d7d7648a9e6c41d04439e09b7 patches/SCE.json
+file 0ac40cac6d61f8702dcc58a51ba23fd940ea99fdcda0e6f4c97a574c9f03ccf4 patches/second_in_command.json
+file 564cf4813263d4beae1276b648f81190703be0394aceeb76ca2e9de94672751e patches/second_in_command.json
+file 46cbad4902ff0cf19f7aa24958b59db34e38f3b889af4a18739c74407799b552 patches/secretsofthefrontier.json
+file e78e4c077db97eb95c2a3a8faaedd88e926ea7ea52c20d2e767433a829a371b7 patches/secretsofthefrontier.json
+file d68295f1fa6734a96b2540063d23911b8a13be74de5026bd1a4a0da321d647a9 patches/selkie_eis.json
+file dcac4465181ebfa6f746b33a0ca837f5bab356e2e79ccaf18a9ee0d30d9f1a47 patches/selkie_eis.json
+file 46d6b026f23810832e82fd04507476190c4b73d2e592f0abacf392baecb30cc1 patches/sic-auxiliaries.json
+file e5919a15ddb28176543381b9db8a3700ecbb08e9245737c290e04418d338d8c1 patches/sic-auxiliaries.json
+file 44c02d024a151d0c518db387a79de2b6d35e4d69830d2f8726b094779b87928c patches/sicdustkeeper.json
+file 783cefb3cf58b75b42fd507b2732e89660ebde3386e88d9bb23e8f32dc664c31 patches/Solsector.json
+file a49044e4761077d9229405d815813538d5d014076c3d55b4f0986f5b89b5bc39 patches/stelnet.json
+file 4de78aaa44268be9fb482d19941056e557b153ce20fa882644e80bc84eb1114b patches/Sunrider.json
+file f413d69ad8096c0eade4952c37581b6af6ace7e76661cbec899a285876f65eca patches/Sunrider.json
+file bebbb3e513cc913be9a0655d76b44d520970057142afad2aa357471d35345975 patches/swp.json
+file 0d21e8ff6404bde3d8268f204b5001241c5396c74d4deb8dceff0f04125fac39 patches/takeshido.json
+file b4c12144e18106203d598052deaf617c9641bb1af2a2330a4d0123e6af7ede3b patches/terraformingmadeeasy.json
+file 02774674217474ee67c60276b364686707658faf58ea2f1afd5791b2c46208d7 patches/uaf.json
+file 1cb54f2a5ebaace4cd7ce645b583c9d4bec5ebb72c954b7c68518c2db500fdb3 patches/uaf.json
+file 3daa499b3ef312295d25abf543fafc0d68ffc618647f18f278fc9e89ab17640c patches/US.json
+file f6bd958a2d177f604847694c8cc109224717da96e9702a033f7ca9c3b691b059 patches/WideHorizons.json
+file 78b6e92fc964dd755d45ba1b4edb60097f84fa63227abdc2175b21695ecc734a patches/WideHorizonsContent.json
+file 488810a3a0e1ad8ddb3443b9e979ddb62e85a37d5b3ddeaf87f3af58593804ff patches/zoeyea.json
+file 02ada965ba9259ca34a65ba9fd971ba9bac03360d43596dca3da7b288e080643 README.txt
+file 654f93f7b5f71e724dc1ad7eff62d8387e807fd635bc4155b85403db779e8470 README.txt
+file 7d30dcc61105cb39a6962069f858828399917f2d37ea656796fc37aa566955ef README.txt
+file 82f9f60866c5298ca0022af0b4d83517c8cd130c1f165fc214b36152aa89cd4e README.txt
+file 83ab691aa0f7b18e035a354abd0e4776e62d07f9a045e5c7150191c3beed7a31 README.txt
+file 85e5b00adfd4cc97d587f5757652c9915c1ed787377c6a58e7cb13657d9c5579 README.txt
+file 8be62d3a341ab2b74a8b86f1c2ea8f8d96baaac1cdb4222da5adaa9ac3c0b990 README.txt
+file 945ab7bca2ae4cb1a7930e0cdffb3c95e5c9c75aa71aabc2a8b35299ebf81847 README.txt
+file 979d27dc66f297c4a0a5de6771262154f3d4d50d31a1b35e21e0a2f11ac99081 README.txt
+file e8d92c9c2c52aa39943edaa33ad7dfcc61882a508f4b0f04da97bc2b5457cd99 README.txt
+file e9a131a40c4e4bfeae84f29886c3e07d34dc210f98f3ecee827eb79a02f740ac README.txt
+file 343b8edfc35dbff94d4c92fb26bedaedcaaa3d1f3cf1d38b15ce290f03a17f3f shipped.txt
+file 4284133b41d7174e6532a558e3c085bbc7ec7caf052ddd9646e8975bfd34cfa0 shipped.txt
+file 8daf4dfbce107eef2d2f469481d166e82b0252bb88d8dfbfea0152f92b6db5b0 shipped.txt
+file f05a9c20ca5d17151a29de50afe269c7cf17374291b7e437168b1363e8c0f0f3 shipped.txt
+file 9cab42a2e24036d66fbbe590d055fcc7d5723cc0f0d1a9bc34329b1400aa5bb7 status.bat
+file 2bf9c67471ee771583f8fe7bcbcc2f0e28925330311c69259ed0808818cda39b Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file a820166e5956da5e48b1764442152548e7399e08eb98cd5208ffa2ed67cd4ae0 Survival Rebalance Monitor/data/config/survival_rebalance_index.json
+file 5abc8d998b993ac737e223928d40b78114febf377d259653fb378d3b0a57f68e Survival Rebalance Monitor/jars/SurvivalRebalanceMonitor.jar
+file 9777d0ebf52cbe0e0813a9e76317e39a09623a41daddedc4875196e95e20ab1b Survival Rebalance Monitor/jars/SurvivalRebalanceMonitor.jar
+file ec246330bd0987031cf02d2e484d6b90bab202652f56ab7625ea461cf092a056 Survival Rebalance Monitor/mod_info.json
+file 965a28286f8a53230d35dca3d60c5c9d332512ec9ce516566bddf0c867b444e3 SurvivalRebalance.bat
+file e3b980de8820e5ee48d7eed98e4acd6847eeb2a2df4d205c5efa503ef8943729 SurvivalRebalance.bat
+file 396287130581b4fdc3ffd67ea3d4646b84e0846b8a5b11e30ef9307dad6cae6a SurvivalRebalance.exe
+file 3cae74d6acdee3fba897effc680d4573fe1624bed2eca6fa62922a5c52a3e9a8 SurvivalRebalance.exe
+file 667fb83320714e3f8cf33900c4dced68934e8a36e465f94f046481a48a5ba249 SurvivalRebalance.exe
+file 89cb5e30878477651e7c1bdb51b989531efd9a5215fb607125bf17b93b3a1dbf SurvivalRebalance.exe
+file c312824c0821c6cc5fbfceea662cb08de9d4cad5f55ec752d08539fe530320da SurvivalRebalance.exe
+file 7b0877278cce8195ff978e7dcf9262b5508332f8c72124a0ffc903b35e9d1a1c SurvivalRebalance.jar
+file 98be62a47ea7326725f360f3bb9b9b9034a95195fcdd632fd736c236144635ac SurvivalRebalance.jar
+file 807d1a2cd40e9a22ea87e2be6d77e8de0d52f977c28167a94dc3ce825e52fe9a SurvivalRebalance.sh
+file 90407821eabccab31a317bc9933200c5299269a4c80da397cf667d80179da157 undo.bat
+file 5c6c0bedf9ffea8ee53aef713f81e70ee3e5f5b7af8eb22a909dd93afcd7c937 update.bat
+mod DA_Mistral
+mod EmergentThreats_IX_Revival
+mod EmergentThreats_Vice
+mod GrandColonies
+mod IndEvo
+mod JaydeeProficiencies
+mod MoreMilitaryMissions
+mod N84_Phase_Pack
+mod Nightcross
+mod PAGSM
+mod Planetace_AstralAscension
+mod SCE
+mod Solsector
+mod Sunrider
+mod US
+mod WideHorizons
+mod WideHorizonsContent
+mod armaa
+mod assortment_of_things
+mod chief_navigator
+mod diableavionics
+mod exiledSector
+mod gwyvern_trailstc
+mod jaydeepiracy
+mod kadur_remnant
+mod knights_of_ludd
+mod levianeer_draconis
+mod looted_sector
+mod mayu_specialupgrades
+mod navarchy_of_tania
+mod nexerelin
+mod privateering
+mod salvage_magnet
+mod second_in_command
+mod secretsofthefrontier
+mod selkie_eis
+mod sic-auxiliaries
+mod sicdustkeeper
+mod stelnet
+mod swp
+mod takeshido
+mod terraformingmadeeasy
+mod uaf
+mod zoeyea
+change DA_Mistral:angelos-bounty-credits
+change DA_Mistral:ramiel-gift-rep
+change DA_Mistral:ramiel-ship-gate
+change DA_Mistral:ramiel-weapon-gift
+change EmergentThreats_IX_Revival:bazaar-fuel
+change EmergentThreats_IX_Revival:bazaar-tariff
+change EmergentThreats_IX_Revival:start-biochip
+change EmergentThreats_IX_Revival:start-blueprints
+change EmergentThreats_IX_Revival:tt-core-sale
+change EmergentThreats_IX_Revival:tt-station-sale
+change EmergentThreats_Vice:bounty-credits
+change EmergentThreats_Vice:mayfly-bribe
+change EmergentThreats_Vice:sic-synthesis-core-not-elite
+change EmergentThreats_Vice:thousand-cuts-escorts
+change EmergentThreats_Vice:tt-core-sale
+change EmergentThreats_Vice:tt-scan-sale
+change EmergentThreats_Vice:tt-station-sale
+change EmergentThreats_Vice:xo-capstones-at-three-skills
+change GrandColonies:gc-cramped-upkeep
+change IndEvo:academy-admin-spawns
+change IndEvo:academy-officer-spawns
+change IndEvo:admin-salary-tier1
+change IndEvo:catapult-price
+change IndEvo:comforge-beta-upkeep
+change IndEvo:conscription-upkeep
+change IndEvo:courier-prices
+change IndEvo:deposit-adassem
+change IndEvo:deposit-admanuf
+change IndEvo:deposit-comforge
+change IndEvo:fuel-scoop-price
+change IndEvo:hullforge-alpha-smods
+change IndEvo:hullforge-price
+change IndEvo:monastic-free-ships
+change IndEvo:privateer-loot
+change IndEvo:reqcenter-stock
+change IndEvo:reqcenter-tariff
+change IndEvo:restoration-docks-price
+change IndEvo:salvage-specials
+change IndEvo:supercomputer-beta-credits
+change IndEvo:supercomputer-core-dump
+change IndEvo:warhammer-free-ships
+change IndEvo:wreck-ship-components
+change JaydeeProficiencies:specialist-xp-halved
+change MoreMilitaryMissions:mmm-vip-cash-quarter
+change N84_Phase_Pack:phase-anchor-not-free
+change N84_Phase_Pack:phase-arsenal-core-damage
+change N84_Phase_Pack:phase-conduit-1-5x
+change N84_Phase_Pack:phase-dive-op-cost
+change N84_Phase_Pack:phase-flicker-cooldown
+change N84_Phase_Pack:phase-hullmods-not-free
+change Nightcross:aria-backchannels-weapon-stock
+change Nightcross:ghost-core-points
+change Nightcross:ghost-ships-count-as-automated
+change Nightcross:nasa-stargazer-turnin
+change Nightcross:nca-vendor-tariff
+change Nightcross:nca-vendor-weapon-stock
+change Nightcross:shroud-substrate-drops
+change Nightcross:sic-furor-fire-rate
+change Nightcross:sic-stargazer-logistics
+change Nightcross:sic-stargazer-sensor
+change Nightcross:stargazer-hullmod-drops
+change Nightcross:zgr-stargazer-turnin
+change PAGSM:ore-turn-in
+change PAGSM:survey-turn-in
+change Planetace_AstralAscension:aa-max-colony-size
+change Planetace_AstralAscension:aa-max-industries
+change Planetace_AstralAscension:aa-omega-admin-no-upkeep-cut
+change Planetace_AstralAscension:aa-omega-admin-output-plus-one
+change Planetace_AstralAscension:aa-omega-core-drop
+change SCE:sfl-hullmods-not-known-at-start
+change Solsector:sol-derelict-count
+change Sunrider:showdown-reward
+change Sunrider:statue-red-fleet-no-join
+change Sunrider:statue-ship-package-price
+change Sunrider:sunrider-no-free-story-point
+change Sunrider:sunrider-tip-price
+change Sunrider:sunriders-mother-supply
+change Sunrider:vows-story-points
+change US:us-bedrock-hazard
+change US:us-floating-hazard
+change US:us-tunnels-hazard
+change WideHorizons:fewer-cryosleepers
+change WideHorizons:fewer-mothership-chains
+change WideHorizons:hub-phase-core-no-industry-slot
+change WideHorizons:hub-singularity-core-hazard
+change WideHorizons:hub-singularity-core-one-slot
+change WideHorizons:special-projects-tariff
+change WideHorizonsContent:hub-phase-core-text
+change WideHorizonsContent:hub-singularity-core-text
+change armaa:armaa-atac-points-x3
+change armaa:armaa-bellator-gift-off
+change armaa:armaa-cpc-capacity-x3
+change armaa:armaa-dawn-leaving-story-points
+change armaa:armaa-hq-market-tariff
+change armaa:armaa-mrc-market-tariff
+change armaa:armaa-valkazard-sale-price
+change armaa:armaa-valkazard-sale-story-points
+change armaa:armaa-wingman-promotion-90
+change armaa:armaa-wingman-promotion-story-points
+change assortment_of_things:abyss-start-credits
+change assortment_of_things:abyss-start-off
+change assortment_of_things:ballistic-focus-half
+change assortment_of_things:computational-matrix-60
+change assortment_of_things:comradery-partner-level-6
+change assortment_of_things:dimensional-chain-cap-15
+change assortment_of_things:drivefield-overwrite-burn-1
+change assortment_of_things:efficient-procedures-20
+change assortment_of_things:exo-shop-stock
+change assortment_of_things:exo-shop-tariff-30
+change assortment_of_things:exoship-background-off
+change assortment_of_things:exoship-warp-cost-x3
+change assortment_of_things:exotech-voyager-fuel
+change assortment_of_things:fabricator-alteration-cost-x3
+change assortment_of_things:fabricator-artifact-cost-x3
+change assortment_of_things:force-in-numbers-half
+change assortment_of_things:gravitational-dynamo-hazard-25
+change assortment_of_things:hyperspace-beacon-10
+change assortment_of_things:logistics-base-10
+change assortment_of_things:maintaining-momentum-5
+change assortment_of_things:neural-shard-one-skill
+change assortment_of_things:personal-army-no-officer-finds
+change assortment_of_things:rare-tech-mining-half
+change assortment_of_things:settlement-build-time-x2
+change assortment_of_things:settlement-cost-x2
+change assortment_of_things:settlement-income-x025
+change assortment_of_things:sic-abyssal-symphony-cost
+change assortment_of_things:sic-capstones-at-three-skills
+change assortment_of_things:sic-exotech-standardised-cap
+change assortment_of_things:stockpile-cost-colony-price
+change assortment_of_things:stockpile-fees-and-goods
+change assortment_of_things:super-serum-half
+change assortment_of_things:trade-post-stock
+change assortment_of_things:trade-post-tariff-40
+change assortment_of_things:training-and-maintenance-half
+change assortment_of_things:unaffected-deployment-off
+change assortment_of_things:volatiles-fuel-5
+change chief_navigator:cn-adept-stars-damage
+change chief_navigator:cn-adept-waves-speed
+change chief_navigator:cn-adjudicator-value
+change chief_navigator:cn-chart-burn-bonus-off
+change chief_navigator:cn-sanzu-wakes-halved
+change chief_navigator:cn-slipsurge-length
+change chief_navigator:cn-storm-rider
+change chief_navigator:cn-topographic-data-rate
+change diableavionics:diable-last-line-bounty-reward
+change diableavionics:diable-virtuous-sim-claim-off
+change exiledSector:battle-feedstock
+change exiledSector:battle-item-drops
+change exiledSector:battle-nanoswarms
+change exiledSector:chart-clear-credits
+change exiledSector:chart-colony-items
+change exiledSector:diminishing-returns
+change exiledSector:freebooters-charge-damage
+change exiledSector:hull-item-points-cap
+change exiledSector:item-logistics-lines
+change exiledSector:item-salvage-lines
+change exiledSector:item-weapon-lines
+change exiledSector:logistics-cap
+change exiledSector:logistics-node-supply-fuel
+change exiledSector:market-hull-item-price
+change exiledSector:market-hull-item-stock
+change exiledSector:npc-tree-bonus-scale
+change exiledSector:npc-tree-chance
+change exiledSector:recovered-ships-start-blank
+change exiledSector:salvage-items
+change exiledSector:so-keystone-dissipation
+change exiledSector:tree-catch-up
+change exiledSector:tree-level-floor
+change exiledSector:tree-max-level
+change exiledSector:tree-max-nodes
+change exiledSector:tree-op-cost
+change exiledSector:tree-small-nodes
+change exiledSector:tree-xp-per-dp
+change gwyvern_trailstc:trail-storage-access-fee
+change jaydeepiracy:cydonia-burn-bonus
+change jaydeepiracy:flowerfish-capstone-at-three-skills
+change jaydeepiracy:flowerfish-polarity
+change jaydeepiracy:flowerfish-shared-skills-range
+change jaydeepiracy:flowerfish-supersymmetry-cap
+change jaydeepiracy:flowerfish-urban-camo-detection
+change jaydeepiracy:sic-flowerfish-relay-range
+change jaydeepiracy:terraformer-ecosphere-slower
+change jaydeepiracy:terraformer-solar-slower
+change kadur_remnant:weapon-restock
+change knights_of_ludd:kol-boss-core-same-faction-points
+change knights_of_ludd:kol-boss-hull-value
+change knights_of_ludd:kol-fracture-jump-cr
+change knights_of_ludd:kol-recorder-payout
+change levianeer_draconis:admiral-store-rep-cost
+change levianeer_draconis:aio-bounty-credits
+change levianeer_draconis:nanoforge-exchange-reward
+change levianeer_draconis:octantis-uplink-automated-cost
+change levianeer_draconis:remnant-raid-alpha-core
+change levianeer_draconis:ring-port-external-payout
+change levianeer_draconis:ring-port-raid-credits
+change looted_sector:teef-battle-loot
+change mayu_specialupgrades:am-fuel-calibrator-cut
+change mayu_specialupgrades:armament-support-op-halved
+change mayu_specialupgrades:biofactory-organics-ratio
+change mayu_specialupgrades:catalytic-supply-cut
+change mayu_specialupgrades:custom-stats-mode-on
+change mayu_specialupgrades:dealmaker-tariff-off
+change mayu_specialupgrades:fighter-manufactory-no-extra-bay
+change mayu_specialupgrades:fleet-hospital-crew-loss
+change mayu_specialupgrades:fullerene-salvage-cut
+change mayu_specialupgrades:hubert-specs-price
+change mayu_specialupgrades:mobile-repair-fleetwide-cut
+change mayu_specialupgrades:plasma-dynamo-halved
+change mayu_specialupgrades:pristine-autoforge-ammo-halved
+change mayu_specialupgrades:quantum-heatsink-halved
+change mayu_specialupgrades:synchroton-bombard-cut
+change mayu_specialupgrades:tactical-relay-ecm-nav-cut
+change navarchy_of_tania:tania-berthing-cr-bug
+change navarchy_of_tania:tania-carina-wrecks-not-free
+change navarchy_of_tania:tania-free-marines-supplies
+change navarchy_of_tania:tania-fuel-center-tariff
+change navarchy_of_tania:tania-graveyard-wrecks-not-free
+change navarchy_of_tania:tania-internal-tariff
+change navarchy_of_tania:tania-quest-credits
+change navarchy_of_tania:tania-quest-story-points
+change navarchy_of_tania:tania-rep-payments
+change navarchy_of_tania:tania-requiem-cache
+change navarchy_of_tania:tania-smod-reset-refund
+change navarchy_of_tania:tania-storage-paid
+change navarchy_of_tania:tania-suburban-tariff
+change nexerelin:nex-academy-stipend-default-off
+change nexerelin:nex-blueprint-swap-price
+change nexerelin:nex-buyship-no-sp-refund
+change nexerelin:nex-buyship-price
+change nexerelin:nex-care-package-smaller
+change nexerelin:nex-colony-profit-xp
+change nexerelin:nex-crew-loot
+change nexerelin:nex-insurance-premium
+change nexerelin:nex-merc-companies
+change nexerelin:nex-milestone-sp-halved
+change nexerelin:nex-mining
+change nexerelin:nex-outpost-cost
+change nexerelin:nex-over-admin-penalty
+change nexerelin:nex-pirate-base-bounties
+change nexerelin:nex-prism-stock
+change nexerelin:nex-prisoner-ransom
+change nexerelin:nex-recovered-smods-off
+change nexerelin:nex-remnant-surplus-price
+change nexerelin:nex-start-credits
+change nexerelin:nex-start-custom-caps
+change nexerelin:nex-start-custom-fleet-off
+change nexerelin:nex-start-large-fleets-off
+change nexerelin:nex-tariff-floor
+change nexerelin:nex-task-group-upkeep
+change privateering:priv-bonds-cap
+change privateering:priv-bonds-third
+change privateering:priv-mercs-scarcer
+change privateering:priv-promotion-pay-tenth
+change privateering:priv-requisition-price-x5
+change privateering:priv-stipend-tenth
+change privateering:priv-upkeep-cover-tenth
+change salvage_magnet:magnet-no-sp-recovery-bypass
+change second_in_command:ad-astra-fuel
+change second_in_command:continuous-repairs-dmods
+change second_in_command:emergency-order-cr
+change second_in_command:expedition-salvage
+change second_in_command:generous-donation
+change second_in_command:legitimate-salvage
+change second_in_command:mobilization-fuel
+change second_in_command:pinpointing-drops
+change second_in_command:polarized-armor-0985
+change second_in_command:privateering-payout
+change second_in_command:provisional-replacements-supplies
+change second_in_command:safe-transport-mothball-fuel
+change second_in_command:well-organized-crew
+change second_in_command:well-organized-officer-odds
+change second_in_command:xo-automated-points
+change second_in_command:xo-comm-rarity
+change second_in_command:xo-derelict-rarity
+change second_in_command:xo-hire-price
+change second_in_command:xo-max-level-four
+change second_in_command:xo-progression-mode
+change second_in_command:xo-slots-three
+change second_in_command:xo-xp-half
+change secretsofthefrontier:cotl-mimic-capacity-per-level
+change secretsofthefrontier:cotl-start-nexerelin
+change secretsofthefrontier:cotl-start-one-frigate
+change secretsofthefrontier:courser-cooldown
+change secretsofthefrontier:courser-escort-duration
+change secretsofthefrontier:dustkeeper-start-nexerelin
+change secretsofthefrontier:forgeship-fuel-supplies
+change secretsofthefrontier:forgeship-stock
+change secretsofthefrontier:forgeship-tariff
+change secretsofthefrontier:haunted-start-nexerelin
+change secretsofthefrontier:haunted-start-no-destroyer
+change secretsofthefrontier:hypnos-lab-cores
+change secretsofthefrontier:outpost-colony-cost
+change secretsofthefrontier:proxy-patrols-one-per-colony
+change secretsofthefrontier:sierra-sale-price
+change secretsofthefrontier:voidwalking-fuel
+change secretsofthefrontier:warmind-availability
+change secretsofthefrontier:warmind-recruit-sp
+change secretsofthefrontier:witchcraft-capstone-at-three
+change selkie_eis:eis-blueprint-turn-in-pay
+change selkie_eis:eis-celeste-prototype-rep
+change selkie_eis:eis-charlotte-rep
+change selkie_eis:eis-iron-heritage-rep
+change selkie_eis:eis-surplus-hull-price
+change sic-auxiliaries:apostle-burn-bright-no-free-repair
+change sic-auxiliaries:apostle-for-safety-dissipation
+change sic-auxiliaries:apostle-we-survive-crew-loss
+change sic-auxiliaries:cadet-weaker
+change sic-auxiliaries:capstones-at-three-skills
+change sic-auxiliaries:explorer-black-market-profile
+change sic-auxiliaries:explorer-fuel-production
+change sic-auxiliaries:explorer-megaport-crew
+change sic-auxiliaries:explorer-omega-drops
+change sic-auxiliaries:explorer-open-market-cargo
+change sic-auxiliaries:explorer-orbital-works-cr
+change sic-auxiliaries:explorer-remnant-auto-points
+change sic-auxiliaries:guerilla-reuse
+change sic-auxiliaries:guerilla-tracker-jump-cost
+change sic-auxiliaries:helios-assets-reclamation
+change sic-auxiliaries:helios-ejection-pods
+change sic-auxiliaries:nomad-engine-optimization
+change sic-auxiliaries:nomad-hull-restoration-slower
+change sic-auxiliaries:nomad-plating-hazards
+change sic-auxiliaries:nomad-steadfast
+change sic-auxiliaries:nomad-trailblazer
+change sic-auxiliaries:sic-h3-helios-proximity-damage
+change sic-auxiliaries:sic-h3-valkyrie-doctrine-damage
+change sic-auxiliaries:sic-h3-valkyrie-hawkeye
+change sic-auxiliaries:storm-fewer-ships
+change sic-auxiliaries:storm-not-for-hire
+change sic-auxiliaries:valkyrie-legion-floor
+change sicdustkeeper:capstones-at-three-skills
+change sicdustkeeper:escort-drones-fewer
+change sicdustkeeper:network-depth-core-discount
+change stelnet:stelnet-require-comms
+change swp:ibb-payouts-halved
+change takeshido:impromptu-race-payouts
+change takeshido:takeshido-nex-start-wolf
+change takeshido:tournament-prizes
+change takeshido:used-car-stock
+change takeshido:used-car-tariff
+change terraformingmadeeasy:tme-project-cost-x2
+change terraformingmadeeasy:tme-project-time-x2
+change uaf:affiliate-program-rewards
+change uaf:automata-need-the-skill
+change uaf:bakery-branch-deposit
+change uaf:dmod-removal-coin-price
+change uaf:dmod-removal-keycard-off
+change uaf:faction-submarket-stock
+change uaf:keycard-credit-value
+change uaf:keycard-drop-chance
+change uaf:keycard-shop-prices
+change uaf:reputation-ship-prices
+change uaf:resolution-price
+change uaf:smod-removal-off
+change zoeyea:ea-admin-salary
+change zoeyea:ea-rapid-construction

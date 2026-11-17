@@ -1,0 +1,659 @@
+{
+  "format": 1,
+  "mod_id": "navarchy_of_tania",
+  "mod_name": "Navarchy of Tania",
+  "tested_versions": [
+    "1.4.0"
+  ],
+  "changes": [
+    {
+      "id": "tania-storage-paid",
+      "title": "Storage on Carina I and Carina III is the normal paid kind",
+      "why": "Survival removes free storage. The two markets now get the game's own storage, which charges the usual monthly fee.",
+      "before": "Personal Storage with no fee, for commissioned players and after the final boss",
+      "after": "Normal storage with the monthly fee",
+      "ops": [
+        {
+          "op": "class_string",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/Carinasystem",
+          "method": "generate",
+          "expect_sha256": "25a8830384d43cf31c605c91826821eaeec51e577f39c7f3105f181b6f87f9a0",
+          "count": 2,
+          "subs": [
+            [
+              "tania_free_storage",
+              "storage"
+            ]
+          ],
+          "method_fp": "cc971bb09c24dfc9"
+        }
+      ]
+    },
+    {
+      "id": "tania-suburban-tariff",
+      "title": "The Suburban charges a tariff between Survival's two black market rates",
+      "why": "A Survival black market charges 25%, or nothing with the transponder off, and the Suburban's 1% is set halfway between the two.",
+      "before": "1% tariff",
+      "after": "14% tariff",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Suburban_Market",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.01,
+          "to": 0.14,
+          "count": 1,
+          "method_fp": "7e825d202158c472"
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/campaign/submarkets.csv",
+          "key": {
+            "id": "tania_the_suburban"
+          },
+          "column": "desc",
+          "expect_sha256": "1e3754d77067f60c16813f137f8e6369b3b0ef580859cf24fada83a09e6ec8d6",
+          "subs": [
+            [
+              "small share (1%)",
+              "share (14%)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tania-internal-tariff",
+      "title": "The Internal Market's tariff rises 10 points at every standing",
+      "why": "Survival's open market tariff is 10 points higher, so every tier of this market rises by 10 points.",
+      "before": "40% / 20% / 10% / 5% at Favorable / Welcoming / Friendly / Cooperative",
+      "after": "50% / 30% / 20% / 15% at Favorable / Welcoming / Friendly / Cooperative",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Internal_Market",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.2,
+          "to": 0.3,
+          "count": 1,
+          "method_fp": "6fc8ef2a5d33c5a1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Internal_Market",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.1,
+          "to": 0.2,
+          "count": 1,
+          "method_fp": "6fc8ef2a5d33c5a1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Internal_Market",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.05,
+          "to": 0.15,
+          "count": 1,
+          "method_fp": "6fc8ef2a5d33c5a1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Internal_Market",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.4,
+          "to": 0.5,
+          "count": 2,
+          "which": [
+            1
+          ],
+          "method_fp": "6fc8ef2a5d33c5a1"
+        }
+      ]
+    },
+    {
+      "id": "tania-fuel-center-tariff",
+      "title": "The Fuel Center's tariff rises 10 points at every standing",
+      "why": "Survival's open market tariff is 10 points higher, so each tier rises by 10 points, and Cooperative stops at 0% because this shop buys fuel back.",
+      "before": "-15% / -5% / 0% / 5% / 10% from Cooperative down to below Favorable",
+      "after": "0% / 5% / 10% / 15% / 20% from Cooperative down",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Fuel_Center",
+          "method": "getTariff",
+          "type": "float",
+          "from": -0.15,
+          "to": 0.0,
+          "count": 1,
+          "method_fp": "abbe16846b1a9054"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Fuel_Center",
+          "method": "getTariff",
+          "type": "float",
+          "from": -0.05,
+          "to": 0.05,
+          "count": 1,
+          "method_fp": "abbe16846b1a9054"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Fuel_Center",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.0,
+          "to": 0.1,
+          "count": 1,
+          "method_fp": "abbe16846b1a9054"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Fuel_Center",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.05,
+          "to": 0.15,
+          "count": 1,
+          "method_fp": "abbe16846b1a9054"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/submarkets/tania_Fuel_Center",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.1,
+          "to": 0.2,
+          "count": 1,
+          "method_fp": "abbe16846b1a9054"
+        }
+      ]
+    },
+    {
+      "id": "tania-rep-payments",
+      "title": "The payments for reaching Welcoming and Friendly are smaller",
+      "why": "They are paid for standing alone in the first cycles, and Survival cut that kind of pay to a tenth.",
+      "before": "75,000 credits at Welcoming, 150,000 at Friendly",
+      "after": "7,500 credits at Welcoming, 15,000 at Friendly",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "float",
+          "from": 75000,
+          "to": 7500,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "float",
+          "from": 150000,
+          "to": 15000,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        }
+      ]
+    },
+    {
+      "id": "tania-requiem-cache",
+      "title": "The Bombarded Habitat holds a Survival-sized cache",
+      "why": "It handed over several free hulls, nine fighter wings and a large stock of fuel and supplies. Counts are cut toward Survival's salvage fractions (ships 0.2, wings 0.3, goods 0.3).",
+      "before": "1 to 6 Buffalo, 2 to 8 Hound, 4 Talon and 5 Wasp wings, 250 to 1000 supplies, 400 to 1200 fuel, plus goods",
+      "after": "0 to 1 Buffalo, 0 to 2 Hound, 1 Talon and 1 Wasp wing, 75 to 300 supplies, 120 to 360 fuel, goods x0.3",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 34,
+          "which": [
+            6
+          ],
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 4,
+          "to": 1,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 5,
+          "to": 1,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 6,
+          "to": 1,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 2,
+          "to": 0,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 8,
+          "to": 2,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 250,
+          "to": 75,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 1000,
+          "to": 300,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 400,
+          "to": 120,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 1200,
+          "to": 360,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 50,
+          "to": 15,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 200,
+          "to": 60,
+          "count": 3,
+          "which": [
+            0,
+            1
+          ],
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 800,
+          "to": 240,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 150,
+          "to": 45,
+          "count": 1,
+          "method_fp": "74368c77cc7cb9b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 600,
+          "to": 180,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "74368c77cc7cb9b8"
+        }
+      ]
+    },
+    {
+      "id": "tania-quest-story-points",
+      "title": "Navarchy quest story point rewards are halved",
+      "why": "Survival gives half the story points per level, so each reward is halved.",
+      "before": "20, 20, 10, 5 and 5 story points",
+      "after": "10, 10, 5, 2 and 2 story points",
+      "ops": [
+        {
+          "op": "csv_cell_sub",
+          "file": "data/campaign/rules.csv",
+          "key": {
+            "id": "tania_Spy_Navarchy_End_Continue5"
+          },
+          "column": "script",
+          "expect_sha256": "1f7e989d929222ab27f892133a8a5537e38a391a1506b1485c198a95c990b87a",
+          "subs": [
+            [
+              "AddStoryPoints 20",
+              "AddStoryPoints 10"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/campaign/rules.csv",
+          "key": {
+            "id": "tania_Final_Boss_Defeat_Continue2"
+          },
+          "column": "script",
+          "expect_sha256": "0e15f07504892cbbe6f5f2875319a917e49da7dd7a371b0d3907427ca11774e7",
+          "subs": [
+            [
+              "AddStoryPoints 20",
+              "AddStoryPoints 10"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/campaign/rules.csv",
+          "key": {
+            "id": "tania_Dark_Scavenger_Defeat_OPT4"
+          },
+          "column": "script",
+          "expect_sha256": "3d20cae292dc9fa45fe4c9ec71706107b7f1d792afb822c6e0c4499fc2b52404",
+          "subs": [
+            [
+              "AddStoryPoints 10",
+              "AddStoryPoints 5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/campaign/rules.csv",
+          "key": {
+            "id": "Ramirez_Defeat_OPT3"
+          },
+          "column": "script",
+          "expect_sha256": "21f8748160d6c0f898d4058c37208a4ae165ef1a6868f9640e2f3bfb7d3fadab",
+          "subs": [
+            [
+              "AddStoryPoints 5",
+              "AddStoryPoints 2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/campaign/rules.csv",
+          "key": {
+            "id": "tania_Luddic_Path_Raid_Finish_Continue4"
+          },
+          "column": "script",
+          "expect_sha256": "628fa50fce04259fc6d3c988c8209785b6de0612343337db6c84d8d4cedc83e5",
+          "subs": [
+            [
+              "AddStoryPoints 5",
+              "AddStoryPoints 2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tania-smod-reset-refund",
+      "title": "Resetting s-mods on an Ancient Frame refunds no story points",
+      "why": "Vanilla never refunds story points spent on s-mods, and Survival makes them scarce. The refund was a cheaper road to story points.",
+      "before": "1 or 2 story points back on reset",
+      "after": "No story points back on reset",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/hullmods/tania_Ancient_Weapon_Systems",
+          "method": "addPostDescriptionSection",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 68,
+          "which": [
+            33
+          ],
+          "method_fp": "4dbb0249aeaa8273"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/hullmods/tania_Ancient_Weapon_Systems",
+          "method": "addPostDescriptionSection",
+          "type": "int",
+          "from": 2,
+          "to": 0,
+          "count": 66,
+          "which": [
+            32
+          ],
+          "method_fp": "4dbb0249aeaa8273"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/tania.jar",
+          "class": "data/hullmods/tania_Ancient_Weapon_Systems",
+          "method": "addPostDescriptionSection",
+          "expect_sha256": "ac4fed41e9a69f5e0af349b2e7bda35e7107bb5941173728283df268dad32445",
+          "subs": [
+            [
+              "1 Story Point",
+              "0 Story Points"
+            ]
+          ],
+          "method_fp": "4dbb0249aeaa8273"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/tania.jar",
+          "class": "data/hullmods/tania_Ancient_Weapon_Systems",
+          "method": "addPostDescriptionSection",
+          "expect_sha256": "fd3cabfe4314579d4903521d99ffa701b53777e8460b467412e61cf12a03862f",
+          "subs": [
+            [
+              "Refunded 2",
+              "Refunded 0"
+            ]
+          ],
+          "method_fp": "4dbb0249aeaa8273"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/tania.jar",
+          "class": "data/hullmods/tania_Ancient_Weapon_Systems",
+          "method": "addPostDescriptionSection",
+          "expect_sha256": "ee2c573d3f0f803ef1e40e470735d08d512e3cbedff5aef28cdfbf5790933b24",
+          "subs": [
+            [
+              "partially refund",
+              "not refund"
+            ]
+          ],
+          "method_fp": "4dbb0249aeaa8273"
+        }
+      ]
+    },
+    {
+      "id": "tania-carina-wrecks-not-free",
+      "title": "The wrecks around Carina are ordinary derelicts",
+      "why": "All 94 wrecks sat free to recover in a core system from the first day, and Survival keeps about 1 placed derelict in 10 recoverable.",
+      "before": "94 wrecks, every one free to recover, among them 2 Astral, 2 Retribution, 1 Aracari, 2 Touraco",
+      "after": "8 Sandgrouse frigates stay free to recover, and the other 86 wrecks take the story point roll (about 1 in 5)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/Carinasystem",
+          "method": "generate",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 44,
+          "which": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            19,
+            20,
+            21,
+            23,
+            24,
+            25,
+            26,
+            27,
+            30
+          ],
+          "method_fp": "cc971bb09c24dfc9"
+        }
+      ]
+    },
+    {
+      "id": "tania-graveyard-wrecks-not-free",
+      "title": "Four of the five wrecks in The Graveyard are ordinary derelicts",
+      "why": "Survival keeps 1 placed derelict in 10 recoverable and never fewer than 1 of a group, so one of the five stays free.",
+      "before": "Legion, Mora, 2 Vanguard and Touraco, free to recover from the start of the game",
+      "after": "The Touraco stays free to recover, and the Legion, the Mora and the two Vanguards take the story point roll (about 1 in 5)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/scripts/world/campaign/tania_mission_unlocker_per_rep",
+          "method": "advance",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 34,
+          "which": [
+            23,
+            24,
+            25,
+            26,
+            28,
+            29,
+            30,
+            31
+          ],
+          "method_fp": "74368c77cc7cb9b8"
+        }
+      ]
+    },
+    {
+      "id": "tania-berthing-cr-bug",
+      "title": "Ancient Frame no longer gives 1500% maximum CR for built-in Additional Berthing",
+      "why": "The bonus was written as 15 where the game counts CR as a fraction, so it was +1500% and set every such ship to 100% CR through any d-mod. It is set to 0 because a number in this slot cannot be a fraction.",
+      "before": "Built-in Additional Berthing on an Ancient Frame hull: maximum CR always 100%",
+      "after": "No maximum CR bonus from that pairing; the tooltip says 0%",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/tania.jar",
+          "class": "data/hullmods/tania_Ancient_Weapon_Systems",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 15,
+          "to": 0,
+          "count": 4,
+          "which": [
+            3
+          ],
+          "method_fp": "e96c9e2fdd4e2daa"
+        }
+      ]
+    }
+  ]
+}

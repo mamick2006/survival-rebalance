@@ -1,0 +1,3450 @@
+{
+  "format": 1,
+  "mod_id": "exiledSector",
+  "mod_name": "Exiled Sector",
+  "tested_versions": [
+    "0.12.7"
+  ],
+  "changes": [
+    {
+      "id": "tree-xp-per-dp",
+      "title": "Ships earn half the XP per enemy deployment point",
+      "why": "Survival halves story points per level; ship levels slow down to match.",
+      "before": "1 XP per enemy DP",
+      "after": "0.5 XP per enemy DP",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_levelXpPerDeploymentPoint",
+          "csv": false,
+          "set": "0.5"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerSkillTree",
+          "type": "double",
+          "from": 1.0,
+          "to": 0.5,
+          "count": 5,
+          "which": [
+            0
+          ],
+          "method_fp": "e732bf3321a8bb66"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/progression/ShipLevelConfig",
+          "method": "xpPerDeploymentPoint",
+          "type": "float",
+          "from": 1.0,
+          "to": 0.5,
+          "count": 1,
+          "method_fp": "5fb20f9e9e3f5f04"
+        }
+      ]
+    },
+    {
+      "id": "tree-level-floor",
+      "title": "New ships start at a quarter of your level, not all of it",
+      "why": "A free full tree on every new ship skips the cost of earning it.",
+      "before": "ships at 100% of your level",
+      "after": "ships at 25% of your level",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_levelFloorPercent",
+          "csv": false,
+          "set": "25"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerSkillTree",
+          "type": "int",
+          "from": 100,
+          "to": 25,
+          "count": 11,
+          "which": [
+            1
+          ],
+          "method_fp": "e732bf3321a8bb66"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/progression/ShipLevelConfig",
+          "method": "levelFloorPercent",
+          "type": "int",
+          "from": 100,
+          "to": 25,
+          "count": 1,
+          "method_fp": "fb1d118b0adbe9ff"
+        }
+      ]
+    },
+    {
+      "id": "tree-op-cost",
+      "title": "Nodes bought with ordnance points cost twice as much",
+      "why": "Nodes past the level cap are permanent power bought with a cheap price.",
+      "before": "1 / 2 / 3 / 5 OP per node by size",
+      "after": "2 / 4 / 6 / 10 OP per node by size",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_opCostFrigate",
+          "csv": false,
+          "set": "2"
+        },
+        {
+          "op": "luna",
+          "key": "exiledSector_opCostDestroyer",
+          "csv": false,
+          "set": "4"
+        },
+        {
+          "op": "luna",
+          "key": "exiledSector_opCostCruiser",
+          "csv": false,
+          "set": "6"
+        },
+        {
+          "op": "luna",
+          "key": "exiledSector_opCostCapital",
+          "csv": false,
+          "set": "10"
+        },
+        {
+          "op": "luna",
+          "key": "exiledSector_opCostUndefined",
+          "csv": false,
+          "set": "10"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerSkillTree",
+          "type": "int",
+          "from": 5,
+          "to": 10,
+          "count": 2,
+          "method_fp": "e732bf3321a8bb66"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerSkillTree",
+          "type": "int",
+          "from": 3,
+          "to": 6,
+          "count": 1,
+          "method_fp": "e732bf3321a8bb66"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerSkillTree",
+          "type": "int",
+          "from": 2,
+          "to": 4,
+          "count": 1,
+          "method_fp": "e732bf3321a8bb66"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerSkillTree",
+          "type": "int",
+          "from": 1,
+          "to": 2,
+          "count": 5,
+          "which": [
+            3
+          ],
+          "method_fp": "e732bf3321a8bb66"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/progression/SkillNodeOpCost",
+          "method": "perNode",
+          "desc": "(Lcom/fs/starfarer/api/combat/ShipAPI$HullSize;)I",
+          "type": "int",
+          "from": 5,
+          "to": 10,
+          "count": 2,
+          "method_fp": "13aed3441e417a27"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/progression/SkillNodeOpCost",
+          "method": "perNode",
+          "desc": "(Lcom/fs/starfarer/api/combat/ShipAPI$HullSize;)I",
+          "type": "int",
+          "from": 3,
+          "to": 6,
+          "count": 1,
+          "method_fp": "13aed3441e417a27"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/progression/SkillNodeOpCost",
+          "method": "perNode",
+          "desc": "(Lcom/fs/starfarer/api/combat/ShipAPI$HullSize;)I",
+          "type": "int",
+          "from": 2,
+          "to": 4,
+          "count": 1,
+          "method_fp": "13aed3441e417a27"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/progression/SkillNodeOpCost",
+          "method": "perNode",
+          "desc": "(Lcom/fs/starfarer/api/combat/ShipAPI$HullSize;)I",
+          "type": "int",
+          "from": 1,
+          "to": 2,
+          "count": 1,
+          "method_fp": "13aed3441e417a27"
+        }
+      ]
+    },
+    {
+      "id": "npc-tree-chance",
+      "title": "Every enemy combat ship has a skill tree",
+      "why": "Your ships keep growing their skill trees, so every enemy ship needs one too. At 30%, most enemy ships had none.",
+      "before": "30%",
+      "after": "all",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_npcTreesOtherShipChance",
+          "csv": false,
+          "set": "100"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerNpc",
+          "type": "int",
+          "from": 30,
+          "to": 100,
+          "count": 1,
+          "method_fp": "3c3bd1978a10f870"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/npc/NpcTreeConfig",
+          "method": "otherShipChance",
+          "type": "int",
+          "from": 30,
+          "to": 100,
+          "count": 1,
+          "method_fp": "1345bcbbaa825a0d"
+        }
+      ]
+    },
+    {
+      "id": "logistics-cap",
+      "title": "One logistics notable per ship, not two",
+      "why": "Logistics effects are worth the most in Survival and get cut hardest.",
+      "before": "2 logistics notables per ship",
+      "after": "1 logistics notable per ship",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/LogisticsNodes",
+          "method": "cap",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "14262bca8e4e1170"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/items/LogisticsSchematicItemPlugin",
+          "method": "body",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "c21933aee57f8425"
+        }
+      ]
+    },
+    {
+      "id": "logistics-node-supply-fuel",
+      "title": "Supply nodes that add up are smaller",
+      "why": "A ship takes one logistics node and each copies a hullmod at the hullmod's own numbers, so only the nodes that add up with a count are reduced.",
+      "before": "for example -20% supplies, fuel and crew on Efficiency Overhaul",
+      "after": "Reduced Monthly Supplies -4%. League Requisitions 2% per hull type. Converted Fighter Bay (built in) -7% supplies per bay.",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            173,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            44,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            44,
+            "integrated",
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            62,
+            "integrated",
+            "effects",
+            3,
+            "magnitude"
+          ],
+          "expect": -15,
+          "set": -7
+        }
+      ]
+    },
+    {
+      "id": "item-logistics-lines",
+      "title": "Hull items cut supply, fuel and crew use half as much",
+      "why": "The same cuts on tree nodes are halved; items rolled them at full size.",
+      "before": "for example -16% to -11% fuel use",
+      "after": "for example -8% to -5%",
+      "ops": [
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "MIN_CREW_PERCENT_IMPLICIT"
+          },
+          "column": "lines",
+          "expect_sha256": "3d51df2883714bd2d9271e75d3494b5c8ea201bc32c98dbcf3ab7d3c5c1d91fb",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "MIN_CREW_PERCENT"
+          },
+          "column": "lines",
+          "expect_sha256": "e94badbb61e1a796a88683ea3b65a788fe1fd51d2ccd61a597e76c80016a8a40",
+          "subs": [
+            [
+              "-20:-15",
+              "-10:-7"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "MIN_CREW_PERCENT_PER_FIGHTER_BAY"
+          },
+          "column": "lines",
+          "expect_sha256": "1f0a50e77173ecabdb037457350b5285a68fb5626330ad93149a3b8e2668addc",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "SUPPLIES_PER_MONTH_MULT_CORRUPTION_IMPLICIT"
+          },
+          "column": "lines",
+          "expect_sha256": "f2335785f25ddd8510bdffaf7a270ee7f15d38e869ef5ef0272b3d585dc68389",
+          "subs": [
+            [
+              "-13:-7",
+              "-6:-3"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "SUPPLIES_PER_MONTH_MULT_CREW_QUARTERS"
+          },
+          "column": "lines",
+          "expect_sha256": "50fcb60fac9a60a2e46836ecbb9f3ff8a5bfaacfded6fb08a0797d2912e53ac1",
+          "subs": [
+            [
+              "-15:-10",
+              "-7:-5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "SUPPLIES_PER_MONTH_MULT_BRIDGE"
+          },
+          "column": "lines",
+          "expect_sha256": "0a1458f5ca2c531036fedafef8da387de8a7677eda200658189ee07ec6477a78",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "HYBRID_CARGO_CAPACITY_SUPPLIES_PER_MONTH"
+          },
+          "column": "lines",
+          "expect_sha256": "d609d6fe3919a99cc7dff9445af30ba8437298df45b0c56907d0b4e198753ae4",
+          "subs": [
+            [
+              "-5:-3",
+              "-2:-1"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "MOVE_SLOW_SUPPLY_USE_MULT_FROZEN_FRINGE"
+          },
+          "column": "lines",
+          "expect_sha256": "8cb2a1eea888912e78119c217072928a2e0518dd668c49bda9a821fd0558ac8d",
+          "subs": [
+            [
+              "-5:-3",
+              "-2:-1"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "FUEL_USE_MULT_SINDRIAN_FUEL_ENGINEERS"
+          },
+          "column": "lines",
+          "expect_sha256": "1776a88b95acc6c3ef4b51d16d19ddaba797189388afe5d5d07adf31628a71f0",
+          "subs": [
+            [
+              "-16:-11",
+              "-8:-5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "FUEL_USE_MULT_ENGINE_ROOM"
+          },
+          "column": "lines",
+          "expect_sha256": "9ed024e4e0b21b44ca2278cec8a9898df160e2260d92df4fa2701e2b39314c85",
+          "subs": [
+            [
+              "-15:-10",
+              "-7:-5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "HYBRID_FUEL_USE_FUEL_CAPACITY"
+          },
+          "column": "lines",
+          "expect_sha256": "74d222cad04893c69cdca39283660ee484ebc6c4dff6e7ebc5a6450f92d429a1",
+          "subs": [
+            [
+              "-8:-5",
+              "-4:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "FUEL_AND_SUPPLY_USE_MULT_PER_DMOD_DERELICT_GRAVEYARD"
+          },
+          "column": "lines",
+          "expect_sha256": "06ad5c3f86401ca1f85212ebac94c1a6bbe33f34cabf0a0114025b7e42dedf00",
+          "subs": [
+            [
+              "-3:-3",
+              "-1:-1"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "BURN_LEVEL_FLAT_SINDRIAN_FUEL_ENGINEERS"
+          },
+          "column": "lines",
+          "expect_sha256": "f5461c5054ce25a2f698f6cc131ff76b057a9b66edc823ec20b9aa395755d25c",
+          "subs": [
+            [
+              "1:2",
+              "1:1"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "battle-item-drops",
+      "title": "Hull items and schematics drop a quarter as often from battles",
+      "why": "Matches Survival's 0.25 battle drop rate for hullmods.",
+      "before": "100% drop rate",
+      "after": "25% drop rate",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_battleItemDropPercent",
+          "csv": false,
+          "set": "25"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-HullUpgrades.jar",
+          "class": "exiledsector/items/HullUpgradesDomain",
+          "method": "registerSettings",
+          "type": "int",
+          "from": 100,
+          "to": 25,
+          "count": 1,
+          "method_fp": "1526f146d506c1e9"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-Core.jar",
+          "class": "exiledsector/loot/BattleItemDropSetting",
+          "method": "multiplier",
+          "type": "int",
+          "from": 100,
+          "to": 25,
+          "count": 1,
+          "method_fp": "cbe3bcb6a837318e"
+        }
+      ]
+    },
+    {
+      "id": "battle-feedstock",
+      "title": "Less Nanite Feedstock after battles",
+      "why": "Survival leaves 0.4 of the cargo after a battle, so 5 becomes 2.",
+      "before": "5 per 100 enemy DP",
+      "after": "2 per 100 enemy DP",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_socketPartsPer100DeploymentPoints",
+          "csv": false,
+          "set": "2"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-Core.jar",
+          "class": "exiledsector/ui/ExiledSectorSettings",
+          "method": "registerItems",
+          "type": "int",
+          "from": 5,
+          "to": 2,
+          "count": 1,
+          "method_fp": "3c9ac86b27a3e2a3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-Core.jar",
+          "class": "exiledsector/items/ItemDrops",
+          "method": "battleFeedstockPerDeploymentPoint",
+          "type": "int",
+          "from": 5,
+          "to": 2,
+          "count": 1,
+          "method_fp": "32b673a713d94c87"
+        }
+      ]
+    },
+    {
+      "id": "battle-nanoswarms",
+      "title": "Nanoswarms drop a quarter as often from battles",
+      "why": "Crafting drops roll outside Survival's drop cuts; this matches the 0.25 hullmod rate.",
+      "before": "for example 1.2 Augmentation Nanoswarms per 100 DP",
+      "after": "for example 0.3 per 100 DP",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_augmentation_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "1.2",
+          "set": "0.3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_fundamental_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.8",
+          "set": "0.2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_reshaping_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.4",
+          "set": "0.1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_corrupted_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.12",
+          "set": "0.03"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_metamorph_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0332",
+          "set": "0.0083"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_annulment_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0252",
+          "set": "0.0063"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_tuning_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0252",
+          "set": "0.0063"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_immutable_nanoswarm"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0168",
+          "set": "0.0042"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_replicator_nanoseed"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0028",
+          "set": "0.0007"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_prefix_inhibitor"
+          },
+          "column": "per_100_dp",
+          "expect": "0.04",
+          "set": "0.01"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "exiledSector_suffix_inhibitor"
+          },
+          "column": "per_100_dp",
+          "expect": "0.04",
+          "set": "0.01"
+        }
+      ]
+    },
+    {
+      "id": "salvage-items",
+      "title": "Salvage sites hold fewer hull items and less feedstock",
+      "why": "Matches Survival's salvage rates: 0.5 for special items, 0.3 for commodities.",
+      "before": "for example a research station 1 / 0.6 / 0.3 / 0.1 item chances, 20 to 30 feedstock",
+      "after": "0.5 / 0.3 / 0.15 / 0.05, 6 to 9 feedstock",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_probe"
+          },
+          "column": "chances",
+          "expect": "0.5",
+          "set": "0.25"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_probe"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_probe"
+          },
+          "column": "feedstockMax",
+          "expect": "8",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_survey_ship"
+          },
+          "column": "chances",
+          "expect_sha256": "2a9474285420a36f86e22fec69eb942ea3db0c5541193201cdbf951ad881a6a1",
+          "set": "0.4;0.075"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_survey_ship"
+          },
+          "column": "feedstockMin",
+          "expect": "8",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_survey_ship"
+          },
+          "column": "feedstockMax",
+          "expect": "12",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_mothership"
+          },
+          "column": "chances",
+          "expect_sha256": "fff97c432c4e4d7fda1a551d87c797697906b803262122d9eed1cf1955a2cedf",
+          "set": "0.5;0.2;0.075"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_mothership"
+          },
+          "column": "feedstockMin",
+          "expect": "20",
+          "set": "6"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "derelict_mothership"
+          },
+          "column": "feedstockMax",
+          "expect": "30",
+          "set": "9"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research"
+          },
+          "column": "chances",
+          "expect_sha256": "8a6e514c20010e37af502ac48253cb11408798b3f9ef2a709bf17b847582d268",
+          "set": "0.5;0.3;0.15;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research"
+          },
+          "column": "uniqueChance",
+          "expect": "0.19",
+          "set": "0.095"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research"
+          },
+          "column": "feedstockMin",
+          "expect": "20",
+          "set": "6"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research"
+          },
+          "column": "feedstockMax",
+          "expect": "30",
+          "set": "9"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research_remnant"
+          },
+          "column": "chances",
+          "expect_sha256": "8a6e514c20010e37af502ac48253cb11408798b3f9ef2a709bf17b847582d268",
+          "set": "0.5;0.3;0.15;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research_remnant"
+          },
+          "column": "uniqueChance",
+          "expect": "0.19",
+          "set": "0.095"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research_remnant"
+          },
+          "column": "feedstockMin",
+          "expect": "20",
+          "set": "6"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research_remnant"
+          },
+          "column": "feedstockMax",
+          "expect": "30",
+          "set": "9"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining"
+          },
+          "column": "chances",
+          "expect_sha256": "8a6e514c20010e37af502ac48253cb11408798b3f9ef2a709bf17b847582d268",
+          "set": "0.5;0.3;0.15;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining"
+          },
+          "column": "uniqueChance",
+          "expect": "0.344",
+          "set": "0.172"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining"
+          },
+          "column": "feedstockMin",
+          "expect": "15",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining"
+          },
+          "column": "feedstockMax",
+          "expect": "22",
+          "set": "7"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining_remnant"
+          },
+          "column": "chances",
+          "expect_sha256": "8a6e514c20010e37af502ac48253cb11408798b3f9ef2a709bf17b847582d268",
+          "set": "0.5;0.3;0.15;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining_remnant"
+          },
+          "column": "uniqueChance",
+          "expect": "0.344",
+          "set": "0.172"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining_remnant"
+          },
+          "column": "feedstockMin",
+          "expect": "15",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining_remnant"
+          },
+          "column": "feedstockMax",
+          "expect": "22",
+          "set": "7"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "orbital_habitat"
+          },
+          "column": "chances",
+          "expect_sha256": "8a6e514c20010e37af502ac48253cb11408798b3f9ef2a709bf17b847582d268",
+          "set": "0.5;0.3;0.15;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "orbital_habitat"
+          },
+          "column": "feedstockMin",
+          "expect": "10",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "orbital_habitat"
+          },
+          "column": "feedstockMax",
+          "expect": "16",
+          "set": "5"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "orbital_habitat_remnant"
+          },
+          "column": "chances",
+          "expect_sha256": "8a6e514c20010e37af502ac48253cb11408798b3f9ef2a709bf17b847582d268",
+          "set": "0.5;0.3;0.15;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "orbital_habitat_remnant"
+          },
+          "column": "feedstockMin",
+          "expect": "10",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "orbital_habitat_remnant"
+          },
+          "column": "feedstockMax",
+          "expect": "16",
+          "set": "5"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_first_find"
+          },
+          "column": "chances",
+          "expect_sha256": "a0c2a93105107250ee9883ed4dc9fe0df014ea497de09561b3cdd6816e077fa8",
+          "set": "0.4;0.2;0.075"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_first_find"
+          },
+          "column": "uniqueChance",
+          "expect": "0.2",
+          "set": "0.1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_first_find"
+          },
+          "column": "feedstockMin",
+          "expect": "12",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_first_find"
+          },
+          "column": "feedstockMax",
+          "expect": "18",
+          "set": "5"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_monthly"
+          },
+          "column": "chances",
+          "expect_sha256": "e7111cc224a5d2ce869b419d8544b5474d6c451039cc3aaa08d7e7742e564336",
+          "set": "0.1;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_monthly"
+          },
+          "column": "uniqueChance",
+          "expect": "0.02",
+          "set": "0.01"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_monthly"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_monthly"
+          },
+          "column": "feedstockMax",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "wreck"
+          },
+          "column": "chances",
+          "expect": "0.1",
+          "set": "0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "wreck"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "wreck"
+          },
+          "column": "feedstockMax",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "supply_cache"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "supply_cache"
+          },
+          "column": "feedstockMin",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "supply_cache"
+          },
+          "column": "feedstockMax",
+          "expect": "9",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "supply_cache_small"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "supply_cache_small"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "supply_cache_small"
+          },
+          "column": "feedstockMax",
+          "expect": "7",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache"
+          },
+          "column": "feedstockMin",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache"
+          },
+          "column": "feedstockMax",
+          "expect": "9",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_remnant"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_remnant"
+          },
+          "column": "feedstockMin",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_remnant"
+          },
+          "column": "feedstockMax",
+          "expect": "9",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_low"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_low"
+          },
+          "column": "feedstockMin",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_low"
+          },
+          "column": "feedstockMax",
+          "expect": "9",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_high"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_high"
+          },
+          "column": "feedstockMin",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_high"
+          },
+          "column": "feedstockMax",
+          "expect": "9",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small"
+          },
+          "column": "feedstockMax",
+          "expect": "7",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_remnant"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_remnant"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_remnant"
+          },
+          "column": "feedstockMax",
+          "expect": "7",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_low"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_low"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_low"
+          },
+          "column": "feedstockMax",
+          "expect": "7",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_high"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_high"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "weapons_cache_small_high"
+          },
+          "column": "feedstockMax",
+          "expect": "7",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "equipment_cache"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "equipment_cache"
+          },
+          "column": "feedstockMin",
+          "expect": "6",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "equipment_cache"
+          },
+          "column": "feedstockMax",
+          "expect": "9",
+          "set": "3"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "equipment_cache_small"
+          },
+          "column": "chances",
+          "expect_sha256": "52c0bccba2ebb1da628be76098baca4162400301d3fb0485920f80ad61f4b8e6",
+          "set": "0.2;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "equipment_cache_small"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "equipment_cache_small"
+          },
+          "column": "feedstockMax",
+          "expect": "7",
+          "set": "2"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_boss"
+          },
+          "column": "chances",
+          "expect_sha256": "e7363d6347a4b998eaef69c16d5128b0d98b33a30e63d8ae5735a0b9b1e0553b",
+          "set": "0.5;0.4;0.25;0.125;0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_boss"
+          },
+          "column": "uniqueChance",
+          "expect": "0.25",
+          "set": "0.125"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_reward"
+          },
+          "column": "chances",
+          "expect_sha256": "c9161524961c3ae627bf7a87b2cb844874da742f57e0f081427de4c33adeee34",
+          "set": "0.5;0.3;0.15;0.075"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_reward"
+          },
+          "column": "uniqueChance",
+          "expect": "0.1",
+          "set": "0.05"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_reward"
+          },
+          "column": "feedstockMin",
+          "expect": "20",
+          "set": "6"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_reward"
+          },
+          "column": "feedstockMax",
+          "expect": "30",
+          "set": "9"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_convoy"
+          },
+          "column": "chances",
+          "expect_sha256": "a0c2a93105107250ee9883ed4dc9fe0df014ea497de09561b3cdd6816e077fa8",
+          "set": "0.4;0.2;0.075"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_excavation"
+          },
+          "column": "chances",
+          "expect_sha256": "738bd33f536088f7dd1194c2d6767e5e4ded598322740d6b4bbac304c2e87064",
+          "set": "0.5;0.25;0.1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_excavation"
+          },
+          "column": "uniqueChance",
+          "expect": "0.02",
+          "set": "0.01"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_excavation"
+          },
+          "column": "feedstockMin",
+          "expect": "15",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_excavation"
+          },
+          "column": "feedstockMax",
+          "expect": "22",
+          "set": "7"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_listening_post"
+          },
+          "column": "chances",
+          "expect_sha256": "738bd33f536088f7dd1194c2d6767e5e4ded598322740d6b4bbac304c2e87064",
+          "set": "0.5;0.25;0.1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_listening_post"
+          },
+          "column": "uniqueChance",
+          "expect": "0.02",
+          "set": "0.01"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_listening_post"
+          },
+          "column": "feedstockMin",
+          "expect": "15",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_listening_post"
+          },
+          "column": "feedstockMax",
+          "expect": "22",
+          "set": "7"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_pre_collapse_facility"
+          },
+          "column": "chances",
+          "expect_sha256": "738bd33f536088f7dd1194c2d6767e5e4ded598322740d6b4bbac304c2e87064",
+          "set": "0.5;0.25;0.1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_pre_collapse_facility"
+          },
+          "column": "uniqueChance",
+          "expect": "0.02",
+          "set": "0.01"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_pre_collapse_facility"
+          },
+          "column": "feedstockMin",
+          "expect": "15",
+          "set": "4"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_pre_collapse_facility"
+          },
+          "column": "feedstockMax",
+          "expect": "22",
+          "set": "7"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_abyssal_shipyard"
+          },
+          "column": "chances",
+          "expect_sha256": "1038ebcf00777e62c1b2466c6ce2bfe540207136e8105cfc7e5abad74ee4fb3f",
+          "set": "0.5;0.4;0.25;0.1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_abyssal_shipyard"
+          },
+          "column": "uniqueChance",
+          "expect": "0.25",
+          "set": "0.125"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_abyssal_shipyard"
+          },
+          "column": "feedstockMin",
+          "expect": "25",
+          "set": "8"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_abyssal_shipyard"
+          },
+          "column": "feedstockMax",
+          "expect": "35",
+          "set": "10"
+        }
+      ]
+    },
+    {
+      "id": "market-hull-item-stock",
+      "title": "Markets stock at most one hull item",
+      "why": "Survival sells about a quarter to a third of normal stock.",
+      "before": "0-2 open, 1-2 military, 1-3 black market",
+      "after": "0-1 in each",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/market_hull_items.csv",
+          "key": {
+            "submarket": "open_market"
+          },
+          "column": "max_count",
+          "expect": "2",
+          "set": "1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/market_hull_items.csv",
+          "key": {
+            "submarket": "generic_military"
+          },
+          "column": "min_count",
+          "expect": "1",
+          "set": "0"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/market_hull_items.csv",
+          "key": {
+            "submarket": "generic_military"
+          },
+          "column": "max_count",
+          "expect": "2",
+          "set": "1"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/market_hull_items.csv",
+          "key": {
+            "submarket": "black_market"
+          },
+          "column": "min_count",
+          "expect": "1",
+          "set": "0"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/market_hull_items.csv",
+          "key": {
+            "submarket": "black_market"
+          },
+          "column": "max_count",
+          "expect": "3",
+          "set": "1"
+        }
+      ]
+    },
+    {
+      "id": "market-hull-item-price",
+      "title": "Hull items for sale cost seven times as much",
+      "why": "Matches Survival's 7x hullmod price; resale of dropped items is unchanged.",
+      "before": "15,000 credits",
+      "after": "105,000 credits",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/special_items.csv",
+          "key": {
+            "id": "exiledSector_socketable_listing"
+          },
+          "column": "base price",
+          "expect": "15000",
+          "set": "105000"
+        }
+      ]
+    },
+    {
+      "id": "chart-colony-items",
+      "title": "Star Charts give colony items half as often",
+      "why": "Matches Survival's 0.5 salvage rate for special items.",
+      "before": "up to 25% a run",
+      "after": "up to 12.5% a run",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/chart_colony_items.csv",
+          "key": {
+            "id": "ceiling"
+          },
+          "column": "value",
+          "expect": "0.25",
+          "set": "0.125"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "6"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.001",
+          "set": "0.0005"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "7"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.0015",
+          "set": "0.00075"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "8"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.002",
+          "set": "0.001"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "9"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.0025",
+          "set": "0.00125"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "10"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.003",
+          "set": "0.0015"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "11"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.004",
+          "set": "0.002"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "12"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.005",
+          "set": "0.0025"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "13"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.006",
+          "set": "0.003"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "14"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.007",
+          "set": "0.0035"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "15"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.008",
+          "set": "0.004"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/star_chart_tiers.csv",
+          "key": {
+            "tier": "16"
+          },
+          "column": "colony_item_chance",
+          "expect": "0.009",
+          "set": "0.0045"
+        }
+      ]
+    },
+    {
+      "id": "recovered-ships-start-blank",
+      "title": "Recovered enemy ships lose their skill tree",
+      "why": "Every enemy ship now has a tree. A ship you recover would bring that whole tree with it for free.",
+      "before": "keep",
+      "after": "blank",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_npcRecoveredStartBlank",
+          "csv": false,
+          "set": "true"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/skills/npc/NpcTreeConfig",
+          "method": "recoveredShipsStartBlank",
+          "type": "int",
+          "from": 0,
+          "to": 1,
+          "count": 1,
+          "method_fp": "4fbb6979a08b38e6"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerNpc",
+          "type": "int",
+          "from": 0,
+          "to": 1,
+          "count": 9,
+          "which": [
+            4
+          ],
+          "method_fp": "3c3bd1978a10f870"
+        }
+      ]
+    },
+    {
+      "id": "npc-tree-bonus-scale",
+      "title": "Enemy trees grow stronger as yours do",
+      "why": "Enemy ships pick their nodes less well than you do, so their bonuses grow a little as your trees grow. At 1.1x your ships stay ahead.",
+      "before": "1x",
+      "after": "1x at tree size 5, rising to 1.1x at 30",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "exiledSector_npcBonusScaleMaxMultiplier",
+          "csv": false,
+          "set": "1.1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerNpc",
+          "type": "double",
+          "from": 1.0,
+          "to": 1.1,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "3c3bd1978a10f870"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/effects/NpcBonusScale$Config",
+          "method": "current",
+          "type": "float",
+          "from": 1.0,
+          "to": 1.1,
+          "count": 1,
+          "method_fp": "7cf2b2f33eb4eae0"
+        },
+        {
+          "op": "luna",
+          "key": "exiledSector_npcBonusScaleHighTreePower",
+          "csv": false,
+          "set": "30"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerNpc",
+          "type": "int",
+          "from": 60,
+          "to": 30,
+          "count": 1,
+          "method_fp": "3c3bd1978a10f870"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/effects/NpcBonusScale$Config",
+          "method": "current",
+          "type": "int",
+          "from": 60,
+          "to": 30,
+          "count": 1,
+          "method_fp": "7cf2b2f33eb4eae0"
+        },
+        {
+          "op": "luna",
+          "key": "exiledSector_npcBonusScaleLowTreePower",
+          "csv": false,
+          "set": "5"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/ui/SkillTreeSettings",
+          "method": "registerNpc",
+          "type": "int",
+          "from": 15,
+          "to": 5,
+          "count": 1,
+          "method_fp": "3c3bd1978a10f870"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-SkillTree.jar",
+          "class": "exiledsector/effects/NpcBonusScale$Config",
+          "method": "current",
+          "type": "int",
+          "from": 15,
+          "to": 5,
+          "count": 1,
+          "method_fp": "7cf2b2f33eb4eae0"
+        }
+      ]
+    },
+    {
+      "id": "freebooters-charge-damage",
+      "title": "Freebooter's Charge gives +15% weapon damage, not +30%",
+      "why": "Weapon damage has no diminishing brake; +30% for one node is about three officer damage skills. +15% matches Executor's Decree.",
+      "before": "+30% weapon damage",
+      "after": "+15% weapon damage, same drawbacks",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            187,
+            "effects",
+            1,
+            "magnitude"
+          ],
+          "expect": 30,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            187,
+            "integrated",
+            "effects",
+            1,
+            "magnitude"
+          ],
+          "expect": 30,
+          "set": 15
+        }
+      ]
+    },
+    {
+      "id": "tree-small-nodes",
+      "title": "Small tree nodes give about a quarter less",
+      "why": "The small nodes between the big ones cost nothing and have no vanilla price. A player picks the best of them and an enemy ship picks at random, so smaller nodes leave a smaller lead.",
+      "before": "for example +3% weapon damage, +5% hull, +50 armour on a cruiser, +5 affinity",
+      "after": "for example +2% weapon damage, +4% hull, +40 armour on a cruiser, +4 affinity",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            5,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            25,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            26,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            27,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            85,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            247,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            119,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            32,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            6,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            7,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            30,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -15,
+          "set": -12
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            31,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 20,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            148,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 15,
+          "set": 12
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            149,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 25,
+          "set": 20
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            150,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 25,
+          "set": 20
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            154,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            155,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -10,
+          "set": -8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            158,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -20,
+          "set": -15
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            159,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 20,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            161,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            166,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            166,
+            "effects",
+            1,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            171,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 25,
+          "set": 20
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            185,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 25,
+          "set": 20
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            188,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -10,
+          "set": -8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            84,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -3,
+          "set": -2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            168,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -3,
+          "set": -2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            167,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            170,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 4,
+          "set": 3
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            182,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            183,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -4,
+          "set": -3
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            184,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 20,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            184,
+            "effects",
+            1,
+            "magnitude"
+          ],
+          "expect": 20,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            225,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            255,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            169,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            120,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            172,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            172,
+            "effects",
+            1,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            189,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            190,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            157,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            264,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            266,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": -5,
+          "set": -4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            269,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            122,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            123,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            124,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            258,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 8
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            4,
+            "hullSizeEffects",
+            0,
+            "frigate"
+          ],
+          "expect": 15,
+          "set": 12
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            4,
+            "hullSizeEffects",
+            0,
+            "destroyer"
+          ],
+          "expect": 30,
+          "set": 24
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            4,
+            "hullSizeEffects",
+            0,
+            "cruiser"
+          ],
+          "expect": 50,
+          "set": 40
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            4,
+            "hullSizeEffects",
+            0,
+            "capitalShip"
+          ],
+          "expect": 75,
+          "set": 60
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            0,
+            "frigate"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            0,
+            "destroyer"
+          ],
+          "expect": 4,
+          "set": 3
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            0,
+            "cruiser"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            0,
+            "capitalShip"
+          ],
+          "expect": 6,
+          "set": 5
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            1,
+            "frigate"
+          ],
+          "expect": 3,
+          "set": 2
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            1,
+            "destroyer"
+          ],
+          "expect": 4,
+          "set": 3
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            1,
+            "cruiser"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            153,
+            "hullSizeEffects",
+            1,
+            "capitalShip"
+          ],
+          "expect": 6,
+          "set": 5
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            156,
+            "hullSizeEffects",
+            0,
+            "frigate"
+          ],
+          "expect": 6,
+          "set": 5
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            156,
+            "hullSizeEffects",
+            0,
+            "destroyer"
+          ],
+          "expect": 5,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            156,
+            "hullSizeEffects",
+            0,
+            "cruiser"
+          ],
+          "expect": 4,
+          "set": 3
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            156,
+            "hullSizeEffects",
+            0,
+            "capitalShip"
+          ],
+          "expect": 4,
+          "set": 3
+        }
+      ]
+    },
+    {
+      "id": "item-weapon-lines",
+      "title": "Hull items add half as much damage, rate of fire and damage reduction",
+      "why": "Item lines cost no ordnance points, enemy ships never carry items, and these lines have no diminishing brake.",
+      "before": "for example +5% to +10% weapon damage, +15% to +20% rate of fire, -6% to -4% damage taken",
+      "after": "for example +3% to +5% damage, +7% to +10% rate of fire, -3% to -2% damage taken",
+      "ops": [
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "BALLISTIC_WEAPON_DAMAGE_PERCENT_WEAPON_MOUNT"
+          },
+          "column": "lines",
+          "expect_sha256": "d270a00bd67510091f00333bd180290d40dfd30ebad33bba20fea89c56cf76a0",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "BEAM_WEAPON_DAMAGE_PERCENT_WEAPON_MOUNT"
+          },
+          "column": "lines",
+          "expect_sha256": "25010363e621cc076fcbb0dee6357116d4a39c2d0ebfd8b8dcd7761281b8cec2",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "MISSILE_WEAPON_DAMAGE_PERCENT_WEAPON_MOUNT"
+          },
+          "column": "lines",
+          "expect_sha256": "a7fce8120282bb7d13c2cb3ae9fc58b69a65a7c474e8450cca92dbe6be063e4d",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "NON_BEAM_ENERGY_WEAPON_DAMAGE_PERCENT_WEAPON_MOUNT"
+          },
+          "column": "lines",
+          "expect_sha256": "782198c218198b6663a5c59ba889783540b4918c3ffcdf75f186198bbeb3e1a8",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "BALLISTIC_WEAPON_RATE_OF_FIRE_PERCENT"
+          },
+          "column": "lines",
+          "expect_sha256": "0c740e033a18ef2367a388c55bc1076503329daa05d1f790a7e157617807e19c",
+          "subs": [
+            [
+              "10:15",
+              "5:7"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "MISSILE_WEAPON_RATE_OF_FIRE_PERCENT"
+          },
+          "column": "lines",
+          "expect_sha256": "f8927cf81306438b0da9d73248f87a011c7fd26d7c0d14ffcc469ff77a8ccf90",
+          "subs": [
+            [
+              "25:30",
+              "12:15"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "WEAPON_RATE_OF_FIRE_PERCENT"
+          },
+          "column": "lines",
+          "expect_sha256": "4b3ea660407e2f85ed6c9f5ae3bbd4f5affa174e1cbddb970652eacd3fc32894",
+          "subs": [
+            [
+              "15:20",
+              "7:10"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "HYBRID_WEAPON_FIRE_RATE_WEAPON_FLUX_COST_ANOMALOUS_DEBRIS"
+          },
+          "column": "lines",
+          "expect_sha256": "9a32f7d2480560eeef9437a7be1d2bb615c643312ef08b2476d53800249b6007",
+          "subs": [
+            [
+              "7:13",
+              "4:7"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "DAMAGE_TO_CAPITAL_PERCENT_PLANETKILLER_CIRCUIT"
+          },
+          "column": "lines",
+          "expect_sha256": "ad3f8f7e52f5eeb4c8271c5aaaa60b07b4dab239d662dffca0f256a42eae8278",
+          "subs": [
+            [
+              "20:30",
+              "10:15"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "DAMAGE_TO_AUTOMATED_SHIP_PERCENT_PATHER_CELL"
+          },
+          "column": "lines",
+          "expect_sha256": "64b4294273f4631e4ca9b6d31b19799656b19dfa92bedc7d0b10c378d4900672",
+          "subs": [
+            [
+              "30:50",
+              "15:25"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "DAMAGE_TO_CAPITAL_PERCENT_BRIDGE"
+          },
+          "column": "lines",
+          "expect_sha256": "491a518d91a1367645dedfa8a3ea850df7a9c56b4ac5994c40d0fab505a7371f",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "DAMAGE_TO_CRUISER_PERCENT_BRIDGE"
+          },
+          "column": "lines",
+          "expect_sha256": "42dbc238d5bfd4d8712d868e229ceff18bdc0fab3589ccb3f748d3f5b481dce8",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "DAMAGE_TO_FRIGATE_PERCENT_BRIDGE"
+          },
+          "column": "lines",
+          "expect_sha256": "4d5ee95616d24b9931452c65b463ad69943a13e1a66bdbb9ce57df36ed784fa5",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "DAMAGE_TO_DESTROYER_PERCENT_BRIDGE"
+          },
+          "column": "lines",
+          "expect_sha256": "ca5e1eb2740fe318a7b3c405503e59fd0fc35e4ceacad55286b84b34b2116ee6",
+          "subs": [
+            [
+              "5:10",
+              "3:5"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "BALLISTIC_WEAPON_FLUX_COST_MULT_REACTOR"
+          },
+          "column": "lines",
+          "expect_sha256": "20c22a5b6ba48d2d5d4a55227bfd4f7e1f936f6e5e6426f14d66c6aaa1a53a06",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-3"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "BEAM_WEAPON_FLUX_COST_PERCENT_REACTOR"
+          },
+          "column": "lines",
+          "expect_sha256": "a480d10672672d8a63b7b8f0a38fae9068fb8bdb1dbbb50780bf95c47ad17a32",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-3"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "NON_BEAM_ENERGY_WEAPON_FLUX_COST_MULT_REACTOR"
+          },
+          "column": "lines",
+          "expect_sha256": "665f9e840e3b7e3b465ae536cca751bc345dee431fe2d502011763ac4cc56bc6",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-3"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "ENERGY_DAMAGE_TAKEN_PERCENT_ARMOR_PLATING"
+          },
+          "column": "lines",
+          "expect_sha256": "b221b1fc37fd2d00bf34b8d498f9588068341759e1ce4589fe93e5364d2245d1",
+          "subs": [
+            [
+              "-6:-4",
+              "-3:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "FRAGMENTATION_DAMAGE_TAKEN_PERCENT_ARMOR_PLATING"
+          },
+          "column": "lines",
+          "expect_sha256": "02e3501ba1ffb154715fbf46a940bdc90a3d186e3769f9314e4961df2c1152f0",
+          "subs": [
+            [
+              "-6:-4",
+              "-3:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "HIGH_EXPLOSIVE_DAMAGE_TAKEN_PERCENT_ARMOR_PLATING"
+          },
+          "column": "lines",
+          "expect_sha256": "e32bc4a8860886067f35bc0a79fd789c0b90592205c6c0f0d48dd7df67704442",
+          "subs": [
+            [
+              "-6:-4",
+              "-3:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "KINETIC_DAMAGE_TAKEN_PERCENT_ARMOR_PLATING"
+          },
+          "column": "lines",
+          "expect_sha256": "63a88cffb3c667a1d70b591b1cb016c9ffdd941ca31dbfdbb2b5fdabe094adbe",
+          "subs": [
+            [
+              "-6:-4",
+              "-3:-2"
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "HYBRID_KINETIC_DAMAGE_TAKEN_HIGH_EXPLOSIVE_DAMAGE_TAKEN"
+          },
+          "column": "lines",
+          "expect_sha256": "25eafa54770c4d876aa7b0e701dcc0411729fb573cbd0049e65779e7e68db5bb",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-3",
+              2
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "HYBRID_ENERGY_DAMAGE_TAKEN_FRAGMENTATION_DAMAGE_TAKEN"
+          },
+          "column": "lines",
+          "expect_sha256": "a48e795be293c5b6c3500700b2c2c6d9c524d347995fac3cd25d5b91e1f1f840",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-3",
+              2
+            ]
+          ]
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/exiledSector/item_modifiers.csv",
+          "key": {
+            "id": "ENERGY_DAMAGE_TAKEN_PERCENT_SHIELD_GENERATOR"
+          },
+          "column": "lines",
+          "expect_sha256": "d0401b0c2d70bfd415256501d52d41cae7554bc611fa9f236de9faf208c2e5a5",
+          "subs": [
+            [
+              "-10:-5",
+              "-5:-3"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hull-item-points-cap",
+      "title": "A ship holds at most 3 hull items, not 5",
+      "why": "Hull items cost no OP and their damage, rate of fire and damage-taken lines have no diminishing brake. Five full items on one cruiser add about five officer combat skills on top of its officer, s-mods and tree. Three items is about three.",
+      "before": "Military Refit Schematic gives 4 Hull Upgrade points, Domain gives 5; the most a ship can hold is 5",
+      "after": "Military and Domain Refit Schematics give 3 points; the most a ship can hold is 3",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-Core.jar",
+          "class": "exiledsector/items/RefitSchematic",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 4,
+          "to": 3,
+          "count": 1,
+          "method_fp": "0f4f2ad28eb066fe"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-Core.jar",
+          "class": "exiledsector/items/RefitSchematic",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 5,
+          "to": 3,
+          "count": 1,
+          "method_fp": "0f4f2ad28eb066fe"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-HullUpgrades.jar",
+          "class": "exiledsector/items/HullUpgradePoints",
+          "method": "maxPoints",
+          "type": "int",
+          "from": 5,
+          "to": 3,
+          "count": 1,
+          "method_fp": "1c1ff2db9d9f1877"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-HullUpgrades.jar",
+          "class": "exiledsector/items/HullUpgradeRules",
+          "method": "upgradeBlock",
+          "type": "int",
+          "from": 5,
+          "to": 3,
+          "count": 1,
+          "method_fp": "4266ce82fde0dc37"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExiledSector-HullUpgrades.jar",
+          "class": "exiledsector/ui/socket/HullUpgradePanel",
+          "method": "schematicStateText",
+          "type": "int",
+          "from": 5,
+          "to": 3,
+          "count": 1,
+          "method_fp": "8db90a15ba516308"
+        },
+        {
+          "op": "line_sub",
+          "file": "data/strings/exiledSector/hullUpgrades/en.json",
+          "line_sha256": "c279b8b44dd9c10f3bf294d8ac3e2203a4f536215ba17747ad882774bdd71027",
+          "subs": [
+            [
+              "up to 5.",
+              "up to 3."
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

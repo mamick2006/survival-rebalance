@@ -1,0 +1,415 @@
+{
+  "format": 1,
+  "mod_id": "Nightcross",
+  "mod_name": "Nightcross Armory",
+  "tested_versions": [
+    "2.2.0"
+  ],
+  "changes": [
+    {
+      "id": "nca-vendor-tariff",
+      "title": "The NCA Vendor's tariff rises 10 points at every standing",
+      "why": "Survival's open market tariff is 10 points higher, so each tier rises by 10 points.",
+      "before": "30% neutral, 20% favorable, 10% welcoming, 0% friendly, -20% cooperative",
+      "after": "40% neutral, 30% favorable, 20% welcoming, 10% friendly, -10% cooperative",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.3,
+          "to": 0.4,
+          "count": 1,
+          "method_fp": "b9f7410f86d169af"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.2,
+          "to": 0.3,
+          "count": 1,
+          "method_fp": "b9f7410f86d169af"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.1,
+          "to": 0.2,
+          "count": 1,
+          "method_fp": "b9f7410f86d169af"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.0,
+          "to": 0.1,
+          "count": 1,
+          "method_fp": "b9f7410f86d169af"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": -0.2,
+          "to": -0.1,
+          "count": 1,
+          "method_fp": "b9f7410f86d169af"
+        }
+      ]
+    },
+    {
+      "id": "nca-vendor-weapon-stock",
+      "title": "The NCA Vendor stocks a Survival share of weapons and wings",
+      "why": "Survival shops stock about a fifth of the weapons and wings, and this shop's own stocking code skipped that.",
+      "before": "5 to 10 weapon types (2 to 4 large, 3 to 6 medium or 4 to 8 small of each) and 3 to 5 wings per restock",
+      "after": "2 to 4 weapon types and 1 to 2 wings per restock, with 1 to 2 large, 1 to 3 medium or 2 to 4 small weapons of each type",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "int",
+          "from": 10,
+          "to": 4,
+          "count": 1,
+          "method_fp": "30a44d7c7dda9ede"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "int",
+          "from": 5,
+          "to": 2,
+          "count": 2,
+          "method_fp": "30a44d7c7dda9ede"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 1,
+          "method_fp": "30a44d7c7dda9ede"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "31f9ee9b48eec655"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 4,
+          "to": 2,
+          "count": 2,
+          "method_fp": "31f9ee9b48eec655"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 1,
+          "method_fp": "31f9ee9b48eec655"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 6,
+          "to": 3,
+          "count": 1,
+          "method_fp": "31f9ee9b48eec655"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossArmoryMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 8,
+          "to": 4,
+          "count": 1,
+          "method_fp": "31f9ee9b48eec655"
+        }
+      ]
+    },
+    {
+      "id": "aria-backchannels-weapon-stock",
+      "title": "Backchannels stocks a Survival share of weapons and wings",
+      "why": "Survival shops stock about a fifth of the weapons and wings, and this shop's own stocking code skipped that.",
+      "before": "5 to 9 weapon types (2 to 4 large, 3 to 6 medium or 4 to 8 small of each) and 1 to 2 wings per restock",
+      "after": "2 to 4 weapon types and 1 wing per restock, with 1 to 2 large, 1 to 3 medium or 2 to 4 small weapons of each type",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "41182ea2d1abb813"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "int",
+          "from": 9,
+          "to": 4,
+          "count": 1,
+          "method_fp": "41182ea2d1abb813"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "int",
+          "from": 5,
+          "to": 2,
+          "count": 1,
+          "method_fp": "41182ea2d1abb813"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "e28ffb24ac9f4cf0"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 4,
+          "to": 2,
+          "count": 2,
+          "method_fp": "e28ffb24ac9f4cf0"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 1,
+          "method_fp": "e28ffb24ac9f4cf0"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 6,
+          "to": 3,
+          "count": 1,
+          "method_fp": "e28ffb24ac9f4cf0"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/submarkets/NA_NightcrossAriaMarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 8,
+          "to": 4,
+          "count": 1,
+          "method_fp": "e28ffb24ac9f4cf0"
+        }
+      ]
+    },
+    {
+      "id": "zgr-stargazer-turnin",
+      "title": "Stargazer tech turned in to ZGR pays the Survival rate",
+      "why": "Vanilla's own ZGR turn-in pays 0.3 of normal in Survival; this copy of it paid full rate on Survival weapon prices.",
+      "before": "3x item base value",
+      "after": "0.9x item base value",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/rulecmd/nca/NA_ZGRTurnIn",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 3.0,
+          "to": 0.9,
+          "count": 1,
+          "method_fp": "487ccfda497829ec"
+        }
+      ]
+    },
+    {
+      "id": "nasa-stargazer-turnin",
+      "title": "Stargazer tech turned in to Nightcross pays the Survival rate",
+      "why": "Same turn-in as ZGR's, so the same 0.3 Survival factor.",
+      "before": "2x item base value",
+      "after": "0.6x item base value",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/rulecmd/nca/NA_NasaTurnIn",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 2.0,
+          "to": 0.6,
+          "count": 1,
+          "method_fp": "7ae95e8fa55d8016"
+        }
+      ]
+    },
+    {
+      "id": "stargazer-hullmod-drops",
+      "title": "Fewer hullmod drops from Stargazer wrecks",
+      "why": "Survival cuts hullmod drops from battles to a quarter, and this loot roll skipped that.",
+      "before": "20 / 12 / 6 / 3 rolls per capital / cruiser / destroyer / frigate",
+      "after": "5 / 3 / 1 / 1 rolls",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/stardust/NA_StargazerFIDConfig$1",
+          "method": "postPlayerSalvageGeneration",
+          "type": "int",
+          "from": 20,
+          "to": 5,
+          "count": 1,
+          "method_fp": "f57479051f57587f"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/stardust/NA_StargazerFIDConfig$1",
+          "method": "postPlayerSalvageGeneration",
+          "type": "int",
+          "from": 12,
+          "to": 3,
+          "count": 1,
+          "method_fp": "f57479051f57587f"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/stardust/NA_StargazerFIDConfig$1",
+          "method": "postPlayerSalvageGeneration",
+          "type": "int",
+          "from": 6,
+          "to": 1,
+          "count": 1,
+          "method_fp": "f57479051f57587f"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/stardust/NA_StargazerFIDConfig$1",
+          "method": "postPlayerSalvageGeneration",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 1,
+          "method_fp": "f57479051f57587f"
+        }
+      ]
+    },
+    {
+      "id": "shroud-substrate-drops",
+      "title": "Less shrouded substrate from abyssal shroud fights",
+      "why": "Vanilla's dweller fights drop 0.4 of normal substrate in Survival; this copy skipped it.",
+      "before": "half the drop range as a chance, or a full roll on big fights",
+      "after": "at most 1 per fight, with 0.4 of the normal chance",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/rulecmd/nca/NA_StargazerShroudCMD$2",
+          "method": "postPlayerSalvageGeneration",
+          "type": "float",
+          "from": 1.0,
+          "to": 1000.0,
+          "count": 2,
+          "which": [
+            1
+          ],
+          "method_fp": "0e17055bc82ca416"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/rulecmd/nca/NA_StargazerShroudCMD$2",
+          "method": "postPlayerSalvageGeneration",
+          "type": "float",
+          "from": 2.0,
+          "to": 5.0,
+          "count": 1,
+          "method_fp": "0e17055bc82ca416"
+        }
+      ]
+    },
+    {
+      "id": "ghost-core-points",
+      "title": "Ghost cores and Stargazer Matrix cost a Beta core's automated points",
+      "why": "A level 5 Ghost core cost less automated budget than a vanilla level 5 Beta core (3x). The level 7 Matrix uses the same number through a mod bug.",
+      "before": "2.5x automated points (Ghost core and Stargazer Matrix)",
+      "after": "3x automated points",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/nightcross.jar",
+          "class": "data/scripts/campaign/ids/NightcrossPeople",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 2.5,
+          "to": 3.0,
+          "count": 1,
+          "method_fp": "dd0cb0e02c6d2546"
+        }
+      ]
+    }
+  ]
+}

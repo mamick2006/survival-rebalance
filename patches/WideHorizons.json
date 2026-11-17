@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "mod_id": "WideHorizons",
+  "mod_name": "Wide Horizons",
+  "tested_versions": [
+    "1.5.0"
+  ],
+  "changes": [
+    {
+      "id": "special-projects-tariff",
+      "title": "Tri-Tachyon Special Projects tariff raised to 30%",
+      "why": "Survival raises the open market tariff from 30% to 40%, and this shop stays 10 points under it as the mod had it.",
+      "before": "20% tariff",
+      "after": "30% tariff",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/WideHorizons.jar",
+          "class": "org/widehorizons/campaign/submarkets/WHTTFieldTestStationSpecialsSubmarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.2,
+          "to": 0.3,
+          "count": 1,
+          "method_fp": "1fda63ff95c6b3eb"
+        }
+      ]
+    }
+  ]
+}

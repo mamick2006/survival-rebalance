@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "mod_id": "MoreMilitaryMissions",
+  "mod_name": "More Military Missions",
+  "tested_versions": [
+    "0.5.1"
+  ],
+  "changes": [
+    {
+      "id": "mmm-vip-cash-quarter",
+      "title": "The rescued VIP pays half the old cash reward",
+      "why": "Survival halves the officers found in sleeper pods, and 100,000 is about what the best bar job pays.",
+      "before": "200,000 credits",
+      "after": "100,000 credits",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/modSettings.json",
+          "path": [
+            "MoreMilitaryMissions",
+            "VipCreditReward"
+          ],
+          "expect": 200000,
+          "set": 100000
+        }
+      ]
+    }
+  ]
+}

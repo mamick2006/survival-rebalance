@@ -1,0 +1,303 @@
+{
+  "format": 1,
+  "mod_id": "privateering",
+  "mod_name": "Privateering - Commission Overhaul",
+  "tested_versions": [
+    "1.0.4"
+  ],
+  "changes": [
+    {
+      "id": "priv-stipend-tenth",
+      "title": "Commission base pay is cut to a tenth",
+      "why": "Survival pays a commission stipend at x0.1. This mod pays its own stipend and skips that cut.",
+      "before": "15,000 credits a month",
+      "after": "1,500 credits a month",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/config/LunaSettings.csv",
+          "key": {
+            "fieldID": "priv_commissionBase"
+          },
+          "column": "minValue",
+          "expect": "5000",
+          "set": "1000"
+        },
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/LunaSettings.csv",
+          "key": {
+            "fieldID": "priv_commissionBase"
+          },
+          "column": "fieldDescription",
+          "expect_sha256": "02a2594d5a229d72bae27ce9bc7e320d4ab59cf88fed2a6182ca14e65a95ad53",
+          "subs": [
+            [
+              "[15000]",
+              "[1500]"
+            ]
+          ]
+        },
+        {
+          "op": "luna",
+          "key": "priv_commissionBase",
+          "expect_default": "15000",
+          "set": "1500"
+        }
+      ]
+    },
+    {
+      "id": "priv-promotion-pay-tenth",
+      "title": "The Promotion stage adds a tenth of its old pay",
+      "why": "The same x0.1 stipend rule as the base pay.",
+      "before": "+5,000 credits a month",
+      "after": "+500 credits a month",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/PrivateeringCommissionIntel$Companion",
+          "method": "getMonthlyBaseIncome",
+          "type": "float",
+          "from": 5000.0,
+          "to": 500.0,
+          "count": 1,
+          "method_fp": "21003c3e8158d4dc"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/event/CommissionEventIntel",
+          "method": "addBulletPoints",
+          "type": "float",
+          "from": 5000.0,
+          "to": 500.0,
+          "count": 2,
+          "method_fp": "1fbbdf283da6c1da"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/event/CommissionEventIntel",
+          "method": "addStageDesc",
+          "type": "float",
+          "from": 5000.0,
+          "to": 500.0,
+          "count": 2,
+          "method_fp": "6bfe5f9862b3cc27"
+        }
+      ]
+    },
+    {
+      "id": "priv-upkeep-cover-tenth",
+      "title": "The commission covers a tenth of the old share of fleet upkeep",
+      "why": "Paying half of supplies, crew and officer pay is a passive stipend. Survival cuts stipends to x0.1.",
+      "before": "50% of upkeep, 70% after Promotion",
+      "after": "5% of upkeep, 7% after Promotion",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "priv_maintenanceCovered",
+          "expect_default": "0.5",
+          "set": "0.05"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/CommissionData",
+          "method": "getCostsCovered",
+          "type": "float",
+          "from": 0.2,
+          "to": 0.02,
+          "count": 1,
+          "method_fp": "ea3221695f0ed826"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/event/CommissionEventIntel",
+          "method": "addBulletPoints",
+          "expect_sha256": "411f67837b31b684ab61e8813b56d788d608db35234d4f3d595353edf46cd19e",
+          "subs": [
+            [
+              "20%%",
+              "2%%"
+            ]
+          ],
+          "method_fp": "1fbbdf283da6c1da"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/event/CommissionEventIntel",
+          "method": "addBulletPoints",
+          "expect_sha256": "dc934fe30a942bca07b4c288b4b3e48aa79a717d6db2b586553cd2416dc8b9b8",
+          "subs": [
+            [
+              "20%",
+              "2%"
+            ]
+          ],
+          "method_fp": "1fbbdf283da6c1da"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/event/CommissionEventIntel",
+          "method": "addStageDesc",
+          "expect_sha256": "bb6a53e4bc2f8b685e5b6b407f0bfe3f0acd0f8819933acf851acc63a598fd6d",
+          "subs": [
+            [
+              "20%%",
+              "2%%"
+            ]
+          ],
+          "method_fp": "6bfe5f9862b3cc27"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/intel/event/CommissionEventIntel",
+          "method": "addStageDesc",
+          "expect_sha256": "dc934fe30a942bca07b4c288b4b3e48aa79a717d6db2b586553cd2416dc8b9b8",
+          "subs": [
+            [
+              "20%",
+              "2%"
+            ]
+          ],
+          "method_fp": "6bfe5f9862b3cc27"
+        }
+      ]
+    },
+    {
+      "id": "priv-bonds-third",
+      "title": "Battles pay half of the old requisition bonds",
+      "why": "Cash plus bonds came to 900 a frigate against vanilla Survival's 500; bonds spend only at the supervisor, at Survival ship prices after the requisition change.",
+      "before": "600 credits of bonds per frigate",
+      "after": "300 credits of bonds per frigate, 600 with the cash bounty",
+      "ops": [
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/LunaSettings.csv",
+          "key": {
+            "fieldID": "priv_bondsBountyBase"
+          },
+          "column": "fieldDescription",
+          "expect_sha256": "8cf5e3ccc4e8e41e28d7271617f4680de81cb7a576caed19c5feed655a9a928e",
+          "subs": [
+            [
+              "[1.2]",
+              "[0.6]"
+            ]
+          ]
+        },
+        {
+          "op": "luna",
+          "key": "priv_bondsBountyBase",
+          "expect_default": "600",
+          "set": "300"
+        }
+      ]
+    },
+    {
+      "id": "priv-requisition-price-x5",
+      "title": "Requisitioned ships and gear cost five times as many bonds",
+      "why": "The bond price uses the hull base value, which Survival does not scale. Vanilla custom production charges x5 to x8 for hulls.",
+      "before": "Hull base value x0.75 (x1 off-faction)",
+      "after": "Hull base value x3.75 (x5 off-faction)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/ui/RequisitionProductionPicker",
+          "method": "getCostMult",
+          "type": "float",
+          "from": 1.0,
+          "to": 5.0,
+          "count": 1,
+          "method_fp": "63fc7d8a21e42706"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/ui/RequisitionProductionPicker",
+          "method": "getCostMult",
+          "type": "float",
+          "from": 0.75,
+          "to": 3.75,
+          "count": 1,
+          "method_fp": "63fc7d8a21e42706"
+        }
+      ]
+    },
+    {
+      "id": "priv-mercs-scarcer",
+      "title": "The supervisor offers one mercenary every 100 days",
+      "why": "Survival leaves 15% of the officers for hire, and 15% of two mercenaries a month is one every 100 days.",
+      "before": "2 mercenaries every 30 days",
+      "after": "1 mercenary every 100 days",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/rules/SupervisorDialogDelegate",
+          "method": "generateMercs",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "1158b409ced474c1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Privateering.jar",
+          "class": "privateering/rules/SupervisorDialogDelegate",
+          "method": "generateMercs",
+          "type": "float",
+          "from": 30.0,
+          "to": 100.0,
+          "count": 1,
+          "method_fp": "1158b409ced474c1"
+        }
+      ]
+    },
+    {
+      "id": "priv-bonds-cap",
+      "title": "The bond cap is raised to 3,000",
+      "why": "A capital ship ordered at Survival prices costs more than 1,500 bonds, so the old cap made it impossible to order one.",
+      "before": "1,500 bonds at most",
+      "after": "3,000 bonds at most",
+      "ops": [
+        {
+          "op": "csv_cell_sub",
+          "file": "data/config/LunaSettings.csv",
+          "key": {
+            "fieldID": "priv_bondsMax"
+          },
+          "column": "fieldDescription",
+          "expect_sha256": "62ea76dac4e49164d313c867a0ebd33fbffaeb91d73c78f7b087865edf7d1445",
+          "subs": [
+            [
+              "[1500]",
+              "[3000]"
+            ],
+            [
+              "[750,000]",
+              "[1,500,000]"
+            ]
+          ]
+        },
+        {
+          "op": "luna",
+          "key": "priv_bondsMax",
+          "expect_default": "1500",
+          "set": "3000"
+        }
+      ]
+    }
+  ]
+}

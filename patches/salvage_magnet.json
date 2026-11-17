@@ -1,0 +1,33 @@
+{
+  "format": 1,
+  "mod_id": "salvage_magnet",
+  "mod_name": "Salvage Magnet",
+  "tested_versions": [
+    "1.2.0"
+  ],
+  "changes": [
+    {
+      "id": "magnet-no-sp-recovery-bypass",
+      "title": "Grouped derelicts no longer all offer story point recovery",
+      "why": "Survival offers story point recovery on 1 derelict in 5; the magnet offered it on every derelict without a recovery special.",
+      "before": "Every grouped derelict can be recovered for story points",
+      "after": "Grouped derelicts offer only the recoveries they already carry. Salvage a wreck you want by hand to get the normal 1 in 5 offer.",
+      "ops": [
+        {
+          "op": "class_string",
+          "jar": "jars/salvage_magnet.jar",
+          "class": "salvage_magnet/rulecmd/MagnetRecovery",
+          "method": "canBeMadeRecoverable",
+          "expect_sha256": "e4f455dccedf0e4151c0d7c55bf5a4176bc9196f7c5dd914c72836bbe9fab4e2",
+          "subs": [
+            [
+              "unrecoverable",
+              "salvageable"
+            ]
+          ],
+          "method_fp": "b1a86e467f212c7d"
+        }
+      ]
+    }
+  ]
+}

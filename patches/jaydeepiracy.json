@@ -1,0 +1,146 @@
+{
+  "format": 1,
+  "mod_id": "jaydeepiracy",
+  "mod_name": "JaydeePiracy",
+  "tested_versions": [
+    "6.0.3"
+  ],
+  "changes": [
+    {
+      "id": "flowerfish-supersymmetry-cap",
+      "title": "Supersymmetry flux discount capped at 25%",
+      "why": "One fast gun holds the discount at its cap, which halved a ship's flux costs from an executive officer's first skill.",
+      "before": "capped at 50%",
+      "after": "capped at 25%",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/flowerfish/jdp_flowerfishSupersymmetry",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 50,
+          "to": 25,
+          "count": 1,
+          "method_fp": "a9f9eb820e6f36f6"
+        }
+      ]
+    },
+    {
+      "id": "flowerfish-urban-camo-detection",
+      "title": "Urban Camouflage hides the fleet a little less",
+      "why": "Sneaking into port is how a Survival fleet avoids tariffs and bribes, and halving the range it is seen at made that too safe.",
+      "before": "-50% detected-at range",
+      "after": "-40% detected-at range",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/flowerfish/jdp_flowerfishUrbanCamo",
+          "method": "onActivation",
+          "type": "float",
+          "from": 0.5,
+          "to": 0.6,
+          "count": 1,
+          "method_fp": "d06469399228e584"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/flowerfish/jdp_flowerfishUrbanCamo",
+          "method": "addTooltip",
+          "expect_sha256": "55beed03a233e9a36e746101780581e0900870f732084a10aa5820fec189f7c5",
+          "subs": [
+            [
+              "-50%%",
+              "-40%%"
+            ]
+          ],
+          "method_fp": "acd155c1f8f91e96"
+        }
+      ]
+    },
+    {
+      "id": "terraformer-ecosphere-slower",
+      "title": "Ecosphere Management clears a bad condition half as often",
+      "why": "It permanently removes extreme weather, inimical biosphere, pollution and extreme tectonics; vanilla Survival has no way to do this at all.",
+      "before": "One condition about every 110 days",
+      "after": "One condition about every 220 days",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/jdp_ecospheremanagement$Level1",
+          "method": "apply",
+          "type": "int",
+          "from": 110,
+          "to": 220,
+          "count": 1,
+          "method_fp": "cc2a2ba1bee15c08"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/jdp_ecospheremanagement$Level1",
+          "method": "createCustomDescription",
+          "expect_sha256": "079c8bbe2f85e909412676aa96a7f2f17e44026adcff5d0d35bff2741f79d4d7",
+          "subs": [
+            [
+              "four months",
+              "seven months"
+            ]
+          ],
+          "method_fp": "a1a7b551fab65d54"
+        }
+      ]
+    },
+    {
+      "id": "terraformer-solar-slower",
+      "title": "Solar Regulation improves farmland half as often",
+      "why": "It permanently raises farmland a grade at a time up to bountiful; vanilla Survival has no way to do this at all.",
+      "before": "One farmland grade about every 140 days",
+      "after": "One farmland grade about every 280 days",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/jdp_solar$Level1",
+          "method": "apply",
+          "type": "int",
+          "from": 140,
+          "to": 280,
+          "count": 1,
+          "method_fp": "aa50a97a9a8aeeef"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/jdp_solar$Level1",
+          "method": "createCustomDescription",
+          "expect_sha256": "203fc806964fa7cb5182a91166804c5930a439809f764dff95952844643b8d41",
+          "subs": [
+            [
+              "five months",
+              "nine months"
+            ]
+          ],
+          "method_fp": "660274edc003900e"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/JaydeePiracy.jar",
+          "class": "Jaydee8652/JaydeePiracy/scripts/skills/jdp_solar$Level1",
+          "method": "createCustomDescription",
+          "expect_sha256": "e8b859c008339c945c93069e7dfa58980c0b13afa532836940d09b6aab7a4cbe",
+          "subs": [
+            [
+              "five months",
+              "nine months"
+            ]
+          ],
+          "method_fp": "660274edc003900e"
+        }
+      ]
+    }
+  ]
+}

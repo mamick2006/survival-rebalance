@@ -1,0 +1,41 @@
+{
+  "format": 1,
+  "mod_id": "kadur_remnant",
+  "mod_name": "Kadur Remnant",
+  "tested_versions": [
+    "3.2.4support3"
+  ],
+  "changes": [
+    {
+      "id": "weapon-restock",
+      "title": "Kadur markets restock fewer weapons",
+      "why": "The monthly restock is added directly and skips Survival's 0.2 weapons for sale.",
+      "before": "4x5 small, 3x3 medium, 2 large weapons a month",
+      "after": "4 small, 3 medium, 2 large weapons a month",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/KadurRemnant.jar",
+          "class": "data/scripts/campaign/KadurBlueprintStocker",
+          "method": "stockKadurWeapons",
+          "type": "int",
+          "from": 5,
+          "to": 1,
+          "count": 4,
+          "method_fp": "29a257f12c945fa9"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/KadurRemnant.jar",
+          "class": "data/scripts/campaign/KadurBlueprintStocker",
+          "method": "stockKadurWeapons",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 3,
+          "method_fp": "29a257f12c945fa9"
+        }
+      ]
+    }
+  ]
+}

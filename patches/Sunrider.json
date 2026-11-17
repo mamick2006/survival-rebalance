@@ -1,0 +1,259 @@
+{
+  "format": 1,
+  "mod_id": "Sunrider",
+  "mod_name": "Sunrider",
+  "tested_versions": [
+    "0.8.6"
+  ],
+  "changes": [
+    {
+      "id": "sunrider-tip-price",
+      "title": "The tip that leads to the Sunrider costs eight times as much",
+      "why": "The quest hands over a capital ship; Survival prices capitals at 8 times normal.",
+      "before": "100,000 credits to the pirate",
+      "after": "800,000 credits to the pirate",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "e1b4e164e29f182ae7ff3a61d75570db07fbf501e1d81201cfa1231c3e6da7ac",
+          "subs": [
+            [
+              "100000",
+              "800000"
+            ],
+            [
+              "100,000",
+              "800,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "4bd84e8b7af2dcee44e75794cea25928b88494af91187f7d922b7ed5baeb3edf",
+          "subs": [
+            [
+              "100,000",
+              "800,000"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "83cfe58d589adda564a9b39e758748162d8645c82b03d6e4c5e9b1b01aec5f3c",
+          "subs": [
+            [
+              "100000",
+              "800000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "f83440302095b39f0ece1ebbada0e6c3ae36af8bd5bb58d076161c38fbdb4d43",
+          "subs": [
+            [
+              "100,000",
+              "800,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "40b199bdced7f221613a536ceed901c072408d8552ca1cbcc619a1654fed8cae",
+          "subs": [
+            [
+              "100000",
+              "800000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sunrider-no-free-story-point",
+      "title": "Recovering the Sunrider no longer grants a story point",
+      "why": "Survival charges story points to recover a ship that was not yours; it does not pay them out.",
+      "before": "+1 story point when the Sunrider joins",
+      "after": "no story point",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Sunrider.jar",
+          "class": "com/sunrider/missions/FindSunrider",
+          "method": "completeMission",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 6,
+          "which": [
+            0
+          ],
+          "method_fp": "ef0c0a7777d648ff"
+        }
+      ]
+    },
+    {
+      "id": "showdown-reward",
+      "title": "The Showdown bounty pays three million",
+      "why": "The hardest fight in the questline keeps a large reward, but five million was nearly five times the game's top bounty of about 1,050,000.",
+      "before": "5,000,000 credits",
+      "after": "3,000,000 credits",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Sunrider.jar",
+          "class": "com/sunrider/missions/SRShowdown",
+          "method": "create",
+          "type": "int",
+          "from": 5000000,
+          "to": 3000000,
+          "count": 1,
+          "method_fp": "67fc7be219f58428"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Sunrider.jar",
+          "class": "com/sunrider/missions/SRShowdown",
+          "method": "completeMission",
+          "type": "int",
+          "from": 5000000,
+          "to": 3000000,
+          "count": 1,
+          "method_fp": "783f2aa79b6b7a17"
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "4bf88419125fd39b6d98155e8e1cc8c8640f7933fd372d14407d7cabf9345bcc",
+          "subs": [
+            [
+              "Five million",
+              "Three million"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "459869459fbd8793260383db6c5db745aa21c0857f58c0a2640f0e5796c5201a",
+          "subs": [
+            [
+              "Five million",
+              "Three million"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "8507a1e0b92d973fd0f367b1caa8cdb2bb9e572654aa69176ac65049568c902e",
+          "subs": [
+            [
+              "Three million",
+              "Two million"
+            ],
+            [
+              "two from",
+              "one from"
+            ],
+            [
+              "Five million",
+              "Three million"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "15c813a4aceea6821ab355787fcdced68c285c415ec0e0d86d3cb43cde30e1f3",
+          "subs": [
+            [
+              "5 million",
+              "3 million"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statue-ship-package-price",
+      "title": "The Statue mission's ship package costs what three ships cost in Survival",
+      "why": "Two capitals and a cruiser at a flat price skip Survival's 8x and 6x ship prices.",
+      "before": "300,000 credits for an Atlas, a Prometheus and a Starliner",
+      "after": "2,250,000 credits",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Sunrider.jar",
+          "class": "com/sunrider/missions/SRStatue",
+          "method": "updateInteractionDataImpl",
+          "type": "int",
+          "from": 300000,
+          "to": 2250000,
+          "count": 1,
+          "method_fp": "401a12822f2e8188"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Sunrider.jar",
+          "class": "com/sunrider/missions/SRStatue",
+          "method": "updateInteractionDataImpl",
+          "type": "float",
+          "from": 300000.0,
+          "to": 2250000.0,
+          "count": 1,
+          "method_fp": "401a12822f2e8188"
+        }
+      ]
+    },
+    {
+      "id": "vows-story-points",
+      "title": "The wedding finale grants half the story points",
+      "why": "Survival halves story points from levels; the quest's large story point gifts are halved to match.",
+      "before": "2 story points, or 4 with a companion",
+      "after": "1 story point, or 2 with a companion",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "7162d56af3dd204aa40fb7b1b83cf0209ead2848f604f8e528adb5237538bfd7",
+          "subs": [
+            [
+              "AddStoryPoints 2",
+              "AddStoryPoints 1"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "29ebb2146085028d3d319ae4815586aaed7dddb07518a210946ab1658ea87b7f",
+          "subs": [
+            [
+              "AddStoryPoints 4",
+              "AddStoryPoints 2"
+            ]
+          ],
+          "count": 3
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "cddca32035d6f58da13a128fc0c9ec79afaee4dea50f3b8a6efd63a0e3de1cfb",
+          "subs": [
+            [
+              "AddStoryPoints 4",
+              "AddStoryPoints 2"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

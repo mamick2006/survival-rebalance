@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "mod_id": "gwyvern_trailstc",
+  "mod_name": "Trails of Tooth and Claw",
+  "tested_versions": [
+    "v1.3.0"
+  ],
+  "changes": [
+    {
+      "id": "trail-storage-access-fee",
+      "title": "Trail shared storage costs more to join",
+      "why": "Storage you can reach from every Trail market also moves cargo for free; Survival removes free storage. Ships kept there pay a third to a quarter of the normal Survival fee.",
+      "before": "25,000 credits per faction",
+      "after": "100,000 credits per faction",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/trailstc.jar",
+          "class": "gwyvern/trailstc/campaign/submarkets/ttc_SharedStorageSubmarket",
+          "method": "getUnlockCost",
+          "type": "int",
+          "from": 25000,
+          "to": 100000,
+          "count": 1,
+          "method_fp": "4c2e73c54eb25c26"
+        }
+      ]
+    }
+  ]
+}

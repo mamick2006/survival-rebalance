@@ -1,0 +1,248 @@
+{
+  "format": 1,
+  "mod_id": "mayu_specialupgrades",
+  "mod_name": "Special Hullmod Upgrades",
+  "tested_versions": [
+    "1.6a"
+  ],
+  "changes": [
+    {
+      "id": "hubert-specs-price",
+      "title": "Hubert's hullmod bundle costs 7x",
+      "why": "The bundle is 17 hullmod specs sold for a flat credit sum; Survival prices hullmod specs at 7x.",
+      "before": "100,000 credits",
+      "after": "700,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "03b06510e527acdbd30f7d11d26cdf358f283fde07adad131b6c2ca3e370b0a8",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "867fb7f57314111cf00accab730182efbf1091b449ed1d4ca146dfed375d1b8c",
+          "subs": [
+            [
+              "100000",
+              "700000"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "baa6d58620fef76cfac5a63945daf9d0e815baf4424490e1d20e2ef1fdaa2e21",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "db3bda21b27de530a47f800245deca48d39680d257fec586df13d0bcca3a39a3",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "5dedc9442dc7cca4fc3de7c3a8c409bca36ff447682d7efe08c95368e88ed52a",
+          "subs": [
+            [
+              "100000",
+              "700000"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/SpecialUpgrades.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/SPHMUHasRequirements",
+          "method": "playerHasCredits",
+          "type": "float",
+          "from": 100000.0,
+          "to": 700000.0,
+          "count": 1,
+          "method_fp": "7b567264b0a77bd2"
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "1b3617a0d847f9965a9f9b6435cea94611a28c648a3c8745aabb6d7401a3e0b0",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "44630b8adb0955e0cb7084fed5c4d92f7f71243ea08d78fae48a47e840d337ee",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "38f4a0cde4aa340c12c76338cda933d54f46c5bb30f30be3c3c19299692fd7bc",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "19849d1156f609dcfbe979954fd83b7da18cc6c1364980dd055e117731141353",
+          "subs": [
+            [
+              "100,000",
+              "700,000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "custom-stats-mode-on",
+      "title": "Hullmod numbers come from the mod's own settings",
+      "why": "Turns on the mod's custom stats switch so the changes below apply. Flux Hypershunt now does what its tooltip says (25% hard flux dissipation, +40% vent); the built-in code gave 75% and +60%.",
+      "before": "Built-in numbers; Flux Hypershunt dissipates 75% hard flux with shields up and vents 60% faster",
+      "after": "The mod's settings; Flux Hypershunt 25% hard flux dissipation, +40% vent, +10% dissipation",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "shu_customStatsModeToggle",
+          "expect_default_sha256": "60a33e6cf5151f2d52eddae9685cfa270426aa89d8dbc7dfb854606f1d1a40fe",
+          "set": "True"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_HYPERSHUNT_VENT_BONUS",
+          "expect_default": "10",
+          "set": "60"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_HYPERSHUNT_FLUX_DISSIPATION_MULT",
+          "expect_default": "40",
+          "set": "10"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_HYPERSHUNT_HARD_FLUX_DISSIPATION_PERCENT",
+          "expect_default": "25",
+          "set": "75"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_GAMMA_COST_REDUCTION_LG",
+          "expect_default": "2",
+          "set": "1"
+        }
+      ]
+    },
+    {
+      "id": "fleet-hospital-crew-loss",
+      "title": "Fleet Hospital cuts crew losses by 24%, not all of them",
+      "why": "The code multiplies crew losses by -24, so the ship never loses crew; crew is a key Survival cost.",
+      "before": "No crew losses on the hospital ship",
+      "after": "-24% crew losses on the hospital ship",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SpecialUpgrades.jar",
+          "class": "data/hullmods/SUBiofactoryFleetMedBay",
+          "method": "onFleetSync",
+          "type": "float",
+          "from": -24.0,
+          "to": 0.76,
+          "count": 2,
+          "method_fp": "0783537024b6f037"
+        }
+      ]
+    },
+    {
+      "id": "tactical-relay-ecm-nav-cut",
+      "title": "Fleet Tactical Relay ECM and nav bonuses cut to one vanilla package plus one",
+      "why": "At 0 OP one capital gave +20 ECM (twice the 10% fleet cap on its own, five capital ECM Packages) and +10 nav (two capital Nav Relays). Now one point above vanilla's ECM Package (1/2/3/4) and Nav Relay (2/3/4/5).",
+      "before": "ECM +5/10/15/20, nav +4/6/8/10 by hull size",
+      "after": "ECM +2/3/4/5, nav +3/4/5/6",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_ECM_FRIGATE_BONUS",
+          "expect_default": "5",
+          "set": "2"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_ECM_DESTROYER_BONUS",
+          "expect_default": "10",
+          "set": "3"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_ECM_CRUISER_BONUS",
+          "expect_default": "15",
+          "set": "4"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_ECM_CAPITAL_BONUS",
+          "expect_default": "20",
+          "set": "5"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_FLEET_SPEED_FRIGATE_BONUS",
+          "expect_default": "4",
+          "set": "3"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_FLEET_SPEED_DESTROYER_BONUS",
+          "expect_default": "6",
+          "set": "4"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_FLEET_SPEED_CRUISER_BONUS",
+          "expect_default": "8",
+          "set": "5"
+        },
+        {
+          "op": "luna",
+          "key": "LUNA_CM_DEALMAKER_FLEET_SPEED_CAPITAL_BONUS",
+          "expect_default": "10",
+          "set": "6"
+        }
+      ]
+    }
+  ]
+}

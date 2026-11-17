@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "mod_id": "SCE",
+  "mod_name": "Strike Craft Expansion Addon",
+  "tested_versions": [
+    "1.0.1b"
+  ],
+  "changes": [
+    {
+      "id": "sfl-hullmods-not-known-at-start",
+      "title": "Strike craft hullmods must be found or bought",
+      "why": "All five were known from the start, skipping the x7 hullmod price and 0.35 stock. The factions that know them still sell and drop them.",
+      "before": "known at game start",
+      "after": "learned from a hullmod spec",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "sce_DroneHangar"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "sce_sfl_AegisSystem"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "sce_sfl_PredatorSystem"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "sce_sfl_HammerSystem"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "sce_sfl_RejuvenationSystem"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        }
+      ]
+    }
+  ]
+}

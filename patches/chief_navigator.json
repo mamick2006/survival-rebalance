@@ -1,0 +1,52 @@
+{
+  "format": 1,
+  "mod_id": "chief_navigator",
+  "mod_name": "Chief Navigator",
+  "tested_versions": [
+    "0.5.1"
+  ],
+  "changes": [
+    {
+      "id": "cn-adjudicator-value",
+      "title": "Budai's Heavy Adjudicators are valued like vanilla's own",
+      "why": "Vanilla values this same gun at 100,000, and at the mod's 500,000 the pair sold for 7.5 million in Survival.",
+      "before": "Base value 500,000; sells for about 3,750,000 each before tariff",
+      "after": "Base value 100,000; sells for about 750,000 each before tariff",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/weapons/weapon_data.csv",
+          "key": {
+            "id": "chief_navigator_mountable_heavy_adjudicator"
+          },
+          "column": "base value",
+          "expect": "500000",
+          "set": "100000"
+        }
+      ]
+    },
+    {
+      "id": "cn-sanzu-wakes-halved",
+      "title": "Sanzu's planetary wakes hold three wrecks, not six",
+      "why": "Six certain derelicts against vanilla Survival's 0.1 recoverable weight.",
+      "before": "Two recoverable wrecks per Silent Wake planet",
+      "after": "One per planet",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ChiefNavigator.jar",
+          "class": "chiefnavigator/quest/OdysseyExpanseSystem",
+          "method": "ensureSanzuWakeDerelicts",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 3,
+          "which": [
+            0
+          ],
+          "method_fp": "b8b2b596e4781402"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "format": 1,
+  "mod_id": "N84_Phase_Pack",
+  "mod_name": "N84 Phase Pack",
+  "tested_versions": [
+    "0.2.11"
+  ],
+  "changes": [
+    {
+      "id": "phase-anchor-not-free",
+      "title": "Phase Anchor is vanilla's again",
+      "why": "This pack swaps in its own copy of Phase Anchor: known from the start, 2x where vanilla now gives 1.5x, and every ship may dive.",
+      "before": "known from the start, 2x while phased, every ship can dive",
+      "after": "vanilla's: found or bought, 1.5x, one dive a battle",
+      "ops": [
+        {
+          "op": "csv_row_off",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "phase_anchor"
+          },
+          "expect_sha256": "7b87539e6330b387591e9f3d3a5613dd52b118d4ebe695b277c1224196e7aa94"
+        }
+      ]
+    },
+    {
+      "id": "phase-hullmods-not-free",
+      "title": "The pack's phase hullmods must be found or bought",
+      "why": "All eight were known from the start, which skips the Survival hullmod price and scarcity.",
+      "before": "known by every new captain",
+      "after": "found in salvage and markets like other hullmods",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseFlicker"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseEscape"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseChrono"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseCharge"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_AdvPhaseThrusters"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_RuggedPhase"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseArsenalSurge"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_BlastDF"
+          },
+          "column": "unlocked",
+          "expect_sha256": "dfe88090c5ed7ac2f32571f0fc822fda4d8cd281fc7138c7cd6db656f6e2d081",
+          "set": "FALSE"
+        }
+      ]
+    },
+    {
+      "id": "phase-conduit-1-5x",
+      "title": "Phase Arsenal Conduit gives 1.5x while phased",
+      "why": "Vanilla cut its own Phase Anchor to 1.5x in 0.98.5a; the same factor for the pack's copy of the effect.",
+      "before": "2x dissipation and weapon recharge while phased",
+      "after": "1.5x, the same as vanilla's Phase Anchor",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/hullmods/N84_PhaseChrono.java",
+          "line_sha256": "d88f90dde510e0b943db55cdaa656a6583d6f9d643c8f6bf90c264eb2783e3ea",
+          "subs": [
+            [
+              "2f",
+              "1.5f"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-flicker-cooldown",
+      "title": "Phase Flicker cuts the phase cooldown by 33%",
+      "why": "0.98.5a cut vanilla's own cooldown bonus from 50% to 33%; the same factor for the pack's.",
+      "before": "-50% phase cooldown",
+      "after": "-33%",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/hullmods/N84_PhaseFlicker.java",
+          "line_sha256": "cd4bc4398bb5a870e85dd0ab6288d39aba2a4919fb9b1ee1c9060943c818dd50",
+          "subs": [
+            [
+              "50f",
+              "33f"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-dive-op-cost",
+      "title": "Emergency Phase Dive costs half of Phase Anchor",
+      "why": "Every phase ship may dive once a battle; vanilla allows one dive a battle inside a 10/20/30/50 OP hullmod.",
+      "before": "2/4/6/10 OP",
+      "after": "5/10/15/25 OP",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseEscape"
+          },
+          "column": "cost_frigate",
+          "expect": "2",
+          "set": "5"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseEscape"
+          },
+          "column": "cost_dest",
+          "expect": "4",
+          "set": "10"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseEscape"
+          },
+          "column": "cost_cruiser",
+          "expect": "6",
+          "set": "15"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/hullmods/hull_mods.csv",
+          "key": {
+            "id": "N84_PhaseEscape"
+          },
+          "column": "cost_capital",
+          "expect": "10",
+          "set": "25"
+        }
+      ]
+    }
+  ]
+}

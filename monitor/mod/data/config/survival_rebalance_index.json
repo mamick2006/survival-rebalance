@@ -1,0 +1,7 @@
+{
+  "tool_version": "sample",
+  "mods": [
+    {"id": "exiledSector", "name": "Exiled Sector", "tested_versions": ["0.0.0"], "changes": 1},
+    {"id": "IndEvo", "name": "Industrial Evolution", "tested_versions": ["0.0.0"], "changes": 1}
+  ]
+}

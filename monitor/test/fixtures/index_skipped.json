@@ -1,0 +1,9 @@
+{
+  "tool_version": "1.3.1",
+  "skips_other_versions": true,
+  "mods": [
+    {"id": "pat", "name": "Patched Mod", "tested_versions": ["1.0"], "changes": 3, "state": "patched"},
+    {"id": "skip", "name": "Skipped Mod", "tested_versions": ["1.0", "1.0.1"], "changes": 2, "state": "skipped"},
+    {"id": "skip2", "name": "Second Mod", "tested_versions": ["2.0"], "changes": 1, "state": "skipped"}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "tool": "Survival Rebalance",
+  "tool_version": "1.0.0",
+  "status": "applied",
+  "patch_hash": "0000",
+  "disabled_changes": [],
+  "mod_id": "alpha",
+  "mod_version": "1.2.0",
+  "time": "2026-11-15T23:00:00",
+  "changes": ["c1"],
+  "files": []
+}

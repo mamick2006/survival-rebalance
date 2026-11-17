@@ -1,0 +1,982 @@
+{
+  "format": 1,
+  "mod_id": "uaf",
+  "mod_name": "United Aurora Federation",
+  "tested_versions": [
+    "0.8.4c"
+  ],
+  "changes": [
+    {
+      "id": "keycard-shop-prices",
+      "title": "Keycard shop prices carry Survival's price factors",
+      "why": "Coins are paid at the same rate in Survival, so at the mod's prices a few early missions would buy a warship or a month of fuel and supplies.",
+      "before": "shop prices in coins as the mod set them",
+      "after": "Ships cost 5 to 8 times as many coins by size, weapons 10 times, wings 5 times, Neuko cores 7 times, resupply packages 3 times, and colony items and Kaysaar's bundle 2 times, while blueprints, bombs and munitions keep the mod's prices.",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item1"
+          },
+          "column": "cost",
+          "expect_sha256": "94bf3239490ce7a1a6ad3976210a1b214db2dbbc5de9443d90424e8e6f55db1b",
+          "set": "points:10000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item2"
+          },
+          "column": "cost",
+          "expect_sha256": "d964378944193b606d104039f01d3ce1762080e645d8e1c6b69dcf592f250894",
+          "set": "points:8000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item3"
+          },
+          "column": "cost",
+          "expect_sha256": "94bf3239490ce7a1a6ad3976210a1b214db2dbbc5de9443d90424e8e6f55db1b",
+          "set": "points:10000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item4"
+          },
+          "column": "cost",
+          "expect_sha256": "94bf3239490ce7a1a6ad3976210a1b214db2dbbc5de9443d90424e8e6f55db1b",
+          "set": "points:10000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item5"
+          },
+          "column": "cost",
+          "expect_sha256": "94bf3239490ce7a1a6ad3976210a1b214db2dbbc5de9443d90424e8e6f55db1b",
+          "set": "points:10000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item6"
+          },
+          "column": "cost",
+          "expect_sha256": "94bf3239490ce7a1a6ad3976210a1b214db2dbbc5de9443d90424e8e6f55db1b",
+          "set": "points:10000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_colony_item7"
+          },
+          "column": "cost",
+          "expect_sha256": "d964378944193b606d104039f01d3ce1762080e645d8e1c6b69dcf592f250894",
+          "set": "points:8000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_neuko_officer1"
+          },
+          "column": "cost",
+          "expect_sha256": "348b06ce40b3da5f737b40cff462e9f9d8df4f63eed2b84d6f7c31c8799baa9a",
+          "set": "points:10500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_neuko_officer2"
+          },
+          "column": "cost",
+          "expect_sha256": "ca3f6482a73b79a690a8e311512551ae24fd57fb53bf05efa3eb1b1b9eec8d1f",
+          "set": "points:19250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_neuko_officer3"
+          },
+          "column": "cost",
+          "expect_sha256": "f479d7cc3cee9ec93395871e83d2c2b365910102c29ed5eac4b471f328f257d3",
+          "set": "points:29400:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_1"
+          },
+          "column": "cost",
+          "expect_sha256": "3cda37305033f69458a0c681ec77fc268955d297eb780abc24ec1239e12baa7f",
+          "set": "points:20160:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_2"
+          },
+          "column": "cost",
+          "expect_sha256": "ad1dc2892309b05b7b2f9da5ec9a9958b1892b844921d520d63f0ee3f1667e25",
+          "set": "points:21660:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_3"
+          },
+          "column": "cost",
+          "expect_sha256": "87f981e8c1c31377ac3a49c664b84397a3d2e33fa5fc732d78e4bc6a0a34f387",
+          "set": "points:6750:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_4"
+          },
+          "column": "cost",
+          "expect_sha256": "86c7457cb09b393eee7f3a4f487b11c489f8d0673be768798aff69c0138f782d",
+          "set": "points:72400:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_5"
+          },
+          "column": "cost",
+          "expect_sha256": "534df32a2e944c9182066ac983d96c562c6e6ed40d794868fceec289498e1859",
+          "set": "points:5500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_6"
+          },
+          "column": "cost",
+          "expect_sha256": "6bf44c2c15481bb389769c4797ac20c7870af9f214f8a2214675cb3213c54cdb",
+          "set": "points:34200:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_7"
+          },
+          "column": "cost",
+          "expect_sha256": "df1c93bed242b0b0bce1a4d390209ba89bab20923d3df6a7c41ef2c2e89f3f60",
+          "set": "points:19500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_8"
+          },
+          "column": "cost",
+          "expect_sha256": "19ce126ec21c7cc91eb57a5b50fa0ab3860983c7f98e8d49650a1ec9dc547083",
+          "set": "points:21300:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_9"
+          },
+          "column": "cost",
+          "expect_sha256": "6afb0947bc8a18986cfd934187a25f699db495eacfda8c92a9111d02a60df63c",
+          "set": "points:17700:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_10"
+          },
+          "column": "cost",
+          "expect_sha256": "7da84476f80f9f02bbb8038ed1ab578808cd1c80e66fa08748d2d010bb09bd91",
+          "set": "points:75840:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_11"
+          },
+          "column": "cost",
+          "expect_sha256": "0fc67c97edf40e525bf39802f6bdbbd8406bd0762748cc085f95e0b7d917fe1e",
+          "set": "points:52000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_12"
+          },
+          "column": "cost",
+          "expect_sha256": "d964378944193b606d104039f01d3ce1762080e645d8e1c6b69dcf592f250894",
+          "set": "points:24000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_13"
+          },
+          "column": "cost",
+          "expect_sha256": "8230217c28847d1cdfd7027cbff6c2c0161ec99bcdb54e906eb89d7171ea3243",
+          "set": "points:80000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_14"
+          },
+          "column": "cost",
+          "expect_sha256": "7d18d3455c998e7282c4ea16e05e6f1deb9d6b9e0f61ebdb77cf3a378628fee5",
+          "set": "points:160000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_15"
+          },
+          "column": "cost",
+          "expect_sha256": "d964378944193b606d104039f01d3ce1762080e645d8e1c6b69dcf592f250894",
+          "set": "points:24000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_16"
+          },
+          "column": "cost",
+          "expect_sha256": "6c6681598aa3c8262f9d733fd36ff60a35764d3c5f16b33efe8f94f798fde357",
+          "set": "points:144000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ship_17"
+          },
+          "column": "cost",
+          "expect_sha256": "40b0cb8ebf0d5c290c72a1f64e00f59ba249aa4c59d60bcb2938a9affd643427",
+          "set": "points:120000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_kaysaar"
+          },
+          "column": "cost",
+          "expect_sha256": "7d18d3455c998e7282c4ea16e05e6f1deb9d6b9e0f61ebdb77cf3a378628fee5",
+          "set": "points:40000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_lillaru_rillaru"
+          },
+          "column": "cost",
+          "expect_sha256": "96fe7ad4fbf2526ecb33ff5350d00d7c3ded1403ebcfbc562e0a13a5e83de0a0",
+          "set": "points:138400:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_cruiser_package"
+          },
+          "column": "cost",
+          "expect_sha256": "aae52f743b1e101ff0e008f35e15f209f2c78d5dc28f9d9e0989099aeebf8678",
+          "set": "points:51500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_escort_package"
+          },
+          "column": "cost",
+          "expect_sha256": "a4afec0b2c75786d07edf5720c6529eb38c6a3c9f670b3fa89fff55225df76b0",
+          "set": "points:31250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_escort_carrier_package"
+          },
+          "column": "cost",
+          "expect_sha256": "383df7c33d35984a1b215b0f4dcb8501e4d59395195a81e6df22e8509a9cbd81",
+          "set": "points:53900:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_carrier_package"
+          },
+          "column": "cost",
+          "expect_sha256": "76f4105dd129b743465445fd8b833641435dd6b92374ea7fa9fdd9dd13a63662",
+          "set": "points:124000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_resupply_1"
+          },
+          "column": "cost",
+          "expect_sha256": "e46b84a395b041a2eb1224751074d996fb836c57ebeb010238b17f561ae4711c",
+          "set": "points:2250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_resupply_2"
+          },
+          "column": "cost",
+          "expect_sha256": "0efd0eab59f139d345f1e04662a1b409a074b9c1e6e45de4b01363ddd3716262",
+          "set": "points:3750:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_bundle_resupply_3"
+          },
+          "column": "cost",
+          "expect_sha256": "8bd09dad58a9dd691abbdb937f8a75ab85075a7d21335f3981e1621f225de233",
+          "set": "points:6450:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_oppenheimer"
+          },
+          "column": "cost",
+          "expect_sha256": "d5b29785457448e089dd4431a9a6c2f1ac21a750f7149481753c2e2b3e7416d9",
+          "set": "points:30000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_meitou_chorus"
+          },
+          "column": "cost",
+          "expect_sha256": "ca25af3e64bd880552e22b02d879f0ac0d0c631677e661ccb59633f66ce9aa4b",
+          "set": "points:20000:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_sakura_mlrs"
+          },
+          "column": "cost",
+          "expect_sha256": "4c6b00867efda78ada3c8aec8a77d570a8225549b19406e4889d8f0960ac3a95",
+          "set": "points:5250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_downstream_xlc"
+          },
+          "column": "cost",
+          "expect_sha256": "83675f26b16282c8e70d3bbafd237b6a51312cf4d11334c5cd42e5723d14b18f",
+          "set": "points:3500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_enyria_pdx"
+          },
+          "column": "cost",
+          "expect_sha256": "733bb4ffa98ac91259eb90aff137c826c916da7f094e375dc5cbb62acd8e39db",
+          "set": "points:1500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_axia_type_i"
+          },
+          "column": "cost",
+          "expect_sha256": "4f85d772bb884c500031369746b214879cc89b253aaefa8730f5a8453b927543",
+          "set": "points:250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_axia_type_ii"
+          },
+          "column": "cost",
+          "expect_sha256": "6b6b366a2b48907d8b081010c6437ac42d3d1395682ac46ce416bb1d5e7c7feb",
+          "set": "points:750:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_axia_type_iii"
+          },
+          "column": "cost",
+          "expect_sha256": "733bb4ffa98ac91259eb90aff137c826c916da7f094e375dc5cbb62acd8e39db",
+          "set": "points:1500:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ace_fighter_1"
+          },
+          "column": "cost",
+          "expect_sha256": "b0ce7605673877b2f75607d5c8094fa6c46d422e0ab851fd33c19b45295b7529",
+          "set": "points:2250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ace_fighter_2"
+          },
+          "column": "cost",
+          "expect_sha256": "b0ce7605673877b2f75607d5c8094fa6c46d422e0ab851fd33c19b45295b7529",
+          "set": "points:2250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ace_fighter_3"
+          },
+          "column": "cost",
+          "expect_sha256": "b0ce7605673877b2f75607d5c8094fa6c46d422e0ab851fd33c19b45295b7529",
+          "set": "points:2250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ace_fighter_4"
+          },
+          "column": "cost",
+          "expect_sha256": "b0ce7605673877b2f75607d5c8094fa6c46d422e0ab851fd33c19b45295b7529",
+          "set": "points:2250:POINTS"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/uaf_keycard_shop_data.csv",
+          "key": {
+            "offer_id": "uaf_ace_fighter_5"
+          },
+          "column": "cost",
+          "expect_sha256": "b0ce7605673877b2f75607d5c8094fa6c46d422e0ab851fd33c19b45295b7529",
+          "set": "points:2250:POINTS"
+        }
+      ]
+    },
+    {
+      "id": "reputation-ship-prices",
+      "title": "Reputation reward ships cost the Survival ship price factor",
+      "why": "A capital ship costs eight times as much in Survival, and the supercapitals were priced against colony income that Survival already limits.",
+      "before": "flat prices such as 1,000,000 to 2,250,000 for capitals",
+      "after": "Aeria Charlotte costs 8,000,000, Chocolava and Roria 12,000,000 and Songbird 18,000,000, and the three supercapitals stay at 60,000,000.",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "30df9739b49a0df93d9dd1cc6e0f0da5b02ea272c45ecd5a2e24cfad3a9d93c7",
+          "subs": [
+            [
+              "\"\" 1500000\"",
+              "\"\" 12000000\""
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "7733c250602f6ba5f4743c76911bc1355dace18afdc673ec6014584fb15df9b4",
+          "subs": [
+            [
+              "\"\" 2250000\"",
+              "\"\" 18000000\""
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "4c576cc5199d41763066f8ca6025c6d951554ce24548757597048a17b6649f78",
+          "subs": [
+            [
+              "\"\" 1000000\"",
+              "\"\" 8000000\""
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "a94afa1501addc2a3f83a3759dd6ee3a2007ced58607fd6e323cbc8516c43b94",
+          "subs": [
+            [
+              "\"\" 1500000\"",
+              "\"\" 12000000\""
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "affiliate-program-rewards",
+      "title": "Affiliate program rewards cut to a tenth",
+      "why": "A free quarterly payout of fuel and supplies for holding a commission is a stipend; Survival cuts stipends to a tenth.",
+      "before": "200 to 1,500 supplies or 400 to 2,000 fuel every 3 months",
+      "after": "20 to 150 supplies or 40 to 200 fuel",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 200,
+          "to": 20,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 1500,
+          "to": 150,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 400,
+          "to": 40,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 2000,
+          "to": 200,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 500,
+          "to": 50,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 1000,
+          "to": 100,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 700,
+          "to": 70,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/campaign/rulecmd/UAFAffiliateProgram",
+          "method": "execute",
+          "type": "int",
+          "from": 1750,
+          "to": 175,
+          "count": 1,
+          "method_fp": "f3dd055eec6672d3"
+        }
+      ]
+    },
+    {
+      "id": "bakery-branch-deposit",
+      "title": "The bakery branch deposits a quarter of the goods",
+      "why": "Survival reduces the goods a colony sets aside for its owner to 0.3, and this monthly deposit is the same kind of income.",
+      "before": "monthly bakery goods deposit at full size",
+      "after": "About 0.3 of that deposit",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/econ/impl/uaf_interdimensionalConfectionary",
+          "method": "calculateProductionOfGoods",
+          "type": "int",
+          "from": 2,
+          "to": 7,
+          "count": 1,
+          "method_fp": "59f72fa398f3c578"
+        }
+      ]
+    },
+    {
+      "id": "resolution-price",
+      "title": "The Zepporia 'Resolution' costs the Survival capital price factor",
+      "why": "A capital ship sold for a flat credit sum skips Survival's x8 capital price.",
+      "before": "200,000 credits",
+      "after": "1,600,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "a15a51aff2d40a3d7ff53a953fe5a9cf5e64e0a339da16f4efa97b32cdad59e6",
+          "subs": [
+            [
+              "two-hundred thousand",
+              "1,600,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "4ae31aa8120886293ca5f54ae0aca83bd0903b497698fb3b079f472057cffa25",
+          "subs": [
+            [
+              "two-hundred thousand",
+              "1,600,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "f6fc85d339e11c858f8f03ad8bc4dc09647c05d5c2ad071977081d25f1882d6f",
+          "subs": [
+            [
+              "< 200000",
+              "< 1600000"
+            ],
+            [
+              "200,000",
+              "1,600,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "fcd126ae7465aaa9f5f9c8cb67037340cebb469353f884fefaf371a5390aaae5",
+          "subs": [
+            [
+              "200,000",
+              "1,600,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "a26c0e008706d42d0e286e0068ca6be631b125855a1ba9cd1f57b97f01d001f7",
+          "subs": [
+            [
+              "-200000",
+              "-1600000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "automata-need-the-skill",
+      "title": "Automata ships follow the vanilla automated ship rules",
+      "why": "The hullmod tagged every Automata hull as exempt from the automated ship penalty, so crewless ships needed no skill and had no fleet limit.",
+      "before": "Automata ships fly with no crew, no skill and no penalty",
+      "after": "Automata ships need the Automated Ships skill like any automated ship",
+      "ops": [
+        {
+          "op": "class_string",
+          "jar": "jars/UAF.jar",
+          "class": "data/hullmods/uaf_automataSpecification",
+          "method": "applyEffectsAfterShipCreation",
+          "expect_sha256": "cfdca95eed718b0ed8a3823085f980ff84f4fb29d9fb4ea580c9c37385ca478f",
+          "count": 2,
+          "which": [
+            0
+          ],
+          "subs": [
+            [
+              "no_",
+              "uaf_"
+            ]
+          ],
+          "method_fp": "0c4daff739a2fd8d"
+        }
+      ]
+    },
+    {
+      "id": "smod-removal-off",
+      "title": "Mei Yu's S-mod removal service is closed",
+      "why": "It refunds every story point the S-mods cost, so S-mods become a free undo and a loop of bonus XP; vanilla has no way to remove S-mods.",
+      "before": "remove all S-mods for 300 to 900 coins or a green keycard, story points refunded",
+      "after": "the option is greyed out",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "fb73ee8dfc4b53bc60dc6df5719c525ba0ad74be3bbe83056a0eaee3d02592ba",
+          "subs": [
+            [
+              ",!UAF",
+              ",UAF"
+            ],
+            [
+              "UAFhasValidSmodShips,",
+              "smodRemovalClosed,"
+            ],
+            [
+              "doesn't have any",
+              "can't remove"
+            ],
+            [
+              "S-mod.",
+              "S-mods."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dmod-removal-coin-price",
+      "title": "D-mod removal costs more coins, by hull size",
+      "why": "The fee now rises with Survival's ship prices, so repairing a whole wreck takes several missions' coins and still costs less than Domain-grade Parts.",
+      "before": "all d-mods removed for 300 / 500 / 700 / 900 coins by hull size",
+      "after": "1,500 / 2,500 / 4,200 / 7,200 coins",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService$4",
+          "method": "pickedFleetMembers",
+          "type": "float",
+          "from": 500.0,
+          "to": 2500.0,
+          "count": 1,
+          "method_fp": "039c43d69c29e5ad"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService$4",
+          "method": "pickedFleetMembers",
+          "type": "float",
+          "from": 700.0,
+          "to": 4200.0,
+          "count": 1,
+          "method_fp": "039c43d69c29e5ad"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService$4",
+          "method": "pickedFleetMembers",
+          "type": "float",
+          "from": 900.0,
+          "to": 7200.0,
+          "count": 1,
+          "method_fp": "039c43d69c29e5ad"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFremoveDmodsCC",
+          "type": "float",
+          "from": 500.0,
+          "to": 2500.0,
+          "count": 1,
+          "method_fp": "f0d2fbbe6cc64c7b"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFremoveDmodsCC",
+          "type": "float",
+          "from": 700.0,
+          "to": 4200.0,
+          "count": 1,
+          "method_fp": "f0d2fbbe6cc64c7b"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFremoveDmodsCC",
+          "type": "float",
+          "from": 900.0,
+          "to": 7200.0,
+          "count": 1,
+          "method_fp": "f0d2fbbe6cc64c7b"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFrequirementsInfo",
+          "expect_sha256": "947162e4483882ac015724ea6d881f63e83a477ed4d01eee940c5e91b7c06c8c",
+          "subs": [
+            [
+              "500",
+              "2,500"
+            ]
+          ],
+          "method_fp": "4ff79fbce1af193d"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFrequirementsInfo",
+          "expect_sha256": "d75d90ec8716e7edd84c060bd377cd2bab8be2e75e3bc8a97703aa64484122fa",
+          "subs": [
+            [
+              "700",
+              "4,200"
+            ]
+          ],
+          "method_fp": "4ff79fbce1af193d"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFrequirementsInfo",
+          "expect_sha256": "3724af3730ead5ea325c52a18478e0dbfa9a251932f25f8ade6d89808f085e99",
+          "subs": [
+            [
+              "900",
+              "7,200"
+            ]
+          ],
+          "method_fp": "4ff79fbce1af193d"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFrequirementsInfo",
+          "expect_sha256": "c8a44c3eb9f8670df8be192f77dd781982e3eab984cea1b60ee6854b0af3b98c",
+          "subs": [
+            [
+              "300",
+              "1,500"
+            ]
+          ],
+          "method_fp": "4ff79fbce1af193d"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService",
+          "method": "UAFremoveDmodsCC",
+          "type": "float",
+          "from": 300.0,
+          "to": 1500.0,
+          "count": 1,
+          "method_fp": "f0d2fbbe6cc64c7b"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/UAFOrbitalWorksService$4",
+          "method": "pickedFleetMembers",
+          "type": "float",
+          "from": 300.0,
+          "to": 1500.0,
+          "count": 1,
+          "method_fp": "039c43d69c29e5ad"
+        }
+      ]
+    },
+    {
+      "id": "keycard-drop-chance",
+      "title": "Keycards drop half as often",
+      "why": "Survival halves the special items found in salvage, and the mod rolls this drop itself, so the reduction never reached it.",
+      "before": "2 chances in 10 on a first loot, then 75 in 100",
+      "after": "1 chance in 10, then 75 in 100",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/UAF.jar",
+          "class": "data/scripts/plugins/uaf_keycardLootGen",
+          "method": "reportAboutToShowLootToPlayer",
+          "type": "int",
+          "from": 10,
+          "to": 20,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "375202a1e27d3800"
+        }
+      ]
+    }
+  ]
+}

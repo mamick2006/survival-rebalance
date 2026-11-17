@@ -1,0 +1,898 @@
+{
+  "format": 1,
+  "mod_id": "assortment_of_things",
+  "mod_name": "Random Assortment of Things",
+  "tested_versions": [
+    "3.4.1"
+  ],
+  "changes": [
+    {
+      "id": "settlement-cost-x2",
+      "title": "Founding a settlement costs 450,000 credits and its facilities cost twice as much",
+      "why": "A Survival colony costs about 580,000 credits to found and its buildings cost double, so the smaller settlement founds for less than a colony and its facilities double too.",
+      "before": "Founding 350,000 credits, facilities at list price",
+      "after": "Founding 450,000 credits, facilities at twice list price",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "rat_frontiersCostMult",
+          "expect_default": "1",
+          "set": "2"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/interactions/CreateSettlementInteraction",
+          "method": "<init>",
+          "type": "float",
+          "from": 350000.0,
+          "to": 225000.0,
+          "count": 1,
+          "method_fp": "28a5cf13644fa2d1"
+        }
+      ]
+    },
+    {
+      "id": "settlement-build-time-x2",
+      "title": "Settlement facilities take twice as long to build",
+      "why": "Survival doubles the build time of every colony industry.",
+      "before": "3 to 120 days",
+      "after": "6 to 240 days",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "landing_pad"
+          },
+          "column": "buildTime",
+          "expect": "3",
+          "set": "6"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "refinery"
+          },
+          "column": "buildTime",
+          "expect": "60",
+          "set": "120"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "trade_post"
+          },
+          "column": "buildTime",
+          "expect": "75",
+          "set": "150"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "ship_construction"
+          },
+          "column": "buildTime",
+          "expect": "60",
+          "set": "120"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "weapon_construction"
+          },
+          "column": "buildTime",
+          "expect": "45",
+          "set": "90"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "stockpile"
+          },
+          "column": "buildTime",
+          "expect": "30",
+          "set": "60"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "quality_control"
+          },
+          "column": "buildTime",
+          "expect": "60",
+          "set": "120"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "specialised_training"
+          },
+          "column": "buildTime",
+          "expect": "60",
+          "set": "120"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "hyperspace_beacon"
+          },
+          "column": "buildTime",
+          "expect": "60",
+          "set": "120"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "logistics_base"
+          },
+          "column": "buildTime",
+          "expect": "45",
+          "set": "90"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "gate_beacon"
+          },
+          "column": "buildTime",
+          "expect": "90",
+          "set": "180"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/frontiers/rat_frontiers_facilities.csv",
+          "key": {
+            "id": "headquarters"
+          },
+          "column": "buildTime",
+          "expect": "120",
+          "set": "240"
+        }
+      ]
+    },
+    {
+      "id": "settlement-income-x025",
+      "title": "Settlement income is half of what it was",
+      "why": "It is paid outside the colony report, and a settlement has no upkeep, so half stands in for a colony's upkeep.",
+      "before": "Up to about 54,000 credits a month",
+      "after": "Up to about 27,000 credits a month",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "rat_frontiersIncomeMult",
+          "expect_default": "1",
+          "set": "0.5"
+        }
+      ]
+    },
+    {
+      "id": "training-and-maintenance-half",
+      "title": "Specialised Training trains fewer crew and marines a month",
+      "why": "Crew costs ten times as much in Survival and the game cuts crew and goods found for free to 0.3, so the free crew and marines here take the same cut.",
+      "before": "-15% minimum crew, 30 to 80 crew and 20 to 50 marines a month up to 250",
+      "after": "9 to 24 crew and 6 to 15 marines a month, none past 250 held; -15% minimum crew as before",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/plugins/facilities/SpecialisedTrainingFacility",
+          "method": "addCrew",
+          "type": "float",
+          "from": 30.0,
+          "to": 9.0,
+          "count": 1,
+          "method_fp": "04579ce67d1144b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/plugins/facilities/SpecialisedTrainingFacility",
+          "method": "addCrew",
+          "type": "float",
+          "from": 80.0,
+          "to": 24.0,
+          "count": 1,
+          "method_fp": "04579ce67d1144b8"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/plugins/facilities/SpecialisedTrainingFacility",
+          "method": "addMarines",
+          "type": "float",
+          "from": 20.0,
+          "to": 6.0,
+          "count": 1,
+          "method_fp": "8c22d8f62c257670"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/plugins/facilities/SpecialisedTrainingFacility",
+          "method": "addMarines",
+          "type": "float",
+          "from": 50.0,
+          "to": 15.0,
+          "count": 1,
+          "method_fp": "8c22d8f62c257670"
+        }
+      ]
+    },
+    {
+      "id": "force-in-numbers-half",
+      "title": "Force in Numbers gives small ships half the combat bonus",
+      "why": "Survival already favors small ships; stacked on top of that the bonus is far past what vanilla skills give.",
+      "before": "+15% CR, +60 s peak time, +20% speed, +10% fire rate and flux, +15% armor",
+      "after": "+10% CR, +30 s peak time, +10% speed, +5% fire rate and flux, +10% armor",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/misc/RATControllerHullmod",
+          "method": "applyEffectsBeforeShipCreation",
+          "type": "float",
+          "from": 0.15,
+          "to": 0.1,
+          "count": 1,
+          "method_fp": "b51b7cae37c46464"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/misc/RATControllerHullmod",
+          "method": "applyEffectsBeforeShipCreation",
+          "type": "float",
+          "from": 60.0,
+          "to": 30.0,
+          "count": 1,
+          "method_fp": "b51b7cae37c46464"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/misc/RATControllerHullmod",
+          "method": "applyEffectsBeforeShipCreation",
+          "type": "float",
+          "from": 1.1,
+          "to": 1.05,
+          "count": 7,
+          "method_fp": "b51b7cae37c46464"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/misc/RATControllerHullmod",
+          "method": "applyEffectsBeforeShipCreation",
+          "type": "float",
+          "from": 1.2,
+          "to": 1.1,
+          "count": 5,
+          "method_fp": "b51b7cae37c46464"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/misc/RATControllerHullmod",
+          "method": "applyEffectsBeforeShipCreation",
+          "type": "float",
+          "from": 1.15,
+          "to": 1.1,
+          "count": 1,
+          "method_fp": "b51b7cae37c46464"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ForceBackground",
+          "method": "getTooltip",
+          "expect_sha256": "7be81a6e39db9cd06244319fdab2da2e82b77a73fd5c8c4b35086d5772c361b8",
+          "subs": [
+            [
+              "by 15% and",
+              "by 10% and"
+            ],
+            [
+              "60 seconds",
+              "30 seconds"
+            ],
+            [
+              "a 20% increase",
+              "a 10% increase"
+            ],
+            [
+              "10% improved",
+              "5% improved"
+            ],
+            [
+              "by 15%.",
+              "by 10%."
+            ]
+          ],
+          "method_fp": "7ac7e1e704840264"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ForceBackground",
+          "method": "getTooltip",
+          "expect_sha256": "3ccce1f4da948035fd36a399576a50a5248ddc02dd008f3c3668df57c0aa75b5",
+          "subs": [
+            [
+              "10%",
+              "5%"
+            ]
+          ],
+          "method_fp": "7ac7e1e704840264"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ForceBackground",
+          "method": "getTooltip",
+          "expect_sha256": "dc934fe30a942bca07b4c288b4b3e48aa79a717d6db2b586553cd2416dc8b9b8",
+          "subs": [
+            [
+              "20%",
+              "10%"
+            ]
+          ],
+          "method_fp": "7ac7e1e704840264"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ForceBackground",
+          "method": "getTooltip",
+          "expect_sha256": "b5f6dbae04bd764b0c2f3cb796e404ffdf77fb4cac171d72ec7fa6a2077da252",
+          "subs": [
+            [
+              "15%",
+              "10%"
+            ]
+          ],
+          "count": 2,
+          "method_fp": "7ac7e1e704840264"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ForceBackground",
+          "method": "getTooltip",
+          "expect_sha256": "39fa9ec190eee7b6f4dff1100d6343e10918d044c75eac8f9e9a2596173f80c9",
+          "subs": [
+            [
+              "60",
+              "30"
+            ]
+          ],
+          "method_fp": "7ac7e1e704840264"
+        }
+      ]
+    },
+    {
+      "id": "trade-post-tariff-40",
+      "title": "The Trading Post charges 30%, ten points under a Survival open market",
+      "why": "Survival raises the open market tariff from 30% to 40%, and the Trading Post stays ten points under it.",
+      "before": "20% tariff",
+      "after": "30% tariff",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/submarkets/TradePostSubmarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.2,
+          "to": 0.3,
+          "count": 1,
+          "method_fp": "1fda63ff95c6b3eb"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/plugins/facilities/TradePostFacility",
+          "method": "addDescriptionToTooltip",
+          "expect_sha256": "4d8b6859a81267e96eb467c5b277ca4c3a207a5f6e1e8b55f21ccafba8bd6dce",
+          "subs": [
+            [
+              "has a 20%% tariff",
+              "has a 30%% tariff"
+            ]
+          ],
+          "method_fp": "c406094ab5d86559"
+        }
+      ]
+    },
+    {
+      "id": "trade-post-stock",
+      "title": "The Trading Post stocks Survival amounts of ships, crew, supplies and fuel",
+      "why": "Its own stocking code skips the Survival for-sale fractions (ships 0.25, crew 0.2, supplies 0.4, fuel 0.6).",
+      "before": "Half the rolled ships; up to 250 crew, 500 supplies, 750 fuel",
+      "after": "An eighth of the rolled ships; up to 50 crew, 200 supplies, 450 fuel",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/submarkets/TradePostSubmarketPlugin",
+          "method": "addShips",
+          "type": "float",
+          "from": 0.5,
+          "to": 0.125,
+          "count": 1,
+          "method_fp": "5f53996db639e787"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/submarkets/TradePostSubmarketPlugin",
+          "method": "addCommodities",
+          "type": "float",
+          "from": 250.0,
+          "to": 50.0,
+          "count": 1,
+          "method_fp": "048c0f573175069f"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/submarkets/TradePostSubmarketPlugin",
+          "method": "addCommodities",
+          "type": "float",
+          "from": 500.0,
+          "to": 200.0,
+          "count": 1,
+          "method_fp": "048c0f573175069f"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/frontiers/submarkets/TradePostSubmarketPlugin",
+          "method": "addCommodities",
+          "type": "float",
+          "from": 750.0,
+          "to": 450.0,
+          "count": 1,
+          "method_fp": "048c0f573175069f"
+        }
+      ]
+    },
+    {
+      "id": "exo-shop-stock",
+      "title": "Amelie's shop stocks Survival amounts of gear, ships, fuel and supplies",
+      "why": "Its own stocking code skips the Survival for-sale fractions (weapons 0.2, ships 0.25, fuel 0.6, supplies 0.4).",
+      "before": "30 to 50 weapons and wings, 200 points of ships, 800 to 1500 fuel, 300 to 500 supplies",
+      "after": "6 to 10 weapons and wings, 50 points of ships, 480 to 900 fuel, 120 to 200 supplies",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "addEquipment",
+          "type": "int",
+          "from": 30,
+          "to": 6,
+          "count": 1,
+          "method_fp": "914f9d796b3817d2"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "addEquipment",
+          "type": "int",
+          "from": 50,
+          "to": 10,
+          "count": 1,
+          "method_fp": "914f9d796b3817d2"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "addExoShips",
+          "type": "float",
+          "from": 200.0,
+          "to": 50.0,
+          "count": 1,
+          "method_fp": "7710a7e6f0b880ab"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "float",
+          "from": 300.0,
+          "to": 120.0,
+          "count": 1,
+          "method_fp": "c116d62e14db2896"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "float",
+          "from": 500.0,
+          "to": 200.0,
+          "count": 1,
+          "method_fp": "c116d62e14db2896"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "float",
+          "from": 800.0,
+          "to": 480.0,
+          "count": 1,
+          "method_fp": "c116d62e14db2896"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/submarkets/ExotechSubmarketPlugin",
+          "method": "updateCargoPrePlayerInteraction",
+          "type": "float",
+          "from": 1500.0,
+          "to": 900.0,
+          "count": 1,
+          "method_fp": "c116d62e14db2896"
+        }
+      ]
+    },
+    {
+      "id": "abyss-start-credits",
+      "title": "The Abyssal start gives 15,000 credits",
+      "why": "Survival starts give 10,000 to 15,000 credits.",
+      "before": "100,000 credits",
+      "after": "15,000 credits",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/abyss/misc/AbyssStart",
+          "method": "execute",
+          "type": "float",
+          "from": 100000.0,
+          "to": 15000.0,
+          "count": 1,
+          "method_fp": "810eddf89a2b8367"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/abyss/misc/AbyssStart",
+          "method": "execute",
+          "type": "int",
+          "from": 100000,
+          "to": 15000,
+          "count": 1,
+          "method_fp": "810eddf89a2b8367"
+        }
+      ]
+    },
+    {
+      "id": "abyss-start-off",
+      "title": "The Abyssal start is switched off",
+      "why": "It hands over six automated warships, cores, an artifact and two levels; Survival starts give one to three beat-up ships.",
+      "before": "Abyssal start with a full automated fleet",
+      "after": "Start not offered",
+      "ops": [
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/abyss/misc/AbyssStart",
+          "method": "getDisabledTooltip",
+          "expect_sha256": "0da2008a17aae30fbb3825d054dda984ef29d2a9696073f186c9d03d0c2e24ed",
+          "subs": [
+            [
+              "rat_beatSingularity",
+              "rat_beatSingularity_off"
+            ]
+          ],
+          "count": 3,
+          "method_fp": "08aa0353ed174f3c"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/abyss/misc/AbyssStart",
+          "method": "getDisabledTooltip",
+          "expect_sha256": "b8881a1762817bfd8a3468152cca1ef4aebe88d1ed121a9ca7154093f17b4f82",
+          "subs": [
+            [
+              "Requires",
+              "(Off) Requires"
+            ]
+          ],
+          "method_fp": "08aa0353ed174f3c"
+        }
+      ]
+    },
+    {
+      "id": "exoship-background-off",
+      "title": "The Personal Exoship background is switched off",
+      "why": "It starts you with an endgame mobile base with free storage, a core, an executive officer and a warship.",
+      "before": "Background with a finished questline and your own Exoship",
+      "after": "Background not offered",
+      "ops": [
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ExoBackground",
+          "method": "isUnlocked",
+          "expect_sha256": "0973d181beb8debb2cafd9c3f4b6239fd337542c9f9f2843273744d0728425d2",
+          "subs": [
+            [
+              "exotechQuestlineDone",
+              "exotechQuestlineDone_off"
+            ]
+          ],
+          "method_fp": "44c3ed7deb9d9972"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/ExoBackground",
+          "method": "getShortDescription",
+          "expect_sha256": "029646877c7ba1c46c55fedae17337866db490c9856a43e29900e6568e7021d8",
+          "subs": [
+            [
+              "Finish",
+              "(Off) Finish"
+            ]
+          ],
+          "method_fp": "999eaf26027362b8"
+        }
+      ]
+    },
+    {
+      "id": "neural-shard-one-skill",
+      "title": "Neural Shard pilots share one or two of your combat skills, not two or three",
+      "why": "Every unofficered ship gets an officer with no salary or combat pay, which skips Survival's officer scarcity.",
+      "before": "Shards with 2 to 3 of your combat skills",
+      "after": "Shards with 1 to 2 of your combat skills",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/neural/NeuralShardScript",
+          "method": "advance",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "df1e367cf5f560f7"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/neural/NeuralShardScript",
+          "method": "advance",
+          "type": "int",
+          "from": 3,
+          "to": 2,
+          "count": 1,
+          "method_fp": "df1e367cf5f560f7"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/neural/NeuralShardScript",
+          "method": "addShardOfficer",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "69571c78d23249a1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/neural/NeuralShardScript",
+          "method": "addShardOfficer",
+          "type": "int",
+          "from": 3,
+          "to": 2,
+          "count": 2,
+          "method_fp": "69571c78d23249a1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/NeuralShardOfficerScript",
+          "method": "addShardOfficer",
+          "type": "int",
+          "from": 3,
+          "to": 2,
+          "count": 1,
+          "method_fp": "8214d4fd1390e430"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/NeuralShardBackground",
+          "method": "getTooltip",
+          "expect_sha256": "fa81f25dbab073fb2eb1a3c78afc3f2a59b71c90de43b65188e88e4483204ad2",
+          "subs": [
+            [
+              "two to three",
+              "one to two"
+            ]
+          ],
+          "method_fp": "9223ab5458fc0836"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/backgrounds/NeuralShardBackground",
+          "method": "getTooltip",
+          "expect_sha256": "47db2067b3de2e24016bab0940e3cccc84e2d7f2e21daa9f0855f95cb87056ed",
+          "subs": [
+            [
+              "two to three",
+              "one to two"
+            ]
+          ],
+          "method_fp": "9223ab5458fc0836"
+        }
+      ]
+    },
+    {
+      "id": "exoship-warp-cost-x3",
+      "title": "Recharging your Exoship's warp fuel costs three times as much",
+      "why": "The warp moves the whole fleet for a set price; Survival triples the price of fuel.",
+      "before": "Up to 50,000 credits a month for a 25% recharge",
+      "after": "Up to 150,000 credits a month for a 25% recharge (Exoships recovered after the patch)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/exotech/entities/ExoshipPlayerModule",
+          "method": "<init>",
+          "type": "float",
+          "from": 50000.0,
+          "to": 150000.0,
+          "count": 1,
+          "method_fp": "6a539449a29cd5fc"
+        }
+      ]
+    },
+    {
+      "id": "sic-abyssal-symphony-cost",
+      "title": "Abyssal Symphony's hull repair costs twice the peak time",
+      "why": "A cruiser could buy back 96% of its hull per fight on every automated ship; vanilla's elite repair stops near 50% on one ship.",
+      "before": "3/4/5/6 seconds of peak time per 1% hull",
+      "after": "6/8/10/12 seconds of peak time per 1% hull",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphonyScript",
+          "method": "<init>",
+          "type": "int",
+          "from": 3,
+          "to": 6,
+          "count": 1,
+          "method_fp": "f4132c4f26a89726"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphonyScript",
+          "method": "<init>",
+          "type": "int",
+          "from": 4,
+          "to": 8,
+          "count": 1,
+          "method_fp": "f4132c4f26a89726"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphonyScript",
+          "method": "<init>",
+          "type": "int",
+          "from": 5,
+          "to": 10,
+          "count": 1,
+          "method_fp": "f4132c4f26a89726"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphonyScript",
+          "method": "<init>",
+          "type": "int",
+          "from": 6,
+          "to": 12,
+          "count": 1,
+          "method_fp": "f4132c4f26a89726"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphony",
+          "method": "addTooltip",
+          "expect_sha256": "7a18e654cac6a7ffe80314eb631c671eef7c5115fc4cc331bc5a8c583aef423e",
+          "subs": [
+            [
+              "3/4/5/6",
+              "6/8/10/12"
+            ]
+          ],
+          "method_fp": "851429fa3be42014"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphony",
+          "method": "addTooltip",
+          "expect_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+          "subs": [
+            [
+              "3",
+              "6"
+            ]
+          ],
+          "method_fp": "851429fa3be42014"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphony",
+          "method": "addTooltip",
+          "expect_sha256": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+          "subs": [
+            [
+              "4",
+              "8"
+            ]
+          ],
+          "method_fp": "851429fa3be42014"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphony",
+          "method": "addTooltip",
+          "expect_sha256": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+          "subs": [
+            [
+              "5",
+              "10"
+            ]
+          ],
+          "method_fp": "851429fa3be42014"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/RandomAssortmentofThings.jar",
+          "class": "assortment_of_things/campaign/secondInCommand/abyssal/AbyssalSymphony",
+          "method": "addTooltip",
+          "expect_sha256": "e7f6c011776e8db7cd330b54174fd76f7d0216b612387a5ffcfb81e6f0919683",
+          "subs": [
+            [
+              "6",
+              "12"
+            ]
+          ],
+          "method_fp": "851429fa3be42014"
+        }
+      ]
+    }
+  ]
+}

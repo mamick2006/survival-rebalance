@@ -1,0 +1,818 @@
+{
+  "format": 1,
+  "mod_id": "IndEvo",
+  "mod_name": "Industrial.Evolution",
+  "tested_versions": [
+    "4.1.b"
+  ],
+  "changes": [
+    {
+      "id": "academy-officer-spawns",
+      "title": "Academy officers for hire are rarer",
+      "why": "Survival makes officers for hire 0.15 as common; the Academy spawned one almost every week.",
+      "before": "15% a day",
+      "after": "2.25% a day",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "IndEvo_dailyOfficerSpawnChance",
+          "expect_default": "0.15",
+          "set": "0.0225"
+        }
+      ]
+    },
+    {
+      "id": "academy-admin-spawns",
+      "title": "Academy administrators for hire are rarer",
+      "why": "Survival makes administrators for hire 0.1 as common.",
+      "before": "10% a day",
+      "after": "1% a day",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "IndEvo_dailyAdminSpawnChance",
+          "expect_default": "0.10",
+          "set": "0.01"
+        }
+      ]
+    },
+    {
+      "id": "deposit-adassem",
+      "title": "Variable Assembler deposits three tenths as much into storage",
+      "why": "Survival leaves 0.3 of the goods a colony sets aside for its owner, and these free monthly deposits follow it.",
+      "before": "fuel 300, supplies 90 a month at size 3",
+      "after": "fuel 90, supplies 30 a month at size 3",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "IndEvo_parts"
+          ],
+          "expect": 55,
+          "set": 17
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "supplies"
+          ],
+          "expect": 90,
+          "set": 27
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "fuel"
+          ],
+          "expect": 300,
+          "set": 90
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "marines"
+          ],
+          "expect": 50,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "heavy_machinery"
+          ],
+          "expect": 60,
+          "set": 18
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "domestic_goods"
+          ],
+          "expect": 180,
+          "set": 54
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "drugs"
+          ],
+          "expect": 50,
+          "set": 15
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "hand_weapons"
+          ],
+          "expect": 20,
+          "set": 6
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "luxury_goods"
+          ],
+          "expect": 90,
+          "set": 27
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdAssem_amounts",
+            "logIncrease"
+          ],
+          "expect": 55,
+          "set": 17
+        }
+      ]
+    },
+    {
+      "id": "deposit-admanuf",
+      "title": "Variable Manufactory deposits three tenths as much into storage",
+      "why": "Survival leaves 0.3 of the goods a colony sets aside for its owner, and these free monthly deposits follow it.",
+      "before": "fuel 600, supplies 210 a month at size 3",
+      "after": "fuel 180, supplies 60 a month at size 3",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "IndEvo_parts"
+          ],
+          "expect": 125,
+          "set": 38
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "supplies"
+          ],
+          "expect": 210,
+          "set": 63
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "fuel"
+          ],
+          "expect": 600,
+          "set": 180
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "marines"
+          ],
+          "expect": 90,
+          "set": 27
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "heavy_machinery"
+          ],
+          "expect": 140,
+          "set": 42
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "domestic_goods"
+          ],
+          "expect": 420,
+          "set": 126
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "drugs"
+          ],
+          "expect": 110,
+          "set": 33
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "hand_weapons"
+          ],
+          "expect": 40,
+          "set": 12
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "luxury_goods"
+          ],
+          "expect": 210,
+          "set": 63
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_AdManuf_amounts",
+            "logIncrease"
+          ],
+          "expect": 150,
+          "set": 45
+        }
+      ]
+    },
+    {
+      "id": "deposit-comforge",
+      "title": "Commodity Forge deposits three tenths as much into storage",
+      "why": "Survival leaves 0.3 of the goods a colony sets aside for its owner, and these free monthly deposits follow it.",
+      "before": "fuel 1200, supplies 480 a month at size 3",
+      "after": "fuel 360, supplies 140 a month at size 3",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "IndEvo_parts"
+          ],
+          "expect": 280,
+          "set": 84
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "supplies"
+          ],
+          "expect": 480,
+          "set": 144
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "fuel"
+          ],
+          "expect": 1200,
+          "set": 360
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "marines"
+          ],
+          "expect": 240,
+          "set": 72
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "heavy_machinery"
+          ],
+          "expect": 320,
+          "set": 96
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "domestic_goods"
+          ],
+          "expect": 960,
+          "set": 288
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "drugs"
+          ],
+          "expect": 240,
+          "set": 72
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "hand_weapons"
+          ],
+          "expect": 100,
+          "set": 30
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "luxury_goods"
+          ],
+          "expect": 480,
+          "set": 144
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "IndEvo_ComForge_amounts",
+            "logIncrease"
+          ],
+          "expect": 250,
+          "set": 75
+        }
+      ]
+    },
+    {
+      "id": "restoration-docks-price",
+      "title": "Restoration Docks cost twice as much",
+      "why": "Survival doubles the price of the parts that repair d-mods, so the Docks cost double too and stay at about half the price of parts.",
+      "before": "half the hull value, scaled by d-mod count",
+      "after": "the full hull value, scaled by d-mod count (x2)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/RestorationDocks",
+          "method": "getSingleDModRepairCost",
+          "type": "float",
+          "from": 2.0,
+          "to": 1.0,
+          "count": 1,
+          "method_fp": "e1e0d9a6aeb1b30d"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/RestorationDocks",
+          "method": "getBaseRepairPrice",
+          "type": "float",
+          "from": 0.5,
+          "to": 1.0,
+          "count": 1,
+          "method_fp": "ee29b6cbe1a5a922"
+        }
+      ]
+    },
+    {
+      "id": "hullforge-price",
+      "title": "Hull Forge copies cost five times as much",
+      "why": "Survival ships cost at least five times as much, at markets and from your own shipyards, so each copy does too.",
+      "before": "0.2 x hull value per copy",
+      "after": "1 x hull value per copy",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/derelicts/industry/HullForge",
+          "method": "getConstructionCost",
+          "type": "float",
+          "from": 0.2,
+          "to": 1.0,
+          "count": 1,
+          "method_fp": "6341dc261bf3e2ba"
+        }
+      ]
+    },
+    {
+      "id": "privateer-loot",
+      "title": "Privateer raids bring back fewer blueprints and weapons",
+      "why": "Survival halves blueprints from salvage and leaves about a fifth of the weapons, and raid loot now matches both.",
+      "before": "70% chance of loot, weapon picks x3",
+      "after": "35% chance of loot, weapon picks x1",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/privateer/industry/PrivateerBase",
+          "method": "getLoot",
+          "type": "float",
+          "from": 0.7,
+          "to": 0.35,
+          "count": 1,
+          "method_fp": "fe714a870429e07e"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/privateer/industry/PrivateerBase",
+          "method": "getLoot",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 1,
+          "method_fp": "fe714a870429e07e"
+        }
+      ]
+    },
+    {
+      "id": "wreck-ship-components",
+      "title": "Wrecks give fewer Ship Components",
+      "why": "Added straight to the loot screen outside vanilla salvage; Survival commodity salvage is x0.3.",
+      "before": "0.3 to 0.5 per hull fleet point",
+      "after": "0.09 to 0.15 per hull fleet point",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/items/listeners/ShipComponentLootManager$PartsCargoInterceptor",
+          "method": "reportAboutToShowLootToPlayer",
+          "type": "float",
+          "from": 0.3,
+          "to": 0.09,
+          "count": 1,
+          "method_fp": "246efb28f2864bfb"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/items/listeners/ShipComponentLootManager$PartsCargoInterceptor",
+          "method": "reportAboutToShowLootToPlayer",
+          "type": "double",
+          "from": 0.2,
+          "to": 0.06,
+          "count": 1,
+          "method_fp": "246efb28f2864bfb"
+        }
+      ]
+    },
+    {
+      "id": "reqcenter-stock",
+      "title": "Requisitions Centre stocks a fifth as many of each weapon",
+      "why": "The centre stocks itself outside vanilla submarket code; Survival weapons for sale are 0.2.",
+      "before": "2 large, 4 medium, 8 small per pick (alpha 3, 6, 10)",
+      "after": "1 large, 1 medium, 2 small per pick (alpha the same)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 3,
+          "which": [
+            0,
+            1
+          ],
+          "method_fp": "2d5e9bfe3da08f40"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 3,
+          "to": 1,
+          "count": 1,
+          "method_fp": "2d5e9bfe3da08f40"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 6,
+          "to": 1,
+          "count": 1,
+          "method_fp": "2d5e9bfe3da08f40"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 4,
+          "to": 1,
+          "count": 1,
+          "method_fp": "2d5e9bfe3da08f40"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 10,
+          "to": 2,
+          "count": 1,
+          "method_fp": "2d5e9bfe3da08f40"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "pickAndAddWeapons",
+          "type": "int",
+          "from": 8,
+          "to": 2,
+          "count": 1,
+          "method_fp": "2d5e9bfe3da08f40"
+        }
+      ]
+    },
+    {
+      "id": "monastic-free-ships",
+      "title": "Monastic sects give free ships far less often",
+      "why": "Free ships are a tenth as common in Survival, and a Monastic colony still gives up half its income for them.",
+      "before": "30% per economy tick",
+      "after": "3% per economy tick, about one ship every four months",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/changeling/industry/population/MonasticOrderSubIndustry",
+          "method": "reportEconomyTick",
+          "type": "float",
+          "from": 0.3,
+          "to": 0.03,
+          "count": 1,
+          "method_fp": "460e62e028fba396"
+        }
+      ]
+    },
+    {
+      "id": "warhammer-free-ships",
+      "title": "Artificer cabals give free ships far less often",
+      "why": "A free ship handout. Survival derelict recovery is 0.1.",
+      "before": "30% a month",
+      "after": "3% a month",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/changeling/industry/population/WarhammerSubIndustry",
+          "method": "reportEconomyMonthEnd",
+          "type": "float",
+          "from": 0.3,
+          "to": 0.03,
+          "count": 1,
+          "method_fp": "2a2a97830019d44c"
+        }
+      ]
+    },
+    {
+      "id": "courier-prices",
+      "title": "Courier Port shipping costs three times as much",
+      "why": "Couriers move cargo and ships with no fuel; Survival fuel costs x3.",
+      "before": "5 per cargo unit, 170 per ship DP, 1,000 per shipment",
+      "after": "15 per cargo unit, 500 per ship DP, 3,000 per shipment",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "IndEvo_courier_costPerSpace",
+          "expect_default": "5",
+          "set": "15"
+        },
+        {
+          "op": "luna",
+          "key": "IndEvo_courier_costPerShip",
+          "expect_default": "170",
+          "set": "500"
+        },
+        {
+          "op": "luna",
+          "key": "IndEvo_courier_baseFee",
+          "expect_default": "1000",
+          "set": "3000"
+        }
+      ]
+    },
+    {
+      "id": "salvage-specials",
+      "title": "Fewer salvage sites carry the mod's extra finds",
+      "why": "Credit stashes, fuel, free ships and repairs come on top of vanilla loot; Survival salvage is x0.3 to x0.5.",
+      "before": "90% master chance",
+      "after": "25% master chance",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "IndEvo_SpecialApplicationChance",
+          "expect_default": "0.9",
+          "set": "0.25"
+        }
+      ]
+    },
+    {
+      "id": "fuel-scoop-price",
+      "title": "Emergency Fuel Scoop costs three times as much",
+      "why": "It makes up to 1,000 fuel; Survival fuel costs x3.",
+      "before": "12,000 credits",
+      "after": "36,000 credits",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/special_items.csv",
+          "key": {
+            "id": "IndEvo_consumable_scoop"
+          },
+          "column": "base price",
+          "expect": "12000",
+          "set": "36000"
+        }
+      ]
+    },
+    {
+      "id": "catapult-price",
+      "title": "Slipstream Catapult costs three times as much",
+      "why": "It skips fuel on travel; Survival fuel costs x3.",
+      "before": "10,000 credits",
+      "after": "30,000 credits",
+      "ops": [
+        {
+          "op": "csv_cell",
+          "file": "data/campaign/special_items.csv",
+          "key": {
+            "id": "IndEvo_consumable_catapult"
+          },
+          "column": "base price",
+          "expect": "10000",
+          "set": "30000"
+        }
+      ]
+    },
+    {
+      "id": "hullforge-alpha-smods",
+      "title": "Hull Forge alpha core adds one permanent hullmod, not two",
+      "why": "Each printed ship got two free s-mods and two more s-mod slots: four s-mods against vanilla's two, with no story points.",
+      "before": "two free s-mods per printed ship",
+      "after": "one free s-mod per printed ship",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/derelicts/industry/HullForge",
+          "method": "printShip",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 2,
+          "method_fp": "f2729b3eb20247d9"
+        },
+        {
+          "op": "line_sub",
+          "file": "data/strings/strings.json",
+          "line_sha256": "7e7de28e98be953aecd83722b8ee7bcb021c0aeeff01a9190f9ce810f94ec375",
+          "subs": [
+            [
+              "two",
+              "one"
+            ],
+            [
+              "hullmods",
+              "hullmod"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conscription-upkeep",
+      "title": "Forced Labour edict cuts upkeep by 25%, not 60%",
+      "why": "A permanent cut on every building is pure profit under the Survival income cap. 25% matches an AI core's cut.",
+      "before": "all upkeep x0.4 on the colony",
+      "after": "all upkeep x0.75 on the colony",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/senate/conditions/Edict_Conscription",
+          "method": "apply",
+          "type": "float",
+          "from": 0.4,
+          "to": 0.75,
+          "count": 1,
+          "method_fp": "dd3f495dafd2b57a"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/senate/conditions/Edict_Conscription",
+          "method": "<init>",
+          "type": "float",
+          "from": 0.4,
+          "to": 0.75,
+          "count": 1,
+          "method_fp": "57c350633f685a91"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/senate/conditions/Edict_Conscription",
+          "method": "createTooltipAfterDescription",
+          "expect_sha256": "84825f1cfc950ed51658b56f919006c77c6273f6789c713ead5d0013a2fac3e1",
+          "subs": [
+            [
+              "60%",
+              "25%"
+            ]
+          ],
+          "method_fp": "253aa6b233530d23"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/senate/conditions/Edict_Conscription",
+          "method": "printEdictEffectText",
+          "expect_sha256": "48d6603ccf7acddb5defcc9febdfd4730c863359f6e836668704fc3515dce05d",
+          "subs": [
+            [
+              "60%",
+              "25%"
+            ]
+          ],
+          "method_fp": "422c890fa9f96592"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/industries/senate/conditions/Edict_Conscription",
+          "method": "printEdictEffectText",
+          "expect_sha256": "84825f1cfc950ed51658b56f919006c77c6273f6789c713ead5d0013a2fac3e1",
+          "subs": [
+            [
+              "60%",
+              "25%"
+            ]
+          ],
+          "method_fp": "422c890fa9f96592"
+        }
+      ]
+    },
+    {
+      "id": "reqcenter-tariff",
+      "title": "Requisitions Centre tariff rises with the open market's",
+      "why": "The Centre charged 10 points over an open market, and Survival raised the open market from 30% to 40%.",
+      "before": "40% on your colony, 60% on another faction's",
+      "after": "50% on your colony, 70% on another faction's",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.4,
+          "to": 0.5,
+          "count": 1,
+          "method_fp": "0df44d4c2e96916e"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/IndEvo.jar",
+          "class": "indevo/submarkets/impl/RequisitionsCenterSubmarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.6,
+          "to": 0.7,
+          "count": 1,
+          "method_fp": "0df44d4c2e96916e"
+        }
+      ]
+    }
+  ]
+}

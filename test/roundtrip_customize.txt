@@ -1,0 +1,5 @@
+# The customization build.bat --real uses for its second round trip: strength 0.5 on two
+# real mods and one change off.
+second_in_command:strength = 0.5
+assortment_of_things:strength = 0.5
+assortment_of_things:settlement-build-time-x2 = off

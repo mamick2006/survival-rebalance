@@ -1,0 +1,941 @@
+{
+  "format": 1,
+  "mod_id": "nexerelin",
+  "mod_name": "Nexerelin",
+  "tested_versions": [
+    "0.12.2x"
+  ],
+  "changes": [
+    {
+      "id": "nex-start-credits",
+      "title": "Start tiers give a Survival start",
+      "why": "Survival starts at level 1 with 10,000 to 15,000 credits; the upper tiers handed out 5 levels, their story points and a second officer.",
+      "before": "20,000 / 75,000 and level 3 / 250,000, level 6 and two officers",
+      "after": "15,000 credits and level 1 on every tier; the Commander keeps one officer",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "ddda0b6e5ddfa7a2be283e1ea9e4e186aad9e406da3953559a274156a9edd4f9",
+          "subs": [
+            [
+              "20000",
+              "15000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "88c1db440002be4b99167e6677b9dafd02692005ccc2a2044539f5fd36d1532a",
+          "subs": [
+            [
+              "20000",
+              "15000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "c230e18450c79fcbce7b6305f1f9f7e64bd5d71be4574f1c9468db54686890f7",
+          "subs": [
+            [
+              "75000",
+              "15000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "2ea62acbd14761399e18159ab63105c9e35024bcab2c8fbf749fd17d86c2032b",
+          "subs": [
+            [
+              "75000",
+              "15000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "f41c7b104c0f47ff4e886d783a6f4f68f9234eadca0d97a7e8b2698925e53090",
+          "subs": [
+            [
+              "250000",
+              "15000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "8c968d885d0148269d74bc6e89095cd9b4d271406246e983d9a13feb8c6ba251",
+          "count": 2,
+          "subs": [
+            [
+              "3",
+              "1"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "8e841073454833b773d566a6eb1ae4c6f495472bf412789098ba4fb20fd77993",
+          "subs": [
+            [
+              "6",
+              "1"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "6aa43af68e39e5c21ed2b694efbdc8a77e5cbd0b316670c9edbecca41a1448b4",
+          "subs": [
+            [
+              "2",
+              "1"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "2b05e0e4f371390c2691a900c2503aa139d3c244dc2e505a3988e13a539e42d5",
+          "count": 2,
+          "subs": [
+            [
+              "20,000",
+              "15,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "2f5e704f095c83c7cdb5ee5c4e4c3fa29916a9754eed0fd799805be2bf35fe41",
+          "count": 2,
+          "subs": [
+            [
+              "20,000",
+              "15,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "419caea7c3b16a2cab628e87c32e158fb9d4545ee12823242f5036d1365fe9d0",
+          "count": 2,
+          "subs": [
+            [
+              "75,000",
+              "15,000"
+            ],
+            [
+              "level 3",
+              "level 1"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "c71da3985c86c2dfc66631b978597c9a95108c77dd2b0be24c57373c2c8247ac",
+          "count": 2,
+          "subs": [
+            [
+              "75,000",
+              "15,000"
+            ],
+            [
+              "level 3",
+              "level 1"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "b28cc0b04c2247d38ef1344e363247563c4213d91b0ce0427300b7eb4004c69e",
+          "subs": [
+            [
+              "250,000",
+              "15,000"
+            ],
+            [
+              "level 6",
+              "level 1"
+            ],
+            [
+              "two officers",
+              "one officer"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "c71cfa1efb68793a596657dec5504bc9e8dc9604c2216b95e700762419936fe3",
+          "subs": [
+            [
+              "250,000",
+              "15,000"
+            ],
+            [
+              "level 6",
+              "level 1"
+            ],
+            [
+              "two officers",
+              "one officer"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nex-start-large-fleets-off",
+      "title": "The large, super and grand starting fleets are no longer offered",
+      "why": "Survival starts with one beat-up ship or two to three frigates. A cruiser-led or capital start skips the ship price.",
+      "before": "Small, large, super and grand fleet starts",
+      "after": "Solo and small fleet starts, plus the custom fleet",
+      "ops": [
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartFleetOptionsV2",
+          "method": "<clinit>",
+          "expect_sha256": "251bd8fe562bb9ef4cc7a4bed0bf6f21e39cdadaa94d804f66e04568e23e84df",
+          "subs": [
+            [
+              "COMBAT_LARGE",
+              "CUSTOM"
+            ]
+          ],
+          "method_fp": "50f1df57949905c4"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartFleetOptionsV2",
+          "method": "<clinit>",
+          "expect_sha256": "a388131ee45f97ef7904c77ac4a1b6861f909da677e8451a9fce7c674b97a340",
+          "subs": [
+            [
+              "TRADE_LARGE",
+              "CUSTOM"
+            ]
+          ],
+          "method_fp": "50f1df57949905c4"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartFleetOptionsV2",
+          "method": "<clinit>",
+          "expect_sha256": "87c26030529183e250c028c4526d39950a9589ab7588aa85f984966dfd1da195",
+          "subs": [
+            [
+              "CARRIER_LARGE",
+              "CUSTOM"
+            ]
+          ],
+          "method_fp": "50f1df57949905c4"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartFleetOptionsV2",
+          "method": "<clinit>",
+          "expect_sha256": "dfa6982266b8e9861084ddf561976b91bbe306b39ec32b6e4e33298c86ffc09e",
+          "subs": [
+            [
+              "EXPLORER_LARGE",
+              "CUSTOM"
+            ]
+          ],
+          "method_fp": "50f1df57949905c4"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartFleetOptionsV2",
+          "method": "<clinit>",
+          "expect_sha256": "f3c820ad5f0023060294c935b086856248a953cfc11b2cdef8d3c214c25cb237",
+          "subs": [
+            [
+              "SUPER",
+              "CUSTOM"
+            ]
+          ],
+          "method_fp": "50f1df57949905c4"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartFleetOptionsV2",
+          "method": "<clinit>",
+          "expect_sha256": "af7e86b86c58ae93de9f352e812ee906dc97384ac66be7771a464d7c3ed842a8",
+          "subs": [
+            [
+              "GRAND_FLEET",
+              "CUSTOM"
+            ]
+          ],
+          "method_fp": "50f1df57949905c4"
+        }
+      ]
+    },
+    {
+      "id": "nex-start-custom-caps",
+      "title": "Custom start capped near a Survival start",
+      "why": "Survival starts at level 1 with 10,000 to 15,000 credits and gives 2 story points a level, and the sliders went up to 300,000 credits, level 8 and 4 officers at 4 story points a level.",
+      "before": "Up to 300,000 credits, level 8, 4 officers, 4 story points a level",
+      "after": "Up to 15,000 credits, level 2 and 1 officer, and the extra level gives 2 story points",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartResources",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 300,
+          "to": 15,
+          "count": 1,
+          "method_fp": "77ea02932907eac1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartResources",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 8,
+          "to": 2,
+          "count": 1,
+          "method_fp": "77ea02932907eac1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartResources",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 4,
+          "to": 1,
+          "count": 1,
+          "method_fp": "77ea02932907eac1"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartResources",
+          "method": "createSliders",
+          "type": "float",
+          "from": 20.0,
+          "to": 15.0,
+          "count": 1,
+          "method_fp": "2c8e3703de9fcc40"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCStartResources",
+          "method": "saveValues",
+          "desc": "(Lcom/fs/starfarer/api/campaign/OptionPanelAPI;Lcom/fs/starfarer/api/campaign/TextPanelAPI;Lcom/fs/starfarer/api/campaign/rules/MemoryAPI;IJIII)V",
+          "expect_sha256": "e84ecb77b1f2c5fa0043a5dfe3403c80cc4f3a03e9d0516c4b6229e3bf4d1821",
+          "subs": [
+            [
+              "storyPointsPerLevel",
+              "ext_storyPointsPerLevel"
+            ]
+          ],
+          "method_fp": "e03e99d491eba11c"
+        }
+      ]
+    },
+    {
+      "id": "nex-academy-stipend-default-off",
+      "title": "The Galatia Academy stipend starts unticked",
+      "why": "Survival removes the Academy stipend. The Nexerelin new game adds it back without checking the mode.",
+      "before": "Stipend on by default",
+      "after": "Stipend off by default; the box can still be ticked",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/ExerelinSetupData",
+          "method": "<init>",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 8,
+          "which": [
+            5
+          ],
+          "method_fp": "45490afbc8d9908b"
+        }
+      ]
+    },
+    {
+      "id": "nex-care-package-smaller",
+      "title": "The starting care package is off by default and worth 40 points",
+      "why": "The care package hands out free industries, resources and blueprints at the start, which Survival never gives.",
+      "before": "Always on, 100 points",
+      "after": "Off by default, 40 points if chosen",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/ExerelinSetupData",
+          "method": "<init>",
+          "type": "int",
+          "from": 2,
+          "to": 0,
+          "count": 1,
+          "method_fp": "45490afbc8d9908b"
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "nex_factionSetupMaxPoints"
+          ],
+          "expect": 100,
+          "set": 40
+        }
+      ]
+    },
+    {
+      "id": "nex-prisoner-ransom",
+      "title": "Prisoner ransoms and slave sales pay 40% of the old price",
+      "why": "A ransom is credits from every battle won, and Survival keeps 40% of the cargo a battle leaves behind.",
+      "before": "10,000 + 2,000 per player level after the first",
+      "after": "4,000 + 800 per player level after the first",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "prisonerBaseRansomValue"
+          ],
+          "expect": 10000,
+          "set": 4000
+        },
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "prisonerRansomValueIncrementPerLevel"
+          ],
+          "expect": 2000,
+          "set": 800
+        },
+        {
+          "op": "luna",
+          "key": "nex_prisonerBaseRansomValue",
+          "expect_default": null,
+          "csv": false,
+          "expect_saved": "10000",
+          "set": "4000"
+        },
+        {
+          "op": "luna",
+          "key": "nex_prisonerRansomValueIncrementPerLevel",
+          "expect_default": null,
+          "csv": false,
+          "expect_saved": "2000",
+          "set": "800"
+        }
+      ]
+    },
+    {
+      "id": "nex-buyship-price",
+      "title": "The ship buyer pays what it paid before Survival",
+      "why": "The buyer pays a multiple of the buy price, which Survival raises 5 to 8 times, so 0.32 pays a frigate or destroyer the credits it paid before.",
+      "before": "1.6 x the Survival buy price (x0.25 in the first patch, below the setting's 0.5 floor)",
+      "after": "0.32 x the Survival buy price: a Wolf hull about 23,000, an Onslaught about 1,075,000",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "buyShipBasePriceMult"
+          ],
+          "expect": 1.6,
+          "set": 0.32
+        },
+        {
+          "op": "luna",
+          "key": "nex_buyShipBasePriceMult",
+          "csv": false,
+          "set": "0.32"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/utilities/LunaConfigHelper",
+          "method": "initLunaConfig",
+          "type": "double",
+          "from": 0.5,
+          "to": 0.05,
+          "count": 3,
+          "which": [
+            0
+          ],
+          "method_fp": "9b483bb5211b7af3"
+        }
+      ]
+    },
+    {
+      "id": "nex-tariff-floor",
+      "title": "Nexerelin's lower tariff follows Survival's rise",
+      "why": "Nexerelin had these shops at 18%, and Survival raised the open market tariff by 10 points.",
+      "before": "Base tariff x0.6 (18%)",
+      "after": "Base tariff x0.93 (28%)",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "baseTariffMult"
+          ],
+          "expect": 0.6,
+          "set": 0.93
+        },
+        {
+          "op": "luna",
+          "key": "nex_baseTariffMult",
+          "expect_default": null,
+          "csv": false,
+          "expect_saved": "0.6",
+          "set": "0.93"
+        }
+      ]
+    },
+    {
+      "id": "nex-task-group-upkeep",
+      "title": "Your own task groups cost the full upkeep",
+      "why": "Player task groups paid 75% of what the same ships cost in your fleet, and their crew pay skips Survival's x3.",
+      "before": "Upkeep x0.75",
+      "after": "Upkeep x1",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "specialForcesMaintMult"
+          ],
+          "expect": 0.75,
+          "set": 1
+        },
+        {
+          "op": "luna",
+          "key": "nex_specialForcesMaintMult",
+          "expect_default": null,
+          "csv": false,
+          "expect_saved": "0.75",
+          "set": "1"
+        }
+      ]
+    },
+    {
+      "id": "nex-prism-stock",
+      "title": "Prism Freeport stocks Survival's share of ships, weapons and wings",
+      "why": "Prism picks its own stock and skips Survival's cut, which leaves a quarter of the ships and a fifth of the weapons on every other market.",
+      "before": "About 14 ships, 27 kinds of weapon in stacks of 8, 4 and 2, and 6 wings",
+      "after": "About 4 ships, 12 kinds of weapon in stacks of 4, 2 and 1, and 3 wings",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "prismNumShips"
+          ],
+          "expect": 14,
+          "set": 4
+        },
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "prismMaxWeapons"
+          ],
+          "expect": 27,
+          "set": 12
+        },
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "prismNumWings"
+          ],
+          "expect": 6,
+          "set": 3
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/submarkets/PrismMarket",
+          "method": "addRandomWeapons",
+          "desc": "(I)V",
+          "type": "int",
+          "from": 2,
+          "to": 1,
+          "count": 1,
+          "method_fp": "26225cca6f5274e9"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/submarkets/PrismMarket",
+          "method": "addRandomWeapons",
+          "desc": "(I)V",
+          "type": "int",
+          "from": 4,
+          "to": 2,
+          "count": 1,
+          "method_fp": "26225cca6f5274e9"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/submarkets/PrismMarket",
+          "method": "addRandomWeapons",
+          "desc": "(I)V",
+          "type": "int",
+          "from": 8,
+          "to": 4,
+          "count": 1,
+          "method_fp": "26225cca6f5274e9"
+        }
+      ]
+    },
+    {
+      "id": "nex-merc-companies",
+      "title": "Mercenary companies are scarcer and cost six times as much",
+      "why": "A hired company is ships and officers for rent. Survival prices ships at x5 to x8 and makes officers scarce.",
+      "before": "3 companies on offer; fees x1 up front, x2 monthly",
+      "after": "1 company on offer; fees x6 up front, x6 monthly",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/mercConfig.json",
+          "path": [
+            "companiesForHire"
+          ],
+          "expect": 3,
+          "set": 1
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/mercConfig.json",
+          "path": [
+            "feeUpfrontMult"
+          ],
+          "expect": 1,
+          "set": 6
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/mercConfig.json",
+          "path": [
+            "feeMonthlyMult"
+          ],
+          "expect": 2,
+          "set": 6
+        }
+      ]
+    },
+    {
+      "id": "nex-mining",
+      "title": "Mining yields Survival's salvage share, finds fewer caches and gives half the XP",
+      "why": "Mining puts goods, cache finds and XP into the fleet with no fight, and Survival keeps 30% of salvaged goods and 20% of salvaged weapons.",
+      "before": "Output x2.3, cache chance 0.1, 10 XP per mining strength",
+      "after": "Output x0.69, cache chance 0.02, 5 XP per mining strength",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/miningConfig.json",
+          "path": [
+            "miningProductionMult"
+          ],
+          "expect": 2.3,
+          "set": 0.69
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/miningConfig.json",
+          "path": [
+            "baseCacheChance"
+          ],
+          "expect": 0.1,
+          "set": 0.02
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/miningConfig.json",
+          "path": [
+            "xpPerMiningStrength"
+          ],
+          "expect": 10,
+          "set": 5
+        }
+      ]
+    },
+    {
+      "id": "nex-outpost-cost",
+      "title": "Player outposts cost Survival's colony machinery and supplies and three times the upkeep",
+      "why": "An outpost gives storage and a waystation long before a colony, and Survival doubles colony machinery, raises the supplies 2.5 times and triples crew pay.",
+      "before": "50 machinery, 75 supplies, 2,500 a month",
+      "after": "100 machinery, 190 supplies, 7,500 a month",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "nex_playerOutpost_machinery"
+          ],
+          "expect": 50,
+          "set": 100
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "nex_playerOutpost_supplies"
+          ],
+          "expect": 75,
+          "set": 190
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "nex_playerOutpost_upkeep"
+          ],
+          "expect": 2500,
+          "set": 7500
+        }
+      ]
+    },
+    {
+      "id": "nex-remnant-surplus-price",
+      "title": "Remnant surplus hulls are priced for Survival",
+      "why": "This offer copies the game's surplus hull but skips its Survival price. At 7.5 times base value it sits with the game's own surplus hulls, which cost 5 to 8 times base value in Survival.",
+      "before": "Hull base value x1",
+      "after": "Hull base value x7.5",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/intel/missions/remnant/RemnantSurplusShipHull",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 1.0,
+          "to": 7.5,
+          "count": 1,
+          "method_fp": "02e8866d50541972"
+        }
+      ]
+    },
+    {
+      "id": "nex-recovered-smods-off",
+      "title": "Recovered enemy ships lose their s-mods, as in vanilla",
+      "why": "Vanilla clears s-mods on recovery; keeping them hands over story point value on every elite capture.",
+      "before": "Recovered enemy ships keep their built-in hullmods",
+      "after": "They lose them, as in vanilla",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "nex_keepSModsForRecoveredShips"
+          ],
+          "expect": true,
+          "set": false
+        },
+        {
+          "op": "luna",
+          "key": "nex_keepSModsForRecoveredShips",
+          "csv": false,
+          "set": "false"
+        }
+      ]
+    },
+    {
+      "id": "nex-buyship-no-sp-refund",
+      "title": "Selling a ship to the buyer no longer refunds story points",
+      "why": "Survival halves story points; the refund made s-mods free on any ship later sold this way, which vanilla never does.",
+      "before": "Story points spent on the ship's s-mods come back on sale",
+      "after": "No refund; the sale price is the reward",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "exerelin/campaign/intel/missions/BuyShip",
+          "method": "afterSale",
+          "type": "float",
+          "from": 0.0,
+          "to": 1.0E9,
+          "count": 3,
+          "which": [
+            0
+          ],
+          "method_fp": "7f0a4ae8aedd69d3"
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "15a6de1c0a5a560295096651c513ecbdf01aa49db855e1675de352dc2850a2b9",
+          "subs": [
+            [
+              "will be refunded",
+              "are not refunded"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nex-milestone-sp-halved",
+      "title": "Milestones that come without a hard fight give no story points",
+      "why": "Survival gives 2 story points a level where the normal game gives 4, and the milestones that still pay are a hard fight, a long trip or a colony.",
+      "before": "16 story points from milestones",
+      "after": "9: first battle, first raid, meeting the Remnant, top reputation and the two agent milestones give none, and the Omega milestone gives 1",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "firstBattle",
+            "points"
+          ],
+          "expect": 1,
+          "set": 0
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "firstRaid",
+            "points"
+          ],
+          "expect": 1,
+          "set": 0
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "maxRep",
+            "points"
+          ],
+          "expect": 1,
+          "set": 0
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "agentLevel5",
+            "points"
+          ],
+          "expect": 1,
+          "set": 0
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "encounterRemnants",
+            "points"
+          ],
+          "expect": 1,
+          "set": 0
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "agentAction15",
+            "points"
+          ],
+          "expect": 1,
+          "set": 0
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/exerelin/milestoneDefs.json",
+          "path": [
+            "milestones",
+            "defeatOmega",
+            "points"
+          ],
+          "expect": 2,
+          "set": 1
+        }
+      ]
+    },
+    {
+      "id": "nex-start-custom-fleet-off",
+      "title": "The custom starting fleet is switched off",
+      "why": "The custom fleet had no limit, so it could start a game with a fleet of capitals.",
+      "before": "Any number of any ships the faction knows, free",
+      "after": "The picker adds no ships",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/ExerelinCore.jar",
+          "class": "com/fs/starfarer/api/impl/campaign/rulecmd/newgame/Nex_NGCCustomStartFleet$CustomStartFleetDelegate$2",
+          "method": "onToggle",
+          "type": "int",
+          "from": 1,
+          "to": 0,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "9dc085a16c80d003"
+        }
+      ]
+    },
+    {
+      "id": "nex-crew-loot",
+      "title": "Crew taken from beaten ships follows Survival's found crew",
+      "why": "Crew costs 10 times as much in Survival, and the game keeps 30% of the crew it lets a fleet find.",
+      "before": "2% of the crew of destroyed enemy ships",
+      "after": "0.6%",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "exerelin_config.json",
+          "path": [
+            "crewLootMult"
+          ],
+          "expect": 0.02,
+          "set": 0.006
+        },
+        {
+          "op": "luna",
+          "key": "nex_crewLootMult",
+          "expect_default": null,
+          "csv": false,
+          "expect_saved": "0.02",
+          "set": "0.006"
+        }
+      ]
+    }
+  ]
+}

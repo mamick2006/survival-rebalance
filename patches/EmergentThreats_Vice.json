@@ -1,0 +1,198 @@
+{
+  "format": 1,
+  "mod_id": "EmergentThreats_Vice",
+  "mod_name": "Emergent Threats",
+  "tested_versions": [
+    "1.4.3"
+  ],
+  "changes": [
+    {
+      "id": "tt-scan-sale",
+      "title": "Tri-Tachyon pays less for infected ship scans",
+      "why": "A dialog payout far above vanilla data sales; cut to 0.3.",
+      "before": "250,000 credits",
+      "after": "75,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "52052db4ed607f930ba5604916246fd233bfde0449449ddc413771eacd25f29d",
+          "subs": [
+            [
+              "AddCredits 250000",
+              "AddCredits 75000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt-core-sale",
+      "title": "Tri-Tachyon pays less for the infected AI cores",
+      "why": "Three cores sold for half a million, far above vanilla core value; cut to 0.3.",
+      "before": "500,000 credits",
+      "after": "150,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "96f35fd861d0b5421fc5c3110398770f1fc839a8a9c22bedf9c1fe14e2cc2328",
+          "subs": [
+            [
+              "AddCredits 500000",
+              "AddCredits 150000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "1ccddb7f2ba9c12f8700d5c006e9c502ef4fc9b7d33bc9b43afec3f46c78380c",
+          "subs": [
+            [
+              "half a million",
+              "150,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "751b71571089d4bf5df882e550da90dbaa30b6fa8de98eba3818135e69220e60",
+          "subs": [
+            [
+              "half a million",
+              "150,000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt-station-sale",
+      "title": "Tri-Tachyon pays less for the infected station",
+      "why": "Survival pays 0.3 of the value for Threat finds turned in to this Director, and the station is sold without a fight.",
+      "before": "3,000,000 credits",
+      "after": "900,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "53d121f5aeb5cba6675f2a938a3921ed3456c7b15edabb312d9657ecfb7c0401",
+          "subs": [
+            [
+              "AddCredits 3000000",
+              "AddCredits 900000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "8755b68a070c7878049bdc58002324404b527abc836b8e4ac5317635013b9332",
+          "subs": [
+            [
+              "Three million",
+              "900,000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thousand-cuts-escorts",
+      "title": "Siding with the AI carriers gives the carrier only",
+      "why": "Four free warships skip the ship price and the 0.2 recovery rate.",
+      "before": "Mokosh carrier plus three escort ships",
+      "after": "Mokosh carrier only",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/listeners/BountyListener.java",
+          "line_sha256": "54f08b13b0e2bc2af11960e60f98ed960173740af80eb0d162987e1fcfee337d",
+          "subs": [
+            [
+              "Global.getSector()",
+              "//Global.getSector()"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/listeners/BountyListener.java",
+          "line_sha256": "0f7d1c825a03dd5055007cf9255bb6c1e5fb8762e0f949fe0be2c28f8f1b89cf",
+          "subs": [
+            [
+              "Global.getSector()",
+              "//Global.getSector()"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/listeners/BountyListener.java",
+          "line_sha256": "5eea8e488ecc88579e1d162c3e945604235488d7aee1358d2b93cc26e9c7dccc",
+          "subs": [
+            [
+              "Global.getSector()",
+              "//Global.getSector()"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/util/NameListUtil.java",
+          "line_sha256": "bce75808bb8069a4406e4f4993b8a7487f2a542dd76ebb95c05d6c01a396c71d",
+          "subs": [
+            [
+              " and escorts",
+              ""
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sic-synthesis-core-not-elite",
+      "title": "The Command Subroutine core has plain skills, not elite ones",
+      "why": "It is a free officer on every ship without one; Survival makes officers scarce and paid.",
+      "before": "Level 3 core with three elite skills on every ship lacking a captain",
+      "after": "The same three skills, none elite",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/SynthesisCorePlugin.java",
+          "line_sha256": "e72226493a1231db202985c5de2dc3f94249ea3581508c18b4cd89fa2c60aee8",
+          "subs": [
+            [
+              "2);",
+              "1);"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/SynthesisCorePlugin.java",
+          "line_sha256": "b708c719161a72daf621c6fb9a2d29ed21042392a0bbc854ac7d00966bed2f94",
+          "subs": [
+            [
+              "2);",
+              "1);"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/vice/SynthesisCorePlugin.java",
+          "line_sha256": "b6ebba2f818bef0e27fd7f0e43957a0409a76845d9c6d6db1c2c7828884d9ca5",
+          "subs": [
+            [
+              "2);",
+              "1);"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

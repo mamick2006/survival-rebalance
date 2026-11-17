@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "mod_id": "terraformingmadeeasy",
+  "mod_name": "Terraforming Made Easy",
+  "tested_versions": [
+    "2.10.0"
+  ],
+  "changes": [
+    {
+      "id": "tme-project-cost-x2",
+      "title": "Terraforming and megastructure projects cost twice as much",
+      "why": "Project prices are the mod's own numbers, so Survival's x2 industry cost never reaches them.",
+      "before": "Project cost x1 (Normal)",
+      "after": "Project cost x2 (High)",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "tme_build_cost_multiplier",
+          "expect_default_sha256": "a7248eeb45eb1ce247f81693283e22e8b39e8a50890cecd22d02e75025547d90",
+          "set": "High"
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "tme_build_cost_multiplier"
+          ],
+          "expect_sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+          "set": "high"
+        }
+      ]
+    },
+    {
+      "id": "tme-project-time-x2",
+      "title": "Terraforming and megastructure projects take twice as long",
+      "why": "Project times are the mod's own numbers, so Survival's x2 build time never reaches them.",
+      "before": "Project time x1 (Normal)",
+      "after": "Project time x2 (Slow)",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "tme_build_time_multiplier",
+          "expect_default_sha256": "a7248eeb45eb1ce247f81693283e22e8b39e8a50890cecd22d02e75025547d90",
+          "set": "Slow"
+        },
+        {
+          "op": "json_value",
+          "file": "data/config/settings.json",
+          "path": [
+            "tme_build_time_multiplier"
+          ],
+          "expect_sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+          "set": "slow"
+        }
+      ]
+    }
+  ]
+}

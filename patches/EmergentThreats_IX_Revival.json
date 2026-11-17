@@ -1,0 +1,217 @@
+{
+  "format": 1,
+  "mod_id": "EmergentThreats_IX_Revival",
+  "mod_name": "Emergent Threats: IX Revival",
+  "tested_versions": [
+    "1.4.3"
+  ],
+  "changes": [
+    {
+      "id": "bazaar-tariff",
+      "title": "Bodach Arms Bazaar's tariff rises with the open market's",
+      "why": "Survival raised the open market tariff by 10 points, and the Bazaar's 9% rises by the same 10, so it is still the cheaper counter.",
+      "before": "9% tariff",
+      "after": "19% tariff",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/submarkets/TWArmsBazaarMarket.java",
+          "line_sha256": "8e01141475d74cce090040ba75921966e8c402576cfe745c69bfe4fed79e8a09",
+          "subs": [
+            [
+              "0.09f",
+              "0.19f"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bazaar-fuel",
+      "title": "Bodach Arms Bazaar stocks less fuel",
+      "why": "The stock is added directly, so Survival's 0.6 fuel for sale never applies.",
+      "before": "1,000 to 3,000 fuel per restock",
+      "after": "600 to 1,800 fuel per restock",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/submarkets/TWArmsBazaarMarket.java",
+          "line_sha256": "067688df5f43658e8bfcbf3ae6c61cdc32de3c0221d314336025870898eccdb8",
+          "subs": [
+            [
+              "2000f",
+              "1200f"
+            ],
+            [
+              "1000f",
+              "600f"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/submarkets/TWArmsBazaarMarket.java",
+          "line_sha256": "47946e8c9bfb4cf370fc4a353907f40d4ba4ba25fcc5a0020e78af49aca6a782",
+          "subs": [
+            [
+              "1000f",
+              "600f"
+            ],
+            [
+              "2000f",
+              "1200f"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "start-blueprints",
+      "title": "IX and Trinity starts no longer hand out blueprint packages",
+      "why": "Faction blueprint packages at the start skip every ship and weapon price.",
+      "before": "2 or 3 blueprint packages at the start",
+      "after": "no blueprint packages",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/IXModPlugin.java",
+          "line_sha256": "3c38df74ad3e84d11620da578736e77d453692fa0457f9ab1370085577570cd1",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/IXModPlugin.java",
+          "line_sha256": "05df607356bad7488b5e457ef19a23f5f44594f8256e9091e5d1ce5a103f09db",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/IXModPlugin.java",
+          "line_sha256": "8590e869b01a856af0f9c1bd4ff73214116c84aed4d7d94e0f5b3b91b372f259",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/IXModPlugin.java",
+          "line_sha256": "9ab2e77668ad4db3ff2fcd8444a65f8b4b6de1405d5f5a1e36edc53543d1614d",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/backgrounds/SwordOfTheFleetBackground.java",
+          "line_sha256": "9ab2e77668ad4db3ff2fcd8444a65f8b4b6de1405d5f5a1e36edc53543d1614d",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/backgrounds/SwordOfTheFleetBackground.java",
+          "line_sha256": "05df607356bad7488b5e457ef19a23f5f44594f8256e9091e5d1ce5a103f09db",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt-station-sale",
+      "title": "Tri-Tachyon pays less for the infected station",
+      "why": "Same payout as the Emergent Threats version of this dialog; cut to 0.3.",
+      "before": "3,000,000 credits",
+      "after": "900,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "53d121f5aeb5cba6675f2a938a3921ed3456c7b15edabb312d9657ecfb7c0401",
+          "subs": [
+            [
+              "AddCredits 3000000",
+              "AddCredits 900000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tt-core-sale",
+      "title": "Tri-Tachyon pays less for the infected AI cores",
+      "why": "Same payout as the Emergent Threats version of this dialog; cut to 0.3.",
+      "before": "500,000 credits",
+      "after": "150,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "96f35fd861d0b5421fc5c3110398770f1fc839a8a9c22bedf9c1fe14e2cc2328",
+          "subs": [
+            [
+              "AddCredits 500000",
+              "AddCredits 150000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "start-biochip",
+      "title": "IX and Trinity starts no longer hand out a Cerebral Biochip",
+      "why": "The biochip sells for more than ten times what a Survival start holds, and it can still be earned from the IX contact.",
+      "before": "1 Cerebral Biochip (listed at 200,000) at the start",
+      "after": "no biochip at the start",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/IXModPlugin.java",
+          "line_sha256": "57a670f521f75dc708329d6b184dabfe3b8456b35d37437aaa9b9132c361d5fe",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/scripts/ix/backgrounds/SwordOfTheFleetBackground.java",
+          "line_sha256": "57a670f521f75dc708329d6b184dabfe3b8456b35d37437aaa9b9132c361d5fe",
+          "subs": [
+            [
+              "cargo.addSpecial",
+              "//cargo.addSpecial"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

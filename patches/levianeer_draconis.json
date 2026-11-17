@@ -1,0 +1,247 @@
+{
+  "format": 1,
+  "mod_id": "levianeer_draconis",
+  "mod_name": "Draconis Fleet",
+  "tested_versions": [
+    "0.7.91"
+  ],
+  "changes": [
+    {
+      "id": "admiral-store-rep-cost",
+      "title": "Ships from Admiral August's store cost far more standing",
+      "why": "The store charges hull base value, which skips Survival's 5x to 8x ship price, so the price now comes as standing at the same factors.",
+      "before": "2 / 3 / 4 / 5 standing per frigate / destroyer / cruiser / capital",
+      "after": "10 / 15 / 24 / 40 standing; wings stay at 1",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_BuyShip",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.02,
+          "to": -0.10,
+          "count": 1,
+          "method_fp": "e50341b907e23408"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_BuyShip",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.03,
+          "to": -0.15,
+          "count": 1,
+          "method_fp": "e50341b907e23408"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_BuyShip",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.04,
+          "to": -0.24,
+          "count": 1,
+          "method_fp": "e50341b907e23408"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_BuyShip",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.05,
+          "to": -0.40,
+          "count": 1,
+          "method_fp": "e50341b907e23408"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_BuyShip",
+          "method": "adjustAdmiralReputation",
+          "type": "float",
+          "from": 4.0,
+          "to": 0.8,
+          "count": 1,
+          "method_fp": "912b54bf02d7cbfe"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_CalculateShipCost",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.02,
+          "to": -0.10,
+          "count": 1,
+          "method_fp": "e8f8fdd164603f02"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_CalculateShipCost",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.03,
+          "to": -0.15,
+          "count": 1,
+          "method_fp": "e8f8fdd164603f02"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_CalculateShipCost",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.04,
+          "to": -0.24,
+          "count": 1,
+          "method_fp": "e8f8fdd164603f02"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_CalculateShipCost",
+          "method": "getReputationCostByHullSize",
+          "type": "float",
+          "from": -0.05,
+          "to": -0.40,
+          "count": 1,
+          "method_fp": "e8f8fdd164603f02"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_AdmiralStore",
+          "method": "calculateRepPoints",
+          "type": "int",
+          "from": 5,
+          "to": 40,
+          "count": 1,
+          "method_fp": "90853566270efe07"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_AdmiralStore",
+          "method": "calculateRepPoints",
+          "type": "int",
+          "from": 4,
+          "to": 24,
+          "count": 1,
+          "method_fp": "90853566270efe07"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_AdmiralStore",
+          "method": "calculateRepPoints",
+          "type": "int",
+          "from": 3,
+          "to": 15,
+          "count": 1,
+          "method_fp": "90853566270efe07"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/rulecmd/XLII_AdmiralStore",
+          "method": "calculateRepPoints",
+          "type": "int",
+          "from": 2,
+          "to": 10,
+          "count": 1,
+          "method_fp": "90853566270efe07"
+        }
+      ]
+    },
+    {
+      "id": "ring-port-external-payout",
+      "title": "Smaller payout when someone else takes Ring-Port before the quest",
+      "why": "Before the quest starts the payout asks only for a commission, and Survival cut that kind of income to a tenth.",
+      "before": "500,000 credits",
+      "after": "50,000 credits if the quest had not started; 500,000 if August's note was already in hand",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "25ff7004b1fc4a46fea6121161e4d50ec2517a925a7d2e33a4e97c252064847f",
+          "subs": [
+            [
+              "500000",
+              "50000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nanoforge-exchange-reward",
+      "title": "The nanoforge trade grants fewer story points",
+      "why": "Survival halves the story points gained from levels, so this gift is halved too; the credits pay for a Pristine Nanoforge and stay.",
+      "before": "500,000 credits and 5 story points, plus the Octantis Uplink",
+      "after": "500,000 credits and 2 story points, plus the Octantis Uplink",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "0d0dc4435798602e72fbf657e03cd0e21908224183a54aee3d74554ae963eab7",
+          "subs": [
+            [
+              "AddStoryPoints 5",
+              "AddStoryPoints 2"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "remnant-raid-alpha-core",
+      "title": "Draconis raid fleets carry at most one Gamma core",
+      "why": "Beating a returning raid fleet gave its cores as guaranteed salvage, outside Survival's 0.1 AI core drop rate.",
+      "before": "1 to 4 Gamma, 1 to 2 Beta and 1 Alpha core, guaranteed",
+      "after": "1 Gamma core after a patrol of 5 days or more",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/intel/aicore/remnant/DraconisRemnantRaidManager$RemnantRaidFleetBehavior",
+          "method": "acquireAICores",
+          "type": "float",
+          "from": 30.0,
+          "to": 100000.0,
+          "count": 1,
+          "method_fp": "e4e31b1e8504b715"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/intel/aicore/remnant/DraconisRemnantRaidManager$RemnantRaidFleetBehavior",
+          "method": "acquireAICores",
+          "type": "float",
+          "from": 15.0,
+          "to": 100000.0,
+          "count": 3,
+          "which": [
+            0
+          ],
+          "method_fp": "e4e31b1e8504b715"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/Draconis.jar",
+          "class": "levianeer/draconis/data/campaign/intel/aicore/remnant/DraconisRemnantRaidManager$RemnantRaidFleetBehavior",
+          "method": "acquireAICores",
+          "type": "float",
+          "from": 10.0,
+          "to": 100000.0,
+          "count": 1,
+          "method_fp": "e4e31b1e8504b715"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "about": "Mods that were checked for Survival Mode and need no change. The tool supports them at any version and changes nothing in them. The build lists them in the manifest and in the README.",
+  "mods": [
+    {
+      "id": "patchlib",
+      "name": "! PatchLib !"
+    },
+    {
+      "id": "console_additions",
+      "name": "Additional Console Commands"
+    },
+    {
+      "id": "zzarmaa_anime",
+      "name": "ArmaA - Anime"
+    },
+    {
+      "id": "bmo",
+      "name": "Building Menu Overhaul"
+    },
+    {
+      "id": "captains_quarters",
+      "name": "Captain's Quarters"
+    },
+    {
+      "id": "chatter",
+      "name": "Combat Chatter"
+    },
+    {
+      "id": "lw_console",
+      "name": "Console Commands"
+    },
+    {
+      "id": "customizablestarsystems",
+      "name": "Customizable Star Systems"
+    },
+    {
+      "id": "demandIndicators",
+      "name": "Demand Indicators"
+    },
+    {
+      "id": "DetailedCombatResults",
+      "name": "Detailed Combat Results"
+    },
+    {
+      "id": "diablearmaaonics",
+      "name": "Diable ArmAonics"
+    },
+    {
+      "id": "diableavionics",
+      "name": "Diable Avionics Original Flavor"
+    },
+    {
+      "id": "zoeyea",
+      "name": "Expanded Administrators"
+    },
+    {
+      "id": "gacha_hullmods",
+      "name": "Gacha Hullmods"
+    },
+    {
+      "id": "GrandColonies",
+      "name": "Grand.Colonies"
+    },
+    {
+      "id": "hullmods_renewed",
+      "name": "Hullmods - Renewed"
+    },
+    {
+      "id": "JaydeeProficiencies",
+      "name": "JaydeeProficiencies"
+    },
+    {
+      "id": "largerZoomOut",
+      "name": "Larger Zoom Out"
+    },
+    {
+      "id": "lw_lazylib",
+      "name": "LazyLib"
+    },
+    {
+      "id": "leadingPip",
+      "name": "Leading Pip"
+    },
+    {
+      "id": "liminal",
+      "name": "Liminal - Custom, Upgradeable Hullmods"
+    },
+    {
+      "id": "lunalib",
+      "name": "LunaLib"
+    },
+    {
+      "id": "MagicLib",
+      "name": "MagicLib"
+    },
+    {
+      "id": "mamick_crossmod_demo",
+      "name": "Mamick Crossmod Demo"
+    },
+    {
+      "id": "nomadic_fleet",
+      "name": "Nomad Flotilla"
+    },
+    {
+      "id": "particleengine",
+      "name": "Particle Engine"
+    },
+    {
+      "id": "su_CarrierHullmod",
+      "name": "Postmodern Carriers"
+    },
+    {
+      "id": "arondight",
+      "name": "Project Arondight"
+    },
+    {
+      "id": "refitfilters",
+      "name": "Refit Filters"
+    },
+    {
+      "id": "sicdustkeeper",
+      "name": "Second-in-Command: Dustkeeper"
+    },
+    {
+      "id": "swp",
+      "name": "Ship/Weapon Pack"
+    },
+    {
+      "id": "Solsector",
+      "name": "Solsector"
+    },
+    {
+      "id": "speedUp",
+      "name": "SpeedUp"
+    },
+    {
+      "id": "staruilib",
+      "name": "StarUILib"
+    },
+    {
+      "id": "TerriblePirates",
+      "name": "Terrible Pirates"
+    },
+    {
+      "id": "TVVFW",
+      "name": "Tinyverse - The Wanzer Age"
+    },
+    {
+      "id": "trueweaponstats",
+      "name": "True Weapon Stats"
+    },
+    {
+      "id": "US",
+      "name": "Unknown Skies"
+    },
+    {
+      "id": "WEAPONARCS",
+      "name": "Weapon Arcs"
+    },
+    {
+      "id": "WideHorizonsContent",
+      "name": "Wide Horizons - Content"
+    },
+    {
+      "id": "shaderLib",
+      "name": "zz GraphicsLib"
+    }
+  ]
+}

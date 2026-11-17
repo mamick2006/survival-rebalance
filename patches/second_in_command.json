@@ -1,0 +1,358 @@
+{
+  "format": 1,
+  "mod_id": "second_in_command",
+  "mod_name": "Second-in-Command",
+  "tested_versions": [
+    "2.1.2"
+  ],
+  "changes": [
+    {
+      "id": "xo-slots-three",
+      "title": "Three executive officer slots, not four",
+      "why": "Each slot is six fleet-wide skills that vanilla's 15 skill points never paid for.",
+      "before": "4 slots (your saved setting)",
+      "after": "3 slots (the mod's own default and minimum)",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "sc_xoSlotsForPlayer",
+          "expect_default": "3",
+          "set": "3"
+        }
+      ]
+    },
+    {
+      "id": "xo-progression-mode",
+      "title": "Executive officer slots open with your level",
+      "why": "With every slot open, a level 1 captain could hire three officers and hold six fleet skills, where the game gives one skill point a level.",
+      "before": "All slots open from the start",
+      "after": "The first slot is open from the start, the second at level 5, the third at level 10",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "sc_progressionMode",
+          "expect_default_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+          "set": "true"
+        },
+        {
+          "op": "luna",
+          "key": "sc_progressionLevelSlot2",
+          "expect_default": "5",
+          "set": "5"
+        },
+        {
+          "op": "luna",
+          "key": "sc_progressionLevelSlot3",
+          "expect_default": "10",
+          "set": "10"
+        }
+      ]
+    },
+    {
+      "id": "xo-xp-half",
+      "title": "Executive officers level at half speed",
+      "why": "Slower levels stand in for Survival's slower progression.",
+      "before": "Executive officer XP x1",
+      "after": "Executive officer XP x0.5",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "sc_officerXPMult",
+          "expect_default": "1",
+          "set": "0.5"
+        }
+      ]
+    },
+    {
+      "id": "xo-comm-rarity",
+      "title": "Executive officers for hire are as scarce as Survival officers",
+      "why": "Survival cuts officers for hire to 0.15 of normal.",
+      "before": "85% of markets list one or two each month",
+      "after": "15% of markets list one, sometimes two (about 0.15 of before)",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "sc_officerCommRarity",
+          "expect_default_sha256": "a7248eeb45eb1ce247f81693283e22e8b39e8a50890cecd22d02e75025547d90",
+          "set": "Rare"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/scripts/ExecutiveOfficerCommAdder",
+          "method": "reportEconomyMonthEnd",
+          "type": "float",
+          "from": 0.4,
+          "to": 0.15,
+          "count": 1,
+          "method_fp": "821562bebc0ddfbe"
+        }
+      ]
+    },
+    {
+      "id": "xo-derelict-rarity",
+      "title": "Fewer executive officers in derelict cryopods",
+      "why": "Survival halves officers found in cryopods. Takes effect in new saves.",
+      "before": "Up to 40% of the sector's pod count",
+      "after": "Up to 20%",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "sc_officerDerelictRarity",
+          "expect_default_sha256": "a7248eeb45eb1ce247f81693283e22e8b39e8a50890cecd22d02e75025547d90",
+          "set": "Rare"
+        }
+      ]
+    },
+    {
+      "id": "xo-hire-price",
+      "title": "Hiring an executive officer costs 100,000 credits",
+      "why": "They never draw a salary or combat pay and last the whole game, so the one price carries all of it.",
+      "before": "10,000 credits once",
+      "after": "100,000 credits once",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/interactions/rules/SCOfficerHireDialogDelegate",
+          "method": "optionSelected",
+          "type": "float",
+          "from": 10000.0,
+          "to": 100000.0,
+          "count": 1,
+          "method_fp": "a323ae545f562254"
+        }
+      ]
+    },
+    {
+      "id": "emergency-order-cr",
+      "title": "Emergency Order halves the readiness cost of a Transverse Jump, no longer removes it",
+      "why": "Survival makes a Transverse Jump cost ten times the readiness, and a free jump would switch that off.",
+      "before": "Transverse Jump and Emergency Burn cost no readiness",
+      "after": "Transverse Jump costs half the usual readiness, and Emergency Burn still costs none",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/starfaring/EmergencyOrder",
+          "method": "advance",
+          "type": "float",
+          "from": 0.0,
+          "to": 0.5,
+          "count": 2,
+          "desc": "(Lsecond_in_command/SCData;F)V",
+          "which": [
+            1
+          ],
+          "method_fp": "a484d740e0978b7b"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/starfaring/EmergencyOrder",
+          "method": "onActivation",
+          "type": "float",
+          "from": 0.0,
+          "to": 0.5,
+          "count": 2,
+          "which": [
+            1
+          ],
+          "method_fp": "d12863cb493c154e"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/starfaring/EmergencyOrder",
+          "method": "addTooltip",
+          "expect_sha256": "9d3456ba096ef8c73511f9821cb2f039621c59f793f7fdf44165e0dacac403f6",
+          "subs": [
+            [
+              " and ",
+              " costs half CR; "
+            ],
+            [
+              "reduce the",
+              "reduces the"
+            ]
+          ],
+          "method_fp": "659a7556f9c1045e"
+        }
+      ]
+    },
+    {
+      "id": "well-organized-crew",
+      "title": "Well Organized: -25% crew required, not -33%",
+      "why": "Crew costs ten times as much to hire and three times as much to pay in Survival, and one early skill pick took a third off both for the whole fleet.",
+      "before": "-33% minimum crew",
+      "after": "-25% minimum crew (crew losses still -33%)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/management/WellOrganized",
+          "method": "applyEffectsBeforeShipCreation",
+          "type": "float",
+          "from": 0.666,
+          "to": 0.75,
+          "count": 2,
+          "which": [
+            0
+          ],
+          "method_fp": "6553336d8c56e34c"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/management/WellOrganized",
+          "method": "addTooltip",
+          "expect_sha256": "5aa7bd133f78788aefe0683cf87191af8f748882f1faa48066ed1ac6871688b9",
+          "subs": [
+            [
+              "-33%%",
+              "-25%%"
+            ]
+          ],
+          "method_fp": "1501767a63a760f5"
+        }
+      ]
+    },
+    {
+      "id": "generous-donation",
+      "title": "Generous Donation: half the post-battle salvage and weapon drop bonus",
+      "why": "This is the Piracy officer's starting skill, so a new captain can have it on day one, and it doubled the weapon drops that Survival cuts to a tenth.",
+      "before": "+50% battle salvage, +25% weapon and wing drops, +10% salvage",
+      "after": "+25% post-battle salvage, +12% weapon and wing drops",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/piracy/GenerousDonation",
+          "method": "advance",
+          "type": "float",
+          "from": 0.25,
+          "to": 0.12,
+          "count": 2,
+          "desc": "(Lsecond_in_command/SCData;F)V",
+          "method_fp": "f82951fea683b0c2"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/piracy/GenerousDonation",
+          "method": "advance",
+          "type": "float",
+          "from": 0.5,
+          "to": 0.25,
+          "count": 1,
+          "desc": "(Lsecond_in_command/SCData;F)V",
+          "method_fp": "f82951fea683b0c2"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/piracy/GenerousDonation",
+          "method": "onActivation",
+          "type": "float",
+          "from": 0.25,
+          "to": 0.12,
+          "count": 2,
+          "method_fp": "3658293bb334ba25"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/piracy/GenerousDonation",
+          "method": "onActivation",
+          "type": "float",
+          "from": 0.5,
+          "to": 0.25,
+          "count": 1,
+          "method_fp": "3658293bb334ba25"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/piracy/GenerousDonation",
+          "method": "addTooltip",
+          "expect_sha256": "e5fa30bd151e9c82ee73be6527374eb2f15ceba36e4b847a3f5020af6aea171f",
+          "subs": [
+            [
+              "+50%%",
+              "+25%%"
+            ]
+          ],
+          "method_fp": "dd579587d99d30e1"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/piracy/GenerousDonation",
+          "method": "addTooltip",
+          "expect_sha256": "de20f31d7fc4bb49bf67e2ad0842575a675ac947af1207d95fb71e83968c5f21",
+          "subs": [
+            [
+              "+25%%",
+              "+12%%"
+            ]
+          ],
+          "method_fp": "dd579587d99d30e1"
+        }
+      ]
+    },
+    {
+      "id": "polarized-armor-0985",
+      "title": "Polarized Armor follows 0.98.5a: top speed instead of the old armor bonus",
+      "why": "Vanilla removed the effective armor bonus; SiC's copy of the skill file still used it.",
+      "before": "Old effective armor bonus",
+      "after": "Up to +20 top speed by hard flux, as vanilla now",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/characters/skills/polarized_armor.skill",
+          "line_sha256": "e0a5f932da8fc3b5f4d58d0d7dde9bb7194524c3e48c792f4a7f9a019d6dfc02",
+          "subs": [
+            [
+              "$Level2\"",
+              "$Level2A\""
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "continuous-repairs-dmods",
+      "title": "Continuous Repairs removes a d-mod per 480 DP defeated, not 240",
+      "why": "D-mods are repaired with Domain-grade Parts, and Survival halves the parts that battles drop, so a repair earned in battle comes half as often.",
+      "before": "One free d-mod repair per 240 DP of enemies",
+      "after": "One free d-mod repair per 480 DP of enemies",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/starfaring/ContinuousRepairsListener",
+          "method": "<init>",
+          "type": "int",
+          "from": 240,
+          "to": 480,
+          "count": 1,
+          "method_fp": "1237d8f376c8e70d"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/SecondInCommand.jar",
+          "class": "second_in_command/skills/starfaring/ContinuousRepairs",
+          "method": "addTooltip",
+          "expect_sha256": "a90f10b2c2bfaf6870e8ff7af744ee34552bf39d749d4df8c3177f86aaa3aaa1",
+          "subs": [
+            [
+              "Every 240",
+              "Every 480"
+            ]
+          ],
+          "method_fp": "bc5ca265e741bdbb"
+        }
+      ]
+    }
+  ]
+}

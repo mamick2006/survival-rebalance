@@ -1,0 +1,10 @@
+{
+  "tool_version": "1.0.0",
+  "mods": [
+    {"id": "pat", "name": "Patched Mod", "tested_versions": ["1.0"], "changes": 3, "state": "patched"},
+    {"id": "nostate", "tested_versions": ["1.0"], "changes": 1},
+    {"id": "offmod", "name": "Off Mod", "tested_versions": ["1.0"], "changes": 2, "state": "off"},
+    {"id": "failmod", "name": "Failing Mod", "tested_versions": ["0.9"], "changes": 5, "state": "failed"},
+    {"id": "odd", "name": "Odd State", "tested_versions": ["1.0"], "changes": 1, "state": "something-new"}
+  ]
+}

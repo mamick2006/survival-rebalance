@@ -1,0 +1,340 @@
+{
+  "format": 1,
+  "mod_id": "armaa",
+  "mod_name": "Arma Armatura",
+  "tested_versions": [
+    "3.3.9"
+  ],
+  "changes": [
+    {
+      "id": "armaa-hq-market-tariff",
+      "title": "Arma Armatura HQ market charges the Survival tariff",
+      "why": "Survival's open market tariff is 40%. This market charged 30% (35% with a Tri-Tachyon commission).",
+      "before": "30% tariff (35% if commissioned by Tri-Tachyon)",
+      "after": "40% tariff (45% if commissioned by Tri-Tachyon)",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/submarkets/armaa_subMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.3,
+          "to": 0.4,
+          "count": 1,
+          "method_fp": "a8e9349294fa52dd"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/submarkets/armaa_subMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.35,
+          "to": 0.45,
+          "count": 1,
+          "method_fp": "a8e9349294fa52dd"
+        }
+      ]
+    },
+    {
+      "id": "armaa-mrc-market-tariff",
+      "title": "MRC market charges the Survival tariff",
+      "why": "Survival adds ten points to the open market tariff, so this shop's 10% becomes 20% and it stays the cheaper place to buy.",
+      "before": "10% tariff",
+      "after": "20% tariff",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/submarkets/armaa_mrcSubMarketPlugin",
+          "method": "getTariff",
+          "type": "float",
+          "from": 0.1,
+          "to": 0.2,
+          "count": 1,
+          "method_fp": "5775b0f06950568f"
+        }
+      ]
+    },
+    {
+      "id": "armaa-atac-points-x3",
+      "title": "ATAC Combat Analysis needs three times the points for its ship stages",
+      "why": "The third and fifth stages hand over free ships, which cost five times as much in Survival, so those two stages and the one between them need three times the points.",
+      "before": "Stages at 200, 400, 600, 800 and 1000 points",
+      "after": "Stages at 200, 400, 1800, 2400 and 3000 points",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/intel/events/armaa_combatDataEventIntel",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 1000,
+          "to": 3000,
+          "count": 1,
+          "method_fp": "fde92506933ac810"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/intel/events/armaa_combatDataEventIntel",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 800,
+          "to": 2400,
+          "count": 1,
+          "method_fp": "fde92506933ac810"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/intel/events/armaa_combatDataEventIntel",
+          "method": "<clinit>",
+          "type": "int",
+          "from": 600,
+          "to": 1800,
+          "count": 1,
+          "method_fp": "fde92506933ac810"
+        }
+      ]
+    },
+    {
+      "id": "armaa-wingman-promotion-90",
+      "title": "Squad pilots need 90 relationship to be promoted",
+      "why": "Every WINGCOM squad is a pool of officer candidates. Survival makes officers scarce (x0.15).",
+      "before": "Promotion at 70 relationship",
+      "after": "Promotion at 90 relationship",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/armaa_wingmanPromotion",
+          "method": "adjustRelations",
+          "type": "float",
+          "from": 0.7,
+          "to": 0.9,
+          "count": 1,
+          "method_fp": "ae54c5aefa352256"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/intel/armaa_squadManagerIntel",
+          "method": "createSquadView",
+          "type": "float",
+          "from": 0.7,
+          "to": 0.9,
+          "count": 1,
+          "method_fp": "28a776b76f1ef496"
+        },
+        {
+          "op": "class_string",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/intel/armaa_squadManagerIntel",
+          "method": "createHelpView",
+          "expect_sha256": "ff5a1ae012afa5d4c889c50ad427aaf545d31a4fac04ffc1c4d03d403ba4250a",
+          "subs": [
+            [
+              "70",
+              "90"
+            ]
+          ],
+          "method_fp": "d06523efc5d4ff66"
+        }
+      ]
+    },
+    {
+      "id": "armaa-valkazard-sale-price",
+      "title": "Sera pays less for the Valkazard",
+      "why": "A 200,000 hull sells for 80,000 in Survival. The payout was far above any vanilla reward.",
+      "before": "300,000 or 500,000 credits (dialog offered 350,000)",
+      "after": "100,000 or 150,000 credits",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "994ae4982c55cf73999060b05541987abfdea8b257f5cf47c31edf7982edc748",
+          "subs": [
+            [
+              "350,000",
+              "100,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "ce3b21182154a0d9fade91353c2d1c4213c1a027683c64732ca20ee8b8a581e9",
+          "subs": [
+            [
+              "350,000",
+              "100,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "d610e0252a675d613f154d480bd488ccd5b4c26921f322c909953287d7f9c88a",
+          "subs": [
+            [
+              "300000",
+              "100000"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "889c0d09c2b0935c62e73416de69e23308859251e9ff29978b7c68f27fcf3264",
+          "subs": [
+            [
+              "500000",
+              "150000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "96f35fd861d0b5421fc5c3110398770f1fc839a8a9c22bedf9c1fe14e2cc2328",
+          "subs": [
+            [
+              "500000",
+              "150000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "0c10944355ec1f35af3a601753c9fbfc74f4dc7204175142809dcb958ff1a5ae",
+          "subs": [
+            [
+              "500,000",
+              "150,000"
+            ]
+          ],
+          "count": 2
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "f33ffcbbad1ad451523a260149a4ecb96758ac3900e35ba2da101612eca5f4cd",
+          "subs": [
+            [
+              "500,000",
+              "150,000"
+            ]
+          ]
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "677fb0b3769fb32a291e34ac591725c94a76b3300be4818c57197d254e759a5b",
+          "subs": [
+            [
+              "500,000",
+              "150,000"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "armaa-valkazard-sale-story-points",
+      "title": "Valkazard sale gives fewer story points",
+      "why": "Survival gives 2 story points a level instead of 4, so story point gifts are halved.",
+      "before": "4 story points (after Homecoming)",
+      "after": "2 story points",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "cf363cb18820dc4380012f5811f4827efffb138bf500d9b851d8a00433deb389",
+          "subs": [
+            [
+              "4",
+              "2"
+            ]
+          ],
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "armaa-dawn-leaving-story-points",
+      "title": "Dawn leaving gives fewer story points",
+      "why": "Survival gives 2 story points a level instead of 4, so story point gifts are halved.",
+      "before": "5 story points",
+      "after": "2 story points",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "efdcc217c7ec1cfe42e59573e4dc273b6957e639f00b7050b9e4e9eb328e1a59",
+          "subs": [
+            [
+              "5",
+              "2"
+            ]
+          ],
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "armaa-bellator-gift-off",
+      "title": "The Bellator is no longer handed over for letting it escape",
+      "why": "A 60 point capital carrier came free with no fight and no story points. Beating its fleet and recovering it still works.",
+      "before": "Free Bellator after Homecoming if it escaped",
+      "after": "No gift; the Bellator is won in the fight",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "6cb27c4646d23e4951ffb536976414c9db12d3a95aa81a604013907b0bcf55ee",
+          "subs": [
+            [
+              "armaa_bellatorEscaped",
+              "armaa_bellatorGiftOff"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "armaa-cpc-capacity-x3",
+      "title": "Sera's custom production gets Survival's x3 order cap",
+      "why": "Survival prices production ships at x5 to x8 and triples vanilla's order cap to match. This copy of the contract missed the x3, so it could not fit one frigate early on.",
+      "before": "Order cap 100,000 to 500,000 before standing",
+      "after": "Order cap 300,000 to 1,500,000 before standing",
+      "ops": [
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/missions/armaa_CustomProductionContract",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 100000,
+          "to": 300000,
+          "count": 1,
+          "method_fp": "cbc2ad99bce1b390"
+        },
+        {
+          "op": "class_const",
+          "jar": "jars/armaa.jar",
+          "class": "data/scripts/campaign/missions/armaa_CustomProductionContract",
+          "method": "<clinit>",
+          "type": "float",
+          "from": 500000,
+          "to": 1500000,
+          "count": 1,
+          "method_fp": "cbc2ad99bce1b390"
+        }
+      ]
+    }
+  ]
+}

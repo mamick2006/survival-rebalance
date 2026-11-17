@@ -1,0 +1,25 @@
+{
+  "format": 1,
+  "mod_id": "stelnet",
+  "mod_name": "Stellar Networks",
+  "tested_versions": [
+    "3.3.0"
+  ],
+  "changes": [
+    {
+      "id": "stelnet-require-comms",
+      "title": "Remote contact calls and market boards need comms range",
+      "why": "Calling any contact from anywhere skips the trip to take a mission; comm relays are the vanilla limit on remote reach.",
+      "before": "Call contacts and read market boards from anywhere",
+      "after": "Only while inside comms range",
+      "ops": [
+        {
+          "op": "luna",
+          "key": "stelnet_General_Advanced_RequireCIR",
+          "expect_default_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+          "set": "true"
+        }
+      ]
+    }
+  ]
+}

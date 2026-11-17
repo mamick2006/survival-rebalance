@@ -1,0 +1,9 @@
+{
+  "tool_version": "1.0.0",
+  "mods": [
+    {"id": "alpha", "name": "Index Alpha", "tested_versions": ["1.2.0"], "changes": 4},
+    {"id": "beta", "tested_versions": ["1.2.0"], "changes": 2},
+    {"name": "No Id", "tested_versions": [], "changes": 1},
+    {"id": "gamma", "name": "  ", "tested_versions": ["1.0"], "changes": 1}
+  ]
+}

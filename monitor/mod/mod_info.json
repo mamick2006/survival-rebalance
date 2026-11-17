@@ -1,0 +1,13 @@
+{
+  "id": "survival_rebalance_monitor",
+  "name": "Survival Rebalance Monitor",
+  "author": "Mamick",
+  "utility": "true",
+  "version": "1.2.0",
+  "description": "Shows a message when you load a game if a mod that Survival Rebalance patches is no longer patched, for example after the mod was updated.",
+  "gameVersion": "0.98.5a-RC7",
+  "jars": [
+    "jars/SurvivalRebalanceMonitor.jar"
+  ],
+  "modPlugin": "survivalrebalance.monitor.MonitorModPlugin"
+}
