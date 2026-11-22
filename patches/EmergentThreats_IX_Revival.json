@@ -3,7 +3,8 @@
   "mod_id": "EmergentThreats_IX_Revival",
   "mod_name": "Emergent Threats: IX Revival",
   "tested_versions": [
-    "1.4.3"
+    "1.4.3",
+    "1.5.0"
   ],
   "changes": [
     {
@@ -126,7 +127,10 @@
               "cargo.addSpecial",
               "//cargo.addSpecial"
             ]
-          ]
+          ],
+          "at": {
+            "1.5.0": null
+          }
         },
         {
           "op": "line_sub",
@@ -137,7 +141,10 @@
               "cargo.addSpecial",
               "//cargo.addSpecial"
             ]
-          ]
+          ],
+          "at": {
+            "1.5.0": null
+          }
         }
       ]
     },
@@ -198,7 +205,16 @@
               "//cargo.addSpecial"
             ]
           ],
-          "count": 2
+          "count": 2,
+          "at": {
+            "1.5.0": {
+              "count": 3,
+              "which": [
+                0,
+                1
+              ]
+            }
+          }
         },
         {
           "op": "line_sub",
@@ -210,6 +226,43 @@
               "//cargo.addSpecial"
             ]
           ]
+        }
+      ]
+    },
+    {
+      "id": "mentor-help",
+      "title": "The IX operative's mentor at Bodach Freehold gives less",
+      "why": "A Survival start holds 10,000 to 15,000 credits, and this free help in the first five levels was worth four to six times that.",
+      "before": "60,000 credits or 2 Dawnstar Light CPB",
+      "after": "15,000 credits or 1 Dawnstar Light CPB",
+      "ops": [
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "c85bd4e0cf5ba35d7145d7eb8c76302b3945e6901b8fd51d7db2f763d0a30392",
+          "subs": [
+            [
+              "AddCredits 60000",
+              "AddCredits 15000"
+            ]
+          ],
+          "at": {
+            "1.4.3": null
+          }
+        },
+        {
+          "op": "line_sub",
+          "file": "data/campaign/rules.csv",
+          "line_sha256": "3a9331b5faa2b6a8104f32b07eaea3d309625debae9d6b5120d2e4036fe9cb70",
+          "subs": [
+            [
+              "dawnstar_lcpb_ix 2",
+              "dawnstar_lcpb_ix 1"
+            ]
+          ],
+          "at": {
+            "1.4.3": null
+          }
         }
       ]
     }

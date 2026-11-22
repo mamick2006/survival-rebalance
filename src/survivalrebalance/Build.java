@@ -82,59 +82,114 @@ final class Build {
         return out;
     }
 
+    /** The changes of a patch document, each a map. */
+    @SuppressWarnings("unchecked")
+    static List<Map<String, Object>> changes(Map<String, Object> doc) {
+        List<Map<String, Object>> out = new ArrayList<>();
+        Object ch = doc.get("changes");
+        if (ch instanceof List) for (Object c : (List<Object>) ch) out.add((Map<String, Object>) c);
+        return out;
+    }
+
+    @SuppressWarnings("unchecked")
+    static List<Map<String, Object>> opsOf(Map<String, Object> change) {
+        Object ops = change.get("ops");
+        return ops instanceof List ? (List<Map<String, Object>>) (List<?>) ops : List.of();
+    }
+
+    static boolean classOp(Json.Obj op) {
+        String k = op.str("op");
+        return "class_const".equals(k) || "class_string".equals(k);
+    }
+
     /**
-     * fingerprint --patches <authoring dir> --mods <dir> --out <dir>: check every op against the
-     * tested mod version (as verify does) and write each class op's method_fp.
+     * fingerprint --patches <authoring dir> --mods <dir>[;<dir>...] --out <dir>: for each tested
+     * version of each patch, find that version of the mod in the mods folders, check every op as it
+     * reads there (as verify does), and fingerprint each class op's method. The op keeps method_fp
+     * for the first tested version it exists at; a later version whose method differs gets its own
+     * in at[version].method_fp.
      */
+    @SuppressWarnings("unchecked")
     static int fingerprint(Main.Opts o, PrintStream out) throws Exception {
-        Path in = Main.path(req(o, "--patches")), mods = Main.path(req(o, "--mods")), dst = Main.path(req(o, "--out"));
+        Path in = Main.path(req(o, "--patches")), dst = Main.path(req(o, "--out"));
+        List<Path> folders = new ArrayList<>();
+        for (String d : req(o, "--mods").split(";")) if (!d.isBlank()) folders.add(Main.path(d.trim()));
         Files.createDirectories(dst);
-        List<ModInfo> all = ModInfo.scan(mods);
+        List<ModInfo> all = new ArrayList<>();
+        for (Path d : folders) all.addAll(ModInfo.scan(d));
         int bad = 0;
         for (Path f : jsonFiles(in)) {
             Patch p = Patch.load(f);
             List<ModInfo> found = ModInfo.byId(all, p.modId);
-            ModInfo m = null;
-            for (ModInfo x : found) if (p.tested.contains(x.version)) m = x;
-            if (m == null) {
-                out.println("FAIL  " + f.getFileName() + ": no installed folder of " + p.modId + " holds a tested version " + p.tested);
+            if (p.tested.isEmpty()) {
+                out.println("FAIL  " + f.getFileName() + ": no tested_versions, so no folder of " + p.modId + " can be checked");
                 bad++;
                 continue;
             }
-            Workspace ws = new Workspace(m.dir);
             boolean ok = true;
-            for (Patch.Change c : p.changes) for (Json.Obj op : c.ops) {
-                ws.owner = "\"" + c.title + "\" (" + c.id + ")";
-                try { Ops.run(op, ws, true); } catch (Failure e) { out.println("FAIL  " + f.getFileName() + " " + c.id + ": " + e.getMessage()); ok = false; }
-            }
-            try { ws.results(); } catch (Failure e) { out.println("FAIL  " + f.getFileName() + ": " + e.getMessage()); ok = false; }
-            for (Patch.Change c : p.changes) for (Json.Obj op : c.ops) {
-                if (!"line_sub".equals(op.str("op")) || !CsvWidth.isCsv(op.str("file")) || !(op.get("subs") instanceof Json.Arr)) continue;
-                for (Json.Node pair : ((Json.Arr) op.get("subs")).items) {
-                    if (!(pair instanceof Json.Arr) || ((Json.Arr) pair).items.size() < 2) continue;
-                    String find = Json.display(((Json.Arr) pair).items.get(0)), repl = Json.display(((Json.Arr) pair).items.get(1));
-                    String why = CsvWidth.unquotedRawSplit("line_sub", op.str("file"), ws.text(op.str("file")).body, op.str("line"), find, repl);
-                    if (why != null) { out.println("FAIL  " + f.getFileName() + " " + c.id + ": " + why); ok = false; }
+            // per change, per op place: the fingerprint at each tested version the op exists at, in list order
+            Map<String, Map<Integer, Map<String, String>>> fps = new LinkedHashMap<>();
+            int n = 0;
+            for (String v : p.tested) {
+                ModInfo m = null;
+                for (ModInfo x : found) if (x.version.equals(v)) m = x;
+                if (m == null) {
+                    out.println("FAIL  " + f.getFileName() + ": " + p.modId + " " + v + " is a tested version, but no folder in " + folders + " has it");
+                    ok = false;
+                    continue;
+                }
+                Patch pv = p.at(v);
+                Workspace ws = new Workspace(m.dir);
+                for (Patch.Change c : pv.changes) for (Json.Obj op : c.ops) {
+                    if (op == null) continue;
+                    ws.owner = "\"" + c.title + "\" (" + c.id + ")";
+                    try { Ops.run(op, ws, true); } catch (Failure e) { out.println("FAIL  " + f.getFileName() + " " + v + " " + c.id + ": " + e.getMessage()); ok = false; }
+                }
+                try { ws.results(); } catch (Failure e) { out.println("FAIL  " + f.getFileName() + " " + v + ": " + e.getMessage()); ok = false; }
+                for (Patch.Change c : pv.changes) for (Json.Obj op : c.ops) {
+                    if (op == null || !"line_sub".equals(op.str("op")) || !CsvWidth.isCsv(op.str("file")) || !(op.get("subs") instanceof Json.Arr)) continue;
+                    for (Json.Node pair : ((Json.Arr) op.get("subs")).items) {
+                        if (!(pair instanceof Json.Arr) || ((Json.Arr) pair).items.size() < 2) continue;
+                        String find = Json.display(((Json.Arr) pair).items.get(0)), repl = Json.display(((Json.Arr) pair).items.get(1));
+                        String why = CsvWidth.unquotedRawSplit("line_sub", op.str("file"), ws.text(op.str("file")).body, op.str("line"), find, repl);
+                        if (why != null) { out.println("FAIL  " + f.getFileName() + " " + v + " " + c.id + ": " + why); ok = false; }
+                    }
+                }
+                if (!ok) continue;
+                Workspace fresh = new Workspace(m.dir);
+                for (Patch.Change c : pv.changes) for (int i = 0; i < c.ops.size(); i++) {
+                    Json.Obj op = c.ops.get(i);
+                    if (op == null || !classOp(op)) continue;
+                    String cls = op.str("class").replace('.', '/');
+                    String fp = ClassOps.fingerprintOf(fresh.originalClass(op.str("jar"), cls), op.str("method"), op.str("desc"));
+                    String had = op.str("method_fp");
+                    if (had != null && !had.equals(fp)) { out.println("FAIL  " + f.getFileName() + ": method_fp of " + cls + "." + op.str("method") + " is " + had + " but version " + v + " gives " + fp); ok = false; }
+                    fps.computeIfAbsent(c.id, k -> new LinkedHashMap<>()).computeIfAbsent(i, k -> new LinkedHashMap<>()).put(v, fp);
+                    n++;
                 }
             }
             if (!ok) { bad++; continue; }
             Map<String, Object> doc = loadJava(f);
-            Workspace fresh = new Workspace(m.dir);
-            int n = 0;
-            for (Map<String, Object> op : ops(doc)) {
-                String k = String.valueOf(op.get("op"));
-                if (!k.equals("class_const") && !k.equals("class_string")) continue;
-                String cls = String.valueOf(op.get("class")).replace('.', '/');
-                String desc = op.get("desc") == null ? null : String.valueOf(op.get("desc"));
-                String fp = ClassOps.fingerprintOf(fresh.originalClass(String.valueOf(op.get("jar")), cls), String.valueOf(op.get("method")), desc);
-                Object had = op.get("method_fp");
-                if (had != null && !had.equals(fp)) { out.println("FAIL  " + f.getFileName() + ": method_fp of " + cls + "." + op.get("method") + " is " + had + " but the tested version gives " + fp); ok = false; }
-                op.put("method_fp", fp);
-                n++;
+            for (Map<String, Object> c : changes(doc)) {
+                Map<Integer, Map<String, String>> byOp = fps.get(String.valueOf(c.get("id")));
+                if (byOp == null) continue;
+                List<Map<String, Object>> ops = opsOf(c);
+                for (Map.Entry<Integer, Map<String, String>> e : byOp.entrySet()) {
+                    Map<String, Object> op = ops.get(e.getKey());
+                    String base = null;
+                    for (Map.Entry<String, String> vf : e.getValue().entrySet()) {
+                        if (base == null) { base = vf.getValue(); op.put("method_fp", base); continue; }
+                        if (vf.getValue().equals(base)) continue;
+                        Object at = op.get("at");
+                        if (!(at instanceof Map)) { at = new LinkedHashMap<String, Object>(); op.put("at", at); }
+                        Object atv = ((Map<String, Object>) at).get(vf.getKey());
+                        if (!(atv instanceof Map)) { atv = new LinkedHashMap<String, Object>(); ((Map<String, Object>) at).put(vf.getKey(), atv); }
+                        ((Map<String, Object>) atv).put("method_fp", vf.getValue());
+                    }
+                }
             }
-            if (!ok) { bad++; continue; }
             Files2.atomicWrite(dst.resolve(f.getFileName()), Json.write(doc).getBytes(StandardCharsets.UTF_8));
-            out.println("ok    " + f.getFileName() + " (" + p.modId + " " + m.version + ", " + n + " class ops fingerprinted)");
+            out.println("ok    " + f.getFileName() + " (" + p.modId + " " + String.join(", ", p.tested) + ", " + n + " class ops fingerprinted)");
         }
         return bad == 0 ? 0 : 1;
     }
@@ -189,32 +244,30 @@ final class Build {
                     if (why != null) errs.add("change " + c.get("id") + ": " + why);
                 }
             }
-            for (Map<String, Object> op : ops(doc)) {
+            for (Map<String, Object> c : changes(doc)) {
+              List<Map<String, Object>> cops = opsOf(c);
+              for (int n = 0; n < cops.size(); n++) {
+                Map<String, Object> op = cops.get(n);
                 String k = String.valueOf(op.get("op"));
-                switch (k) {
-                    case "csv_cell": hashField(op, "expect", true, false); break;
-                    case "json_value": hashField(op, "expect", false, false); break;
-                    case "luna": hashField(op, "expect_default", true, false); break;
-                    case "csv_cell_sub": case "class_string": case "csv_row_off": hashField(op, "expect", false, false); break;
-                    case "line_sub": hashField(op, "line", false, true); break;
-                    case "class_const": break;
-                    default: errs.add("unknown op " + k);
+                sealOne(op, k, errs);
+                boolean cls = k.equals("class_const") || k.equals("class_string");
+                // at[version]: its anchors are hashed and its tokens checked as the op's own, by the kind the op has there
+                if (op.get("at") instanceof Map) for (Map.Entry<String, Object> ae : ((Map<String, Object>) op.get("at")).entrySet()) {
+                    if (!(ae.getValue() instanceof Map)) continue;
+                    Map<String, Object> ov = (Map<String, Object>) ae.getValue();
+                    String kv = ov.get("op") == null ? k : String.valueOf(ov.get("op"));
+                    sealOne(ov, kv, errs);
+                    cls |= kv.equals("class_const") || kv.equals("class_string");
+                    // what the kind there does not hash would ship as another mod's text
+                    String where = "change " + c.get("id") + " op #" + n + " (" + k + "), at " + ae.getKey() + ": ";
+                    if (ov.get("line") instanceof String) errs.add(where + "a literal line is left (an anchor must be hashed)");
+                    for (String f2 : new String[]{"expect", "expect_default"})
+                        if (ov.get(f2) instanceof String && !numeric(ov.get(f2))) errs.add(where + "a literal " + f2 + " is left (an anchor must be hashed)");
+                    if (ov.containsKey("at")) errs.add(where + "has an at inside an at entry");
                 }
-                if ((k.equals("class_const") || k.equals("class_string")) && op.get("method_fp") == null)
+                if (cls && op.get("method_fp") == null)
                     errs.add(k + " " + op.get("class") + "." + op.get("method") + " has no method_fp (run fingerprint first)");
-                Object subs = op.get("subs");
-                if (subs instanceof List) for (Object pair : (List<Object>) subs) {
-                    if (!(pair instanceof List)) continue;
-                    List<Object> pl = (List<Object>) pair;
-                    for (int i = 0; i < Math.min(2, pl.size()); i++) {
-                        String t = String.valueOf(pl.get(i));
-                        if (t.length() > MAX_TOKEN) errs.add("sub token over " + MAX_TOKEN + " characters: " + Text.clip(t));
-                        if (isProse(t)) errs.add("sub token reads as prose (" + PROSE_RULE + "): " + Text.clip(t));
-                    }
-
-                }
-                Object set = op.get("set");
-                if (set instanceof String && ((String) set).length() > MAX_TOKEN) errs.add("set token over " + MAX_TOKEN + " characters: " + Text.clip((String) set));
+              }
             }
             if (!errs.isEmpty()) {
                 for (String e : errs) out.println("FAIL  " + f.getFileName() + ": " + e);
@@ -228,6 +281,32 @@ final class Build {
         }
         if (o.get("--lint") != null) Files2.atomicWrite(Main.path(o.get("--lint")), lint.toString().getBytes(StandardCharsets.UTF_8));
         return bad == 0 ? 0 : 1;
+    }
+
+    /** Hash the string anchors of an op (or of one at[version] entry, read as kind k) and check its tokens. */
+    @SuppressWarnings("unchecked")
+    static void sealOne(Map<String, Object> op, String k, List<String> errs) {
+        switch (k) {
+            case "csv_cell": hashField(op, "expect", true, false); break;
+            case "json_value": hashField(op, "expect", false, false); break;
+            case "luna": hashField(op, "expect_default", true, false); break;
+            case "csv_cell_sub": case "class_string": case "csv_row_off": hashField(op, "expect", false, false); break;
+            case "line_sub": hashField(op, "line", false, true); break;
+            case "class_const": break;
+            default: errs.add("unknown op " + k);
+        }
+        Object subs = op.get("subs");
+        if (subs instanceof List) for (Object pair : (List<Object>) subs) {
+            if (!(pair instanceof List)) continue;
+            List<Object> pl = (List<Object>) pair;
+            for (int i = 0; i < Math.min(2, pl.size()); i++) {
+                String t = String.valueOf(pl.get(i));
+                if (t.length() > MAX_TOKEN) errs.add("sub token over " + MAX_TOKEN + " characters: " + Text.clip(t));
+                if (isProse(t)) errs.add("sub token reads as prose (" + PROSE_RULE + "): " + Text.clip(t));
+            }
+        }
+        Object set = op.get("set");
+        if (set instanceof String && ((String) set).length() > MAX_TOKEN) errs.add("set token over " + MAX_TOKEN + " characters: " + Text.clip((String) set));
     }
 
     @SuppressWarnings("unchecked")
@@ -260,10 +339,12 @@ final class Build {
         Files.createDirectories(saves.resolve("LunaSettings"));
         List<ModInfo> all = ModInfo.scan(src);
         List<String> ids = new ArrayList<>();
+        int copied = 0;
         for (Path f : jsonFiles(pdir)) {
             Patch p = Patch.load(f);
             ids.add(p.modId);
-            for (ModInfo m : ModInfo.byId(all, p.modId)) copyTree(m.dir, mods.resolve(m.dir.getFileName().toString()));
+            // only a folder at a tested version: a folder of other versions holds just some of the mods
+            for (ModInfo m : ModInfo.byId(all, p.modId)) if (p.tested.contains(m.version)) { copyTree(m.dir, mods.resolve(m.dir.getFileName().toString())); copied++; }
             if (srcSaves != null) {
                 Path lf = Saves.lunaFile(srcSaves, p.modId);
                 if (Files.isRegularFile(lf)) Files.copy(lf, saves.resolve("LunaSettings").resolve(lf.getFileName().toString()));
@@ -274,6 +355,7 @@ final class Build {
             Files.copy(Main.path(o.get("--customize")), work.resolve("tool").resolve(Customize.FILE));
             out.println("round trip with customize.txt from " + Main.path(o.get("--customize")));
         }
+        if (copied == 0) { out.println("round trip: no mod in " + src + " is at a version its patch was tested with, so there is nothing to apply"); return 0; }
         Map<String, String> before = treeHashes(work);
         out.println("round trip: " + ids.size() + " patch files, " + before.size() + " files copied into " + work);
         List<String> a = new ArrayList<>(List.of("apply", "--mods", mods.toString(), "--saves", saves.toString(), "--patches", pdir.toString(), "--tool-dir", work.resolve("tool").toString()));

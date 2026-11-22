@@ -31,7 +31,17 @@ public final class Tests {
     static Path tmp;
     static byte[] fixtureJar;
 
+    /** Set when the summary is printed; a JVM that ends before it (a stray System.exit) exits 2, never 0. */
+    static volatile boolean summed;
+
+    static void guardExit(String suite) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (!summed) { System.out.println(suite + " FAILED: the JVM ended before the summary"); System.out.flush(); Runtime.getRuntime().halt(2); }
+        }));
+    }
+
     public static void main(String[] args) throws Exception {
+        guardExit("tests");
         tmp = Files.createTempDirectory("srtests");
         fixtureJar = buildJar();
         Map<String, T> tests = new LinkedHashMap<>();
@@ -80,6 +90,7 @@ public final class Tests {
         GuiTests.register(tests);
         SwitchTests.register(tests);
         FolderTests.register(tests);
+        VersionsTests.register(tests);
         for (Map.Entry<String, T> e : tests.entrySet()) {
             if (args.length > 0 && !e.getKey().contains(args[0])) continue; // a name part runs only those tests
             try {
@@ -92,6 +103,7 @@ public final class Tests {
         }
         for (String f : failures) System.out.println("FAIL  " + f);
         System.out.println((fail == 0 ? "tests OK: " : "tests FAILED: ") + pass + " passed, " + fail + " failed");
+        summed = true;
         try { Files2.deleteTree(tmp); } catch (Failure ignored) {}
         System.exit(fail == 0 ? 0 : 1);
     }

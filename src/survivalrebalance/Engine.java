@@ -274,6 +274,8 @@ final class Engine {
     static final class Planned {
         Workspace ws;
         Map<String, byte[]> results;
+        /** The patch as read at the mod's version (for an untested version: the tested version whose ops matched). */
+        Patch patch;
         List<Patch.Change> applied = new ArrayList<>();
         int anchors;
         /** Per applied change: the lines status prints (strength, then what each op writes). */
@@ -284,8 +286,25 @@ final class Engine {
 
     Planned compute(Patch p, ModInfo m, Set<String> off) throws Failure { return compute(p, m, off, Map.of()); }
 
+    /**
+     * The plan for mod m: the patch read at m's version. For a version not on the list (when the
+     * policy patches one), the ops as read at each tested version, the last listed first; the first
+     * whose every anchor matches is used, and the first one's failure is the one reported.
+     */
     Planned compute(Patch p, ModInfo m, Set<String> off, Map<String, byte[]> preload) throws Failure {
+        Failure first = null;
+        for (Patch r : p.readings(m.version)) {
+            try { return computeAt(r, m, off, preload); } catch (Failure f) { if (first == null) first = f; }
+        }
+        throw first;
+    }
+
+    /** A tested mod's patch as it reads at the installed version; the patch itself for any other version. */
+    static Patch atInstalled(Patch p, ModInfo m) { return p.version == null && p.tested.contains(m.version) ? p.at(m.version) : p; }
+
+    private Planned computeAt(Patch p, ModInfo m, Set<String> off, Map<String, byte[]> preload) throws Failure {
         Planned pl = new Planned();
+        pl.patch = p;
         pl.ws = new Workspace(m.dir);
         pl.ws.original.putAll(preload);
         for (Patch.Change c : p.changes) {
@@ -298,6 +317,7 @@ final class Engine {
             boolean anyDirect = false;
             for (int i = 0; i < c.ops.size(); i++) {
                 Json.Obj op = c.ops.get(i);
+                if (op == null) continue; // not at this version
                 Customize.Eff e = Customize.effective(op, st, ds, i, lunaDecimal(pl.ws, op));
                 anyDirect |= e.direct;
                 try {
@@ -575,6 +595,7 @@ final class Engine {
     }
 
     void applyOne(Patch p, ModInfo m) throws Failure {
+        p = atInstalled(p, m);
         out.println();
         out.println("== " + p.modName + " " + m.version + "  (" + m.dir.getFileName() + ")");
         boolean other = otherVersion(p, m);
@@ -640,6 +661,7 @@ final class Engine {
             failAfterChecks(p, m, s, needRestore, f.getMessage());
             return;
         }
+        p = pl.patch;
         if (!p.tested.contains(m.version)) {
             out.println("  Untested version " + m.version + ": all " + pl.anchors + " anchors matched.");
             warn.warn(p.modName + " " + m.version, "this version is not one the patch was tested with (" + String.join(", ", p.tested) + "), but every anchor still matches, so it is patched.",
@@ -1163,17 +1185,18 @@ final class Engine {
         List<String> unpatched = new ArrayList<>();
         for (Loaded l : ps) {
             if (l.patch == null) { out.println(); out.println("== " + l.file.getFileName()); out.println("  The patch file cannot be read: " + l.error); anyBad = true; warn.warn(String.valueOf(l.file.getFileName()), "the patch file cannot be read: " + l.error, "Get a fresh copy of the tool."); continue; }
-            Patch p = l.patch;
-            withPatch.add(p.modId);
-            List<ModInfo> found = ModInfo.byId(all, p.modId);
-            if (cust.modOff(p.modId)) {
-                add("Switched off", p.modName);
+            Patch base = l.patch;
+            withPatch.add(base.modId);
+            List<ModInfo> found = ModInfo.byId(all, base.modId);
+            if (cust.modOff(base.modId)) {
+                add("Switched off", base.modName);
                 for (ModInfo m : found) if (Files.isRegularFile(stateDir(m.dir).resolve(SENTINEL)))
-                    warn.warn(p.modName, "switched off in customize.txt, but still patched.", "Run apply to put it back.");
+                    warn.warn(base.modName, "switched off in customize.txt, but still patched.", "Run apply to put it back.");
                 continue;
             }
-            if (found.isEmpty()) { add("Not installed", p.modName); continue; }
+            if (found.isEmpty()) { add("Not installed", base.modName); continue; }
             for (ModInfo m : found) {
+                Patch p = atInstalled(base, m);
                 out.println();
                 boolean other = otherVersion(p, m);
                 out.println("== " + p.modName + " " + m.version + "  (" + m.dir.getFileName() + ")" + (p.tested.contains(m.version) ? "" : other ? "  another version" : "  untested version"));
@@ -1207,6 +1230,7 @@ final class Engine {
                 String planFail = null;
                 try {
                     pl = compute(p, m, off, s != null ? backups(m.dir, s) : Map.of());
+                    p = pl.patch;
                 } catch (Failure f) { planFail = f.getMessage(); }
                 if (s != null) {
                     out.println("  Patched " + str(s, "time") + " by tool " + str(s, "tool_version") + ", status " + str(s, "status") + ".");

@@ -24,16 +24,18 @@ final class Verify {
     static int run(Main.Opts o, PrintStream out) throws Exception {
         String pf = o.get("--patch");
         if (pf == null) throw new Failure("verify needs --patch <file>");
-        Patch p = Patch.load(Main.path(pf));
+        Patch file = Patch.load(Main.path(pf));
         Path mods = modsDir(o);
         Path saves = savesDir(o);
-        List<ModInfo> found = ModInfo.byId(ModInfo.scan(mods), p.modId);
+        List<ModInfo> found = ModInfo.byId(ModInfo.scan(mods), file.modId);
         if (found.isEmpty()) {
-            out.println("FAIL  mod " + p.modId + " is not installed in " + mods);
+            out.println("FAIL  mod " + file.modId + " is not installed in " + mods);
             return 1;
         }
         int fails = 0, passes = 0;
         for (ModInfo m : found) {
+            // the ops as they read at this version; at a version not on the list, as at the last tested one
+            Patch p = file.readings(m.version).get(0);
             boolean tested = p.tested.contains(m.version);
             out.println("mod " + m.id + " version " + m.version + (tested ? " (tested)" : " (NOT in tested_versions " + p.tested + ")") + "  folder " + m.dir.getFileName());
             Workspace ws = new Workspace(m.dir);
@@ -41,6 +43,7 @@ final class Verify {
                 ws.owner = "\"" + c.title + "\" (" + c.id + ")";
                 for (int i = 0; i < c.ops.size(); i++) {
                     Json.Obj op = c.ops.get(i);
+                    if (op == null) continue; // not at this version
                     String label = c.id + "#" + i + "  " + Ops.describe(op);
                     try {
                         Ops.run(op, ws, true);

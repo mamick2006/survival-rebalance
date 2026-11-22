@@ -31,6 +31,13 @@ final class GuiTests {
         t.put("one-job bats run from app", GuiTests::batsLayout);
         t.put("window warnings: window words, not supported marked, strength texts one line per mod", GuiTests::windowWarnings);
         t.put("not patched yet counts installed mods that are not enabled", GuiTests::notEnabledCounts);
+        t.put("window: every cell of the mod list fits at the default size", GuiTests::cellsFit);
+    }
+
+    static void cellsFit() throws Exception {
+        if (java.awt.GraphicsEnvironment.isHeadless()) { System.out.println("  (window test skipped: no display)"); return; }
+        String cut = survivalrebalance.gui.WindowCheck.cellsFit(Files.createTempDirectory(Tests.tmp, "fit"));
+        check(cut == null, "cut cells: " + cut);
     }
 
     @SuppressWarnings("unchecked")

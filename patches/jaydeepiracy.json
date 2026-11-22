@@ -3,7 +3,8 @@
   "mod_id": "jaydeepiracy",
   "mod_name": "JaydeePiracy",
   "tested_versions": [
-    "6.0.3"
+    "6.0.3",
+    "6.1.0"
   ],
   "changes": [
     {

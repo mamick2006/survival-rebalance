@@ -3,7 +3,8 @@
   "mod_id": "exiledSector",
   "mod_name": "Exiled Sector",
   "tested_versions": [
-    "0.12.7"
+    "0.12.7",
+    "0.13.0"
   ],
   "changes": [
     {
@@ -31,6 +32,12 @@
           "which": [
             0
           ],
+          "at": {
+            "0.13.0": {
+              "count": 4,
+              "method_fp": "1ab9d7d9d26c398c"
+            }
+          },
           "method_fp": "e732bf3321a8bb66"
         },
         {
@@ -71,7 +78,12 @@
           "which": [
             1
           ],
-          "method_fp": "e732bf3321a8bb66"
+          "method_fp": "e732bf3321a8bb66",
+          "at": {
+            "0.13.0": {
+              "method_fp": "1ab9d7d9d26c398c"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -132,7 +144,12 @@
           "from": 5,
           "to": 10,
           "count": 2,
-          "method_fp": "e732bf3321a8bb66"
+          "method_fp": "e732bf3321a8bb66",
+          "at": {
+            "0.13.0": {
+              "method_fp": "1ab9d7d9d26c398c"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -143,7 +160,12 @@
           "from": 3,
           "to": 6,
           "count": 1,
-          "method_fp": "e732bf3321a8bb66"
+          "method_fp": "e732bf3321a8bb66",
+          "at": {
+            "0.13.0": {
+              "method_fp": "1ab9d7d9d26c398c"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -154,7 +176,12 @@
           "from": 2,
           "to": 4,
           "count": 1,
-          "method_fp": "e732bf3321a8bb66"
+          "method_fp": "e732bf3321a8bb66",
+          "at": {
+            "0.13.0": {
+              "method_fp": "1ab9d7d9d26c398c"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -168,6 +195,14 @@
           "which": [
             3
           ],
+          "at": {
+            "0.13.0": {
+              "which": [
+                4
+              ],
+              "method_fp": "1ab9d7d9d26c398c"
+            }
+          },
           "method_fp": "e732bf3321a8bb66"
         },
         {
@@ -242,7 +277,12 @@
           "from": 30,
           "to": 100,
           "count": 1,
-          "method_fp": "3c3bd1978a10f870"
+          "method_fp": "3c3bd1978a10f870",
+          "at": {
+            "0.13.0": {
+              "method_fp": "e86062f4d0de256e"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -284,6 +324,11 @@
           "from": 2,
           "to": 1,
           "count": 1,
+          "at": {
+            "0.13.0": {
+              "class": "exiledsector/items/schematic/LogisticsSchematicItemPlugin"
+            }
+          },
           "method_fp": "c21933aee57f8425"
         }
       ]
@@ -566,7 +611,10 @@
           "op": "luna",
           "key": "exiledSector_battleItemDropPercent",
           "csv": false,
-          "set": "25"
+          "set": "25",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "class_const",
@@ -577,6 +625,9 @@
           "from": 100,
           "to": 25,
           "count": 1,
+          "at": {
+            "0.13.0": null
+          },
           "method_fp": "1526f146d506c1e9"
         },
         {
@@ -588,7 +639,88 @@
           "from": 100,
           "to": 25,
           "count": 1,
+          "at": {
+            "0.13.0": null
+          },
           "method_fp": "cbe3bcb6a837318e"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "hull_item"
+          },
+          "column": "per_100_dp",
+          "expect": "0.192",
+          "set": "0.048",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "refit_schematic"
+          },
+          "column": "per_100_dp",
+          "expect": "0.2133",
+          "set": "0.0533",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "logistics_schematic"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0213",
+          "set": "0.0053",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "deintegration_schematic"
+          },
+          "column": "per_100_dp",
+          "expect": "0.0252",
+          "set": "0.0063",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "master_schematic"
+          },
+          "column": "per_100_dp",
+          "expect": "0.1333",
+          "set": "0.0333",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "prototype"
+          },
+          "column": "per_100_dp",
+          "expect": "0.12",
+          "set": "0.03",
+          "at": {
+            "0.12.7": null
+          }
         }
       ]
     },
@@ -603,7 +735,10 @@
           "op": "luna",
           "key": "exiledSector_socketPartsPer100DeploymentPoints",
           "csv": false,
-          "set": "2"
+          "set": "2",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "class_const",
@@ -614,6 +749,9 @@
           "from": 5,
           "to": 2,
           "count": 1,
+          "at": {
+            "0.13.0": null
+          },
           "method_fp": "3c9ac86b27a3e2a3"
         },
         {
@@ -625,7 +763,23 @@
           "from": 5,
           "to": 2,
           "count": 1,
+          "at": {
+            "0.13.0": null
+          },
           "method_fp": "32b673a713d94c87"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "feedstock"
+          },
+          "column": "per_100_dp",
+          "expect": "5",
+          "set": "2",
+          "at": {
+            "0.12.7": null
+          }
         }
       ]
     },
@@ -633,8 +787,8 @@
       "id": "battle-nanoswarms",
       "title": "Nanoswarms drop a quarter as often from battles",
       "why": "Crafting drops roll outside Survival's drop cuts; this matches the 0.25 hullmod rate.",
-      "before": "for example 1.2 Augmentation Nanoswarms per 100 DP",
-      "after": "for example 0.3 per 100 DP",
+      "before": "for example a little over 1 per 100 DP",
+      "after": "for example about 0.3 per 100 DP",
       "ops": [
         {
           "op": "csv_cell",
@@ -644,7 +798,10 @@
           },
           "column": "per_100_dp",
           "expect": "1.2",
-          "set": "0.3"
+          "set": "0.3",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -654,7 +811,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.8",
-          "set": "0.2"
+          "set": "0.2",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -664,7 +824,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.4",
-          "set": "0.1"
+          "set": "0.1",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -674,7 +837,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.12",
-          "set": "0.03"
+          "set": "0.03",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -684,7 +850,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.0332",
-          "set": "0.0083"
+          "set": "0.0083",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -694,7 +863,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.0252",
-          "set": "0.0063"
+          "set": "0.0063",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -704,7 +876,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.0252",
-          "set": "0.0063"
+          "set": "0.0063",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -714,7 +889,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.0168",
-          "set": "0.0042"
+          "set": "0.0042",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -724,7 +902,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.0028",
-          "set": "0.0007"
+          "set": "0.0007",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -734,7 +915,10 @@
           },
           "column": "per_100_dp",
           "expect": "0.04",
-          "set": "0.01"
+          "set": "0.01",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -744,7 +928,23 @@
           },
           "column": "per_100_dp",
           "expect": "0.04",
-          "set": "0.01"
+          "set": "0.01",
+          "at": {
+            "0.13.0": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/battle_loot.csv",
+          "key": {
+            "drop": "crafting_item"
+          },
+          "column": "per_100_dp",
+          "expect": "1.132",
+          "set": "0.283",
+          "at": {
+            "0.12.7": null
+          }
         }
       ]
     },
@@ -863,7 +1063,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.19",
-          "set": "0.095"
+          "set": "0.095",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -903,7 +1108,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.19",
-          "set": "0.095"
+          "set": "0.095",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -943,7 +1153,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.344",
-          "set": "0.172"
+          "set": "0.172",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -983,7 +1198,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.344",
-          "set": "0.172"
+          "set": "0.172",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -1083,7 +1303,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.2",
-          "set": "0.1"
+          "set": "0.1",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -1123,7 +1348,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.02",
-          "set": "0.01"
+          "set": "0.01",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -1543,7 +1773,10 @@
           },
           "column": "chances",
           "expect_sha256": "e7363d6347a4b998eaef69c16d5128b0d98b33a30e63d8ae5735a0b9b1e0553b",
-          "set": "0.5;0.4;0.25;0.125;0.05"
+          "set": "0.5;0.4;0.25;0.125;0.05",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1553,7 +1786,10 @@
           },
           "column": "uniqueChance",
           "expect": "0.25",
-          "set": "0.125"
+          "set": "0.125",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1563,7 +1799,10 @@
           },
           "column": "chances",
           "expect_sha256": "c9161524961c3ae627bf7a87b2cb844874da742f57e0f081427de4c33adeee34",
-          "set": "0.5;0.3;0.15;0.075"
+          "set": "0.5;0.3;0.15;0.075",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1573,7 +1812,10 @@
           },
           "column": "uniqueChance",
           "expect": "0.1",
-          "set": "0.05"
+          "set": "0.05",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1583,7 +1825,10 @@
           },
           "column": "feedstockMin",
           "expect": "20",
-          "set": "6"
+          "set": "6",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1593,7 +1838,10 @@
           },
           "column": "feedstockMax",
           "expect": "30",
-          "set": "9"
+          "set": "9",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1613,7 +1861,10 @@
           },
           "column": "chances",
           "expect_sha256": "738bd33f536088f7dd1194c2d6767e5e4ded598322740d6b4bbac304c2e87064",
-          "set": "0.5;0.25;0.1"
+          "set": "0.5;0.25;0.1",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1623,7 +1874,10 @@
           },
           "column": "uniqueChance",
           "expect": "0.02",
-          "set": "0.01"
+          "set": "0.01",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1633,7 +1887,10 @@
           },
           "column": "feedstockMin",
           "expect": "15",
-          "set": "4"
+          "set": "4",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1643,7 +1900,10 @@
           },
           "column": "feedstockMax",
           "expect": "22",
-          "set": "7"
+          "set": "7",
+          "at": {
+            "0.13.0": null
+          }
         },
         {
           "op": "csv_cell",
@@ -1663,7 +1923,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.02",
-          "set": "0.01"
+          "set": "0.01",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -1703,7 +1968,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.02",
-          "set": "0.01"
+          "set": "0.01",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -1743,7 +2013,12 @@
           },
           "column": "uniqueChance",
           "expect": "0.25",
-          "set": "0.125"
+          "set": "0.125",
+          "at": {
+            "0.13.0": {
+              "column": "hullItemUniqueChance"
+            }
+          }
         },
         {
           "op": "csv_cell",
@@ -1764,6 +2039,162 @@
           "column": "feedstockMax",
           "expect": "35",
           "set": "10"
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0038",
+          "set": "0.0019",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_research_remnant"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0038",
+          "set": "0.0019",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0069",
+          "set": "0.00345",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "station_mining_remnant"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0069",
+          "set": "0.00345",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_first_find"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.004",
+          "set": "0.002",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "techmining_monthly"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0004",
+          "set": "0.0002",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_listening_post"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0004",
+          "set": "0.0002",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_pre_collapse_facility"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.0004",
+          "set": "0.0002",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "exiledSector_chart_abyssal_shipyard"
+          },
+          "column": "subroutineUniqueChance",
+          "expect": "0.005",
+          "set": "0.0025",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "debris_field_shared"
+          },
+          "column": "chances",
+          "expect": "0.1",
+          "set": "0.05",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "debris_field_shared"
+          },
+          "column": "feedstockMin",
+          "expect": "5",
+          "set": "2",
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "csv_cell",
+          "file": "data/config/exiledSector/item_salvage.csv",
+          "key": {
+            "site": "debris_field_shared"
+          },
+          "column": "feedstockMax",
+          "expect": "6",
+          "set": "2",
+          "at": {
+            "0.12.7": null
+          }
         }
       ]
     },
@@ -2010,7 +2441,12 @@
           "which": [
             4
           ],
-          "method_fp": "3c3bd1978a10f870"
+          "method_fp": "3c3bd1978a10f870",
+          "at": {
+            "0.13.0": {
+              "method_fp": "e86062f4d0de256e"
+            }
+          }
         }
       ]
     },
@@ -2039,7 +2475,12 @@
           "which": [
             0
           ],
-          "method_fp": "3c3bd1978a10f870"
+          "method_fp": "3c3bd1978a10f870",
+          "at": {
+            "0.13.0": {
+              "method_fp": "e86062f4d0de256e"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -2067,7 +2508,12 @@
           "from": 60,
           "to": 30,
           "count": 1,
-          "method_fp": "3c3bd1978a10f870"
+          "method_fp": "3c3bd1978a10f870",
+          "at": {
+            "0.13.0": {
+              "method_fp": "e86062f4d0de256e"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -2095,7 +2541,12 @@
           "from": 15,
           "to": 5,
           "count": 1,
-          "method_fp": "3c3bd1978a10f870"
+          "method_fp": "3c3bd1978a10f870",
+          "at": {
+            "0.13.0": {
+              "method_fp": "e86062f4d0de256e"
+            }
+          }
         },
         {
           "op": "class_const",
@@ -2997,6 +3448,38 @@
           ],
           "expect": 4,
           "set": 3
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            29,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 2,
+          "set": 1.5,
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            270,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 5,
+          "set": 4,
+          "at": {
+            "0.12.7": null
+          }
         }
       ]
     },
@@ -3387,6 +3870,12 @@
           "from": 4,
           "to": 3,
           "count": 1,
+          "at": {
+            "0.13.0": {
+              "class": "exiledsector/items/schematic/RefitSchematic",
+              "method_fp": "4c3ae577dd47aca8"
+            }
+          },
           "method_fp": "0f4f2ad28eb066fe"
         },
         {
@@ -3398,6 +3887,12 @@
           "from": 5,
           "to": 3,
           "count": 1,
+          "at": {
+            "0.13.0": {
+              "class": "exiledsector/items/schematic/RefitSchematic",
+              "method_fp": "4c3ae577dd47aca8"
+            }
+          },
           "method_fp": "0f4f2ad28eb066fe"
         },
         {
@@ -3409,6 +3904,12 @@
           "from": 5,
           "to": 3,
           "count": 1,
+          "at": {
+            "0.13.0": {
+              "class": "exiledsector/items/hull/HullUpgradePoints",
+              "method_fp": "ebcb5bedc3f10016"
+            }
+          },
           "method_fp": "1c1ff2db9d9f1877"
         },
         {
@@ -3420,6 +3921,12 @@
           "from": 5,
           "to": 3,
           "count": 1,
+          "at": {
+            "0.13.0": {
+              "class": "exiledsector/items/hull/HullUpgradeRules",
+              "method_fp": "b19c27bebe6b648a"
+            }
+          },
           "method_fp": "4266ce82fde0dc37"
         },
         {
@@ -3431,7 +3938,12 @@
           "from": 5,
           "to": 3,
           "count": 1,
-          "method_fp": "8db90a15ba516308"
+          "method_fp": "8db90a15ba516308",
+          "at": {
+            "0.13.0": {
+              "method_fp": "cffac9014f56d98e"
+            }
+          }
         },
         {
           "op": "line_sub",
@@ -3443,6 +3955,48 @@
               "up to 3."
             ]
           ]
+        }
+      ]
+    },
+    {
+      "id": "feed-the-forges-supplies",
+      "title": "Feed the Forges salvages fewer supplies after a battle",
+      "why": "Survival leaves 0.4 of the cargo after a battle. This node adds supplies outside that cut, once for every ship that takes it.",
+      "before": "supplies equal to 10% of defeated enemy DP per ship, 15% built in",
+      "after": "4% per ship, 6% built in",
+      "ops": [
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            278,
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 10,
+          "set": 4,
+          "at": {
+            "0.12.7": null
+          }
+        },
+        {
+          "op": "json_value",
+          "file": "data/skilltrees/skill_types.json",
+          "path": [
+            "skillTypes",
+            278,
+            "integrated",
+            "effects",
+            0,
+            "magnitude"
+          ],
+          "expect": 15,
+          "set": 6,
+          "at": {
+            "0.12.7": null
+          }
         }
       ]
     }

@@ -11,6 +11,7 @@ import java.util.List;
 final class Patch {
     static final class Change {
         String id, title, why, before, after;
+        /** In file order. In a patch read at one version (at()), an op that does not exist there is null, so #N stays its place in the file. */
         final List<Json.Obj> ops = new ArrayList<>();
         final List<String> requires = new ArrayList<>();
     }
@@ -21,6 +22,8 @@ final class Patch {
     String modId, modName;
     final List<String> tested = new ArrayList<>();
     final List<Change> changes = new ArrayList<>();
+    /** The version this patch was read at by at(), or null for the file as written. */
+    String version;
 
     static Patch load(Path f) throws Failure {
         byte[] raw;
@@ -66,11 +69,85 @@ final class Patch {
             if (ops == null || ops.items.isEmpty()) throw new Failure(f.getFileName() + ": change " + c.id + " has no ops");
             for (Json.Node on : ops.items) {
                 if (!(on instanceof Json.Obj)) throw new Failure(f.getFileName() + ": change " + c.id + ": each op must be an object");
-                c.ops.add((Json.Obj) on);
+                Json.Obj op = (Json.Obj) on;
+                Json.Node at = op.get("at");
+                if (at != null) {
+                    if (!(at instanceof Json.Obj)) throw new Failure(f.getFileName() + ": change " + c.id + ": \"at\" must be an object");
+                    Json.Obj ao = (Json.Obj) at;
+                    for (int i = 0; i < ao.keys.size(); i++) {
+                        String v = ao.keys.get(i);
+                        if (!p.tested.contains(v)) throw new Failure(f.getFileName() + ": change " + c.id + ": \"at\" names " + v + ", which is not in tested_versions " + p.tested);
+                        Json.Node x = ao.values.get(i);
+                        if (!(x instanceof Json.Obj) && !(x instanceof Json.Null)) throw new Failure(f.getFileName() + ": change " + c.id + ": \"at\" " + v + " must be an object or null");
+                    }
+                }
+                c.ops.add(op);
             }
             p.changes.add(c);
         }
         return p;
+    }
+
+    /**
+     * The patch as it reads at version v: each op with the fields of its at[v] laid over its own,
+     * null where at[v] is null, and without its "at". A change with no op at v is left out.
+     */
+    Patch at(String v) {
+        Patch r = new Patch();
+        r.file = file; r.raw = raw; r.root = root; r.modId = modId; r.modName = modName; r.version = v;
+        r.tested.addAll(tested);
+        for (Change c : changes) {
+            Change rc = new Change();
+            rc.id = c.id; rc.title = c.title; rc.why = c.why; rc.before = c.before; rc.after = c.after;
+            rc.requires.addAll(c.requires);
+            boolean any = false;
+            for (Json.Obj op : c.ops) {
+                Json.Obj o = overlay(op, v);
+                rc.ops.add(o);
+                any |= o != null;
+            }
+            if (any) r.changes.add(rc);
+        }
+        return r;
+    }
+
+    /**
+     * The ways to read this patch for a mod at version v, to try in order: at v when it is tested;
+     * else at each tested version, the last listed first. A patch already read at a version is itself.
+     */
+    List<Patch> readings(String v) {
+        if (version != null) return List.of(this);
+        if (tested.contains(v) || tested.isEmpty()) return List.of(at(v));
+        List<Patch> out = new ArrayList<>();
+        for (int i = tested.size() - 1; i >= 0; i--) out.add(at(tested.get(i)));
+        return out;
+    }
+
+    /**
+     * One op at version v. A field given in at[v] replaces the op's own; a sealed field replaces its
+     * literal form too and the other way round (expect_sha256 and expect are one anchor).
+     */
+    static Json.Obj overlay(Json.Obj op, String v) {
+        Json.Obj at = op.obj("at");
+        if (at == null && op.get("at") == null) return op;
+        Json.Node over = at == null ? null : at.get(v);
+        if (over instanceof Json.Null) return null;
+        Json.Obj ov = over instanceof Json.Obj ? (Json.Obj) over : new Json.Obj();
+        java.util.Set<String> drop = new java.util.HashSet<>(List.of("at"));
+        for (String k : ov.keys) {
+            drop.add(k);
+            drop.add(k.endsWith("_sha256") ? k.substring(0, k.length() - "_sha256".length()) : k + "_sha256");
+        }
+        Json.Obj r = new Json.Obj();
+        r.start = op.start; r.end = op.end;
+        for (int i = 0; i < op.keys.size(); i++) {
+            if (drop.contains(op.keys.get(i))) continue;
+            r.keys.add(op.keys.get(i));
+            r.values.add(op.values.get(i));
+        }
+        r.keys.addAll(ov.keys);
+        r.values.addAll(ov.values);
+        return r;
     }
 
     static String hashOf(byte[] raw, List<String> disabled) {

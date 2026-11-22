@@ -14,11 +14,11 @@ This tool gets much lighter testing than my own mods and is offered on a best-ef
 
 ## Covered mods
 
-The list below is written from the patch set when the repository is published. A mod that is not listed is not changed. A mod the tool changes is supported at the version in the table, and the tool skips any other version of it. A mod that needs no change is supported at any version.
+The list below is written from the patch set when the repository is published. A mod that is not listed is not changed. A mod the tool changes is supported at each version in the table, and the tool skips any other version of it. A mod that needs no change is supported at any version.
 
 <!-- mods:start -->
 
-32 mods with 198 changes, and 41 mods that need no change, at any version.
+32 mods with 200 changes, and 42 mods that need no change, at any version.
 
 | Mod | Mod id | Tested on | Changes |
 |---|---|---|---|
@@ -29,7 +29,7 @@ The list below is written from the patch set when the repository is published. A
 | Astral Ascension | `Planetace_AstralAscension` | 1.2.7 | 1 |
 | Building Menu Overhaul | `bmo` | any version | 0 |
 | Captain's Quarters | `captains_quarters` | any version | 0 |
-| Chief Navigator | `chief_navigator` | 0.5.1 | 2 |
+| Chief Navigator | `chief_navigator` | 0.5.1, 0.6.6 | 2 |
 | Combat Chatter | `chatter` | any version | 0 |
 | Console Commands | `lw_console` | any version | 0 |
 | Customizable Star Systems | `customizablestarsystems` | any version | 0 |
@@ -38,15 +38,16 @@ The list below is written from the patch set when the repository is published. A
 | Diable ArmAonics | `diablearmaaonics` | any version | 0 |
 | Diable Avionics Original Flavor | `diableavionics` | any version | 0 |
 | Draconis Fleet | `levianeer_draconis` | 0.7.91 | 4 |
-| Emergent Threats | `EmergentThreats_Vice` | 1.4.3 | 5 |
-| Emergent Threats: IX Revival | `EmergentThreats_IX_Revival` | 1.4.3 | 6 |
-| Exiled Sector | `exiledSector` | 0.12.7 | 20 |
+| Emergent Threats | `EmergentThreats_Vice` | 1.4.3, 1.5.0 | 5 |
+| Emergent Threats: IX Revival | `EmergentThreats_IX_Revival` | 1.4.3, 1.5.0 | 7 |
+| Emergent Threats: Nexerelin IX Loader | `EmergentThreats_IX_Nex` | any version | 0 |
+| Exiled Sector | `exiledSector` | 0.12.7, 0.13.0 | 21 |
 | Expanded Administrators | `zoeyea` | any version | 0 |
 | Gacha Hullmods | `gacha_hullmods` | any version | 0 |
 | Grand.Colonies | `GrandColonies` | any version | 0 |
 | Hullmods - Renewed | `hullmods_renewed` | any version | 0 |
 | Industrial.Evolution | `IndEvo` | 4.1.b | 19 |
-| JaydeePiracy | `jaydeepiracy` | 6.0.3 | 4 |
+| JaydeePiracy | `jaydeepiracy` | 6.0.3, 6.1.0 | 4 |
 | JaydeeProficiencies | `JaydeeProficiencies` | any version | 0 |
 | Kadur Remnant | `kadur_remnant` | 3.2.4support3 | 1 |
 | Larger Zoom Out | `largerZoomOut` | any version | 0 |
@@ -84,7 +85,7 @@ The list below is written from the patch set when the repository is published. A
 | Strike Craft Expansion Addon | `SCE` | 1.0.1b | 1 |
 | Sunrider | `Sunrider` | 0.8.6 | 5 |
 | Takeshido | `takeshido` | 1.0.0 | 3 |
-| Terraforming Made Easy | `terraformingmadeeasy` | 2.10.0 | 2 |
+| Terraforming Made Easy | `terraformingmadeeasy` | 2.10.0, 2.10.6 | 2 |
 | Terrible Pirates | `TerriblePirates` | any version | 0 |
 | Tinyverse - The Wanzer Age | `TVVFW` | any version | 0 |
 | Trails of Tooth and Claw | `gwyvern_trailstc` | v1.3.0 | 1 |
@@ -92,7 +93,7 @@ The list below is written from the patch set when the repository is published. A
 | United Aurora Federation | `uaf` | 0.8.4c | 9 |
 | Unknown Skies | `US` | any version | 0 |
 | Weapon Arcs | `WEAPONARCS` | any version | 0 |
-| Wide Horizons | `WideHorizons` | 1.5.0 | 1 |
+| Wide Horizons | `WideHorizons` | 1.5.0, 1.5.1a | 1 |
 | Wide Horizons - Content | `WideHorizonsContent` | any version | 0 |
 | zz GraphicsLib | `shaderLib` | any version | 0 |
 
@@ -109,7 +110,7 @@ The exe is a small launcher, built from `launcher/SurvivalRebalance.cs` with the
 
 ## The window
 
-The window lists every mod you have in three groups: supported mods, with the version you have, the tested version and whether each is patched; mods the tool never analysed, which it does not rebalance; and supported mods you do not have.
+The window lists every mod you have in three groups: supported mods, with the version you have, the tested versions and whether each is patched; mods the tool never analysed, which it does not rebalance; and supported mods you do not have.
 
 | Button | What it does |
 |---|---|
@@ -165,7 +166,7 @@ The tool cannot run from a folder whose path has a `;` in it, or letters outside
 
 A mod manager installs an update as a new folder, and the new folder is not patched. The zip includes the Survival Rebalance Monitor, a small utility mod that checks this each time you load a game and shows a message when a covered mod is not patched. Apply copies it into your `mods` folder; enable it once in the launcher. It adds nothing to your saves. Undo removes it, unless you copied it there yourself; then Undo says so and leaves it for you to delete.
 
-After an update, delete the mod's old folder, install the new version cleanly, and run apply. Each patch was made for one version of its mod. When you have another version, apply skips that mod and changes nothing in it, even when the new version looks the same, and the window says so. A patch that only half fits can make a mod act oddly, and the mod's author cannot help with that, so a skipped mod is not a bug to report to them. You can play that mod without the rebalance, install the tested version again, or wait for a Survival Rebalance update that supports the new version.
+After an update, delete the mod's old folder, install the new version cleanly, and run apply. Each patch was tested with one or more versions of its mod. When you have a version it was not tested with, apply skips that mod and changes nothing in it, even when the new version looks the same, and the window says so. A patch that only half fits can make a mod act oddly, and the mod's author cannot help with that, so a skipped mod is not a bug to report to them. You can play that mod without the rebalance, install a tested version again, or wait for a Survival Rebalance update that supports the new version.
 
 If a mod was updated on top of its patched folder, the tool refuses to touch it and says so. Reinstall that mod cleanly and run apply.
 

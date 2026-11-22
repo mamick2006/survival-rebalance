@@ -30,7 +30,7 @@ THE WINDOW
 
 The list shows every mod in three groups:
 
-   Supported mods you have    With the version you have, the version the
+   Supported mods you have    With the version you have, the versions the
                               changes were tested on, and whether the mod
                               is patched.
    Not supported              Mods the tool never analysed. It does not
@@ -66,7 +66,7 @@ for Survival Mode. Any other mod was never analysed, so the tool does not
 rebalance it, and the window and every run warn about each one you have
 enabled.
 
-A mod the tool changes is supported at the version listed here. The tool
+A mod the tool changes is supported at each version listed here. The tool
 skips any other version of it. A mod that needs no change is supported at
 any version.
 
@@ -153,8 +153,8 @@ Already applied.
 
 Skipped: Survival Rebalance was tested with version <x> of this mod and
 does not change version <y>.
-   You have another version of the mod than the one the changes were made
-   for, so the tool changes nothing in it. See WHEN A MOD UPDATES below.
+   Your version of the mod is not one the changes were tested with, so the
+   tool changes nothing in it. See WHEN A MOD UPDATES below.
 
 Skipped: <change> (it needs <mod>:<change>, which is not applied)
    This change belongs with a change in another mod, and that change is not
@@ -265,17 +265,18 @@ the update to version <x> did not finish installing
 
 WHEN A MOD UPDATES
 
-Each patch was made for one version of its mod. When you install another
-version, apply skips that mod and changes nothing in it, even when the new
-version looks the same. A patch that only half fits can make a mod act
-oddly, and the mod's author cannot help with that. If an earlier apply
-patched the folder, apply puts its original files back.
+Each patch was tested with one or more versions of its mod. When you
+install a version it was not tested with, apply skips that mod and
+changes nothing in it, even when the new version looks the same. A patch
+that only half fits can make a mod act oddly, and the mod's author cannot
+help with that. If an earlier apply patched the folder, apply puts its
+original files back.
 
 A skipped mod is not a problem in the mod, so do not report it to its
 author. You have three choices:
 
 - Play that mod without the rebalance. The other mods are still patched.
-- Install the tested version again, then run apply.
+- Install a tested version again, then run apply.
 - Wait for a Survival Rebalance update that supports the new version.
   Update checks for one.
 

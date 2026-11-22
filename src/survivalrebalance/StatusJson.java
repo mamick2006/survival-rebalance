@@ -286,6 +286,7 @@ final class StatusJson {
     static Map<String, Object> patchMod(Engine e, Patch p, List<ModInfo> all, List<Engine.Loaded> ps, Set<String> enabled) throws Failure {
         Map<String, Object> m = new LinkedHashMap<>();
         List<ModInfo> found = ModInfo.byId(all, p.modId);
+        if (!found.isEmpty()) p = Engine.atInstalled(p, found.get(0));
         m.put("id", p.modId);
         m.put("name", p.modName);
         m.put("kind", "patch");
@@ -316,8 +317,9 @@ final class StatusJson {
             Engine.skipUnmet(p, off, k -> e.available(k, ps, all));
             for (String id : off) if (!before.contains(id)) skipped.add(id);
             String planFail = null;
+            String hash = Patch.hashOf(p.raw, e.cust.lines(p, off)); // of the patch as loaded, as Engine hashes it, before compute rebinds p
             if (sentinelError == null && !other) {
-                try { pl = e.compute(p, mi, off, s != null ? Engine.backups(mi.dir, s) : Map.of()); }
+                try { pl = e.compute(p, mi, off, s != null ? Engine.backups(mi.dir, s) : Map.of()); p = pl.patch; }
                 catch (Failure f) { planFail = f.getMessage(); }
             }
             if (sentinelError != null) {
@@ -326,7 +328,6 @@ final class StatusJson {
             } else if (s != null) {
                 List<String> atB = new ArrayList<>(), atA = new ArrayList<>();
                 List<String> bad = Engine.drifted(mi.dir, s, atB, atA);
-                String hash = Patch.hashOf(p.raw, e.cust.lines(p, off));
                 if (!bad.isEmpty()) {
                     state = "modified"; reason = "changed: " + String.join(", ", bad);
                     text = "Updated in place since it was rebalanced, so Apply leaves it alone. Reinstall the mod cleanly, then click Apply.";
@@ -368,7 +369,7 @@ final class StatusJson {
                 text = "Apply would fail on this version, so it leaves the mod as it is.";
             }
             if (!other && !p.tested.contains(mi.version) && planFail == null && !state.equals("modified"))
-                text += " Version " + mi.version + " is not the tested version, but every change still matches.";
+                text += " Version " + mi.version + " is not a tested version, but every change still matches.";
         }
         m.put("state", state);
         m.put("state_text", text);
@@ -392,7 +393,7 @@ final class StatusJson {
             List<Object> shows = new ArrayList<>();
             List<String> sh = pl == null ? null : pl.shows.get(c.id);
             if (sh != null) shows.addAll(sh);
-            else for (int i = 0; i < c.ops.size(); i++) shows.add("#" + i + "  " + Customize.shows(c.ops.get(i), c.ops.get(i)));
+            else for (int i = 0; i < c.ops.size(); i++) if (c.ops.get(i) != null) shows.add("#" + i + "  " + Customize.shows(c.ops.get(i), c.ops.get(i)));
             cm.put("ops", shows);
             // at a strength below 1: the "after" text with the numbers the tool will write, when the
             // before and after texts differ only in their numbers; else null (the window then lists the ops)

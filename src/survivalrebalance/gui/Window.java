@@ -238,9 +238,9 @@ public final class Window {
         table.getTableHeader().setReorderingAllowed(false);
         table.setDefaultRenderer(Object.class, new RowRenderer());
         table.getColumnModel().getColumn(0).setPreferredWidth(260);
-        table.getColumnModel().getColumn(1).setPreferredWidth(80);
-        table.getColumnModel().getColumn(2).setPreferredWidth(80);
-        table.getColumnModel().getColumn(3).setPreferredWidth(190);
+        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        table.getColumnModel().getColumn(2).setPreferredWidth(110);
+        table.getColumnModel().getColumn(3).setPreferredWidth(240);
         table.getSelectionModel().addListSelectionListener(e -> { if (!e.getValueIsAdjusting()) selectRow(table.getSelectedRow()); });
         table.addMouseListener(new MouseAdapter() {
             @Override public void mouseClicked(MouseEvent e) {
@@ -256,13 +256,13 @@ public final class Window {
             }
         });
         JScrollPane tableScroll = new JScrollPane(table);
-        tableScroll.setPreferredSize(new Dimension(620, 380));
+        tableScroll.setPreferredSize(new Dimension(720, 380));
 
         details.setLayout(new BoxLayout(details, BoxLayout.Y_AXIS));
         details.setBorder(new EmptyBorder(8, 10, 8, 10));
         detailScroll = new JScrollPane(details);
         detailScroll.getVerticalScrollBar().setUnitIncrement(16);
-        detailScroll.setPreferredSize(new Dimension(440, 380));
+        detailScroll.setPreferredSize(new Dimension(390, 380));
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, tableScroll, detailScroll);
         split.setResizeWeight(0.55);
         split.setBorder(null);
@@ -334,7 +334,7 @@ public final class Window {
 
         frame.getRootPane().setDefaultButton(null);
         frame.pack();
-        frame.setSize(new Dimension(Math.max(frame.getWidth(), 1120), Math.max(frame.getHeight(), 760)));
+        frame.setSize(new Dimension(Math.max(frame.getWidth(), 1170), Math.max(frame.getHeight(), 760)));
         frame.setMinimumSize(new Dimension(760, 520));
         frame.setLocationRelativeTo(null);
         showDetails(null);
@@ -479,7 +479,7 @@ public final class Window {
         boolean applyWork = Boolean.TRUE.equals(status.get("apply_has_work"));
         apply.setText(work.isEmpty() ? "Apply..." : "Apply to " + count(work.size(), "mod") + "...");
         apply.setEnabled(!busy && applyWork);
-        apply.setToolTipText(!applyWork ? (skipped > 0 ? "Nothing to apply. Apply skips a mod of another version than the tested one." : "Nothing to apply. Every supported mod you have is rebalanced with your current choices.")
+        apply.setToolTipText(!applyWork ? (skipped > 0 ? "Nothing to apply. Apply skips a mod whose version was not tested." : "Nothing to apply. Every supported mod you have is rebalanced with your current choices.")
                 : "Rebalance the supported mods you have. The tool backs up every file first.");
         List<String> undoable = strings(status, "undo_todo");
         undo.setText(undoable.isEmpty() ? "Undo..." : "Undo " + count(undoable.size(), "mod") + "...");
@@ -1077,7 +1077,7 @@ public final class Window {
                 setBackground(t.getBackground());
                 Color fg = Color.BLACK;
                 if (row.group == Group.MISSING) fg = QUIET;
-                else if (c == 2 && row.otherVersion) { fg = TODO; setFont(f.deriveFont(Font.BOLD)); setToolTipText("Installed " + row.installed + " is not the tested version " + row.tested + "." + (row.state.startsWith("other_version") ? " Apply skips it." : "")); }
+                else if (c == 2 && row.otherVersion) { fg = TODO; setFont(f.deriveFont(Font.BOLD)); setToolTipText("Installed " + row.installed + ", tested with " + String.join(" or ", strings(row.mod, "tested_versions")) + "." + (row.state.startsWith("other_version") ? " Apply skips it." : "")); }
                 else if (c == 3) {
                     String st = row.state;
                     if (st.equals("patched") || st.equals("checked")) fg = GOOD;
@@ -1087,6 +1087,8 @@ public final class Window {
                 }
                 setForeground(fg);
             }
+            // a version too long for its column: the tooltip shows it whole (the other-version tooltip already names every version)
+            if ((c == 1 || c == 2) && !(c == 2 && row.otherVersion && !sel) && getPreferredSize().width > t.getColumnModel().getColumn(c).getWidth()) setToolTipText(String.valueOf(v));
             return this;
         }
     }

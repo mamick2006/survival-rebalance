@@ -35,7 +35,7 @@ public final class WindowCheck {
                 public void tell(java.awt.Component parent, String title, String message, int type) { told.add(title + ": " + message); }
             };
             w.gameRunning = () -> false;
-            w.frame.setSize(1120, 760);
+            w.frame.setSize(1170, 760);
             w.frame.setVisible(true);
         });
         try {
@@ -94,7 +94,7 @@ public final class WindowCheck {
                 public void tell(java.awt.Component parent, String title, String message, int type) { told.add(title + ": " + message); }
             };
             w.gameRunning = () -> false;
-            w.frame.setSize(1120, 760);
+            w.frame.setSize(1170, 760);
             w.frame.setVisible(true);
         });
         try {
@@ -122,6 +122,83 @@ public final class WindowCheck {
         } finally {
             edt(() -> w.frame.dispose());
         }
+    }
+
+    /**
+     * The mod list at the window's own size, in the look the window starts with, holds the
+     * longest texts the real mods give each column: two tested versions, a long version, long
+     * names, every state with " (not enabled)" after it, the two other-version states at a
+     * version off the list, and as many mods as a real list, so the list scrolls and its scroll
+     * bar takes its width. Null when every cell is as wide as its text, else the cells cut. An
+     * other-version row's Tested cell also has to name both versions in its tooltip.
+     */
+    public static String cellsFit(Path dir) throws Exception {
+        List<Map<String, Object>> mods = new ArrayList<>();
+        for (int i = 10; i < 70; i++) mods.add(mod("mod_" + i, "Mod " + i, "1.0", List.of("1.0"), true));
+        mods.addAll(List.of(
+                mod("exiledSector", "Exiled Sector", "0.13.0", List.of("0.12.7", "0.13.0"), true),
+                mod("terraformingmadeeasy", "Terraforming Made Easy", "2.10.6", List.of("2.10.0", "2.10.6"), true),
+                mod("kadur_remnant", "Kadur Remnant", "3.2.4support3", List.of("3.2.4support3"), true),
+                mod("WideHorizons", "Wide Horizons", "1.5.1a", List.of("1.5.0", "1.5.1a"), true),
+                mod("gas_station", "Phillip Andrada: Gas Station Manager", "1.0.0", List.of("1.0.0"), false),
+                mod("et_ix", "Emergent Threats: Nexerelin IX Loader", "1.5.0", List.of("1.4.3", "1.5.0"), false)));
+        for (String state : Window.STATE.keySet()) {
+            if (state.equals("not_installed")) continue;
+            boolean other = state.startsWith("other_version");
+            Map<String, Object> m = mod("st_" + state, "State " + state, other ? "0.14.0" : "0.13.0", List.of("0.12.7", "0.13.0"), false);
+            m.put("state", state);
+            mods.add(m);
+        }
+        Map<String, Object> st = Map.of("mods", mods);
+        javax.swing.LookAndFeel was = javax.swing.UIManager.getLookAndFeel();
+        List<String> cut = new ArrayList<>();
+        try {
+            edt(() -> {
+                javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+                Window x = new Window(dir, dir.resolve("app/SurvivalRebalance.jar"), dir);
+                // not the dialogs: with them, closing the window ends the JVM (exit 0) and the suite with it
+                x.prompter = new Window.Prompter() {
+                    public boolean confirm(java.awt.Component parent, String title, String message, String yes) { return false; }
+                    public void tell(java.awt.Component parent, String title, String message, int type) {}
+                };
+                try {
+                    x.model.fill(st, false);
+                    x.frame.validate();
+                    javax.swing.JTable t = x.table;
+                    for (int r = 0; r < t.getRowCount(); r++) {
+                        if (x.model.rows.get(r).header()) continue;
+                        for (int c = 0; c < t.getColumnCount(); c++) {
+                            int need = t.prepareRenderer(t.getCellRenderer(r, c), r, c).getPreferredSize().width, have = t.getColumnModel().getColumn(c).getWidth();
+                            if (need > have) cut.add(t.getColumnName(c) + " \"" + t.getValueAt(r, c) + "\" needs " + need + " px, has " + have);
+                        }
+                        if (x.model.rows.get(r).otherVersion) {
+                            Object tip = ((javax.swing.JComponent) t.prepareRenderer(t.getCellRenderer(r, 2), r, 2)).getToolTipText();
+                            if (!"Installed 0.14.0, tested with 0.12.7 or 0.13.0. Apply skips it.".equals(tip)) cut.add("Tested tooltip of \"" + t.getValueAt(r, 0) + "\": " + tip);
+                        }
+                    }
+                    if (!cut.isEmpty()) cut.add("window " + x.frame.getWidth() + "x" + x.frame.getHeight());
+                } finally {
+                    x.frame.dispose();
+                    javax.swing.UIManager.setLookAndFeel(was);
+                }
+            });
+        } catch (RuntimeException e) {
+            return "the window: " + e;
+        }
+        return cut.isEmpty() ? null : String.join("; ", cut);
+    }
+
+    static Map<String, Object> mod(String id, String name, String installed, List<String> tested, boolean enabled) {
+        Map<String, Object> m = new java.util.HashMap<>();
+        m.put("id", id);
+        m.put("name", name);
+        m.put("kind", "patch");
+        m.put("installed", true);
+        m.put("enabled", enabled);
+        m.put("installed_version", installed);
+        m.put("tested_versions", tested);
+        m.put("state", "not_patched");
+        return m;
     }
 
     interface R { void run() throws Exception; }

@@ -3,7 +3,8 @@
   "mod_id": "WideHorizons",
   "mod_name": "Wide Horizons",
   "tested_versions": [
-    "1.5.0"
+    "1.5.0",
+    "1.5.1a"
   ],
   "changes": [
     {

@@ -43,7 +43,7 @@ public final class GuiShots {
             Path jar = Files.isRegularFile(tool.resolve("app/SurvivalRebalance.jar")) ? tool.resolve("app/SurvivalRebalance.jar") : tool.resolve("SurvivalRebalance.jar");
             w = new Window(tool, jar, game);
             w.prompter = new Shooter();
-            if (scale == 1) w.frame.setSize(1120, 760); else { w.frame.setSize(1100, 680); w.frame.setLocation(0, 0); }
+            if (scale == 1) w.frame.setSize(1170, 760); else { w.frame.setSize(1100, 680); w.frame.setLocation(0, 0); }
             w.frame.setVisible(true);
         });
         refresh();

@@ -122,7 +122,7 @@ public final class RunReport {
             b.append("\nSkipped, another version: ").append(p.sum.get("Skipped")).append('\n');
             b.append("Survival Rebalance does not change a version it was not tested with. ")
                     .append(one ? "This is not a problem in the mod, and its author cannot help with it." : "This is not a problem in those mods, and their authors cannot help with it.")
-                    .append(" Install the tested version, or wait for a Survival Rebalance update.\n");
+                    .append(" Install a tested version, or wait for a Survival Rebalance update.\n");
         }
         if (p.sum.isEmpty() && p.errors.isEmpty()) b.append(code == 0 ? "Nothing to do.\n" : "The run ended with code " + code + ". Show log has the full output.\n");
         if (!p.failed.isEmpty()) {
