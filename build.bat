@@ -9,7 +9,7 @@ rem starsector-core (read only). The patches folder already holds the sealed pat
 rem SR_TESTED_GAME is the game version the patch set was tested on; the manifest records it.
 setlocal
 cd /d "%~dp0"
-if not defined SR_TESTED_GAME set "SR_TESTED_GAME=0.98.5a-RC7"
+if not defined SR_TESTED_GAME set "SR_TESTED_GAME=0.98.5a-RC9"
 if not defined STARSECTOR (
     echo ERROR: set STARSECTOR to your Starsector folder, for example
     echo    set STARSECTOR=C:\Games\Starsector

@@ -25,8 +25,8 @@ using System.Windows.Forms;
 [assembly: AssemblyDescription("Opens the Survival Rebalance window")]
 [assembly: AssemblyProduct("Survival Rebalance")]
 [assembly: AssemblyCopyright("Survival Rebalance authors")]
-[assembly: AssemblyVersion("1.4.0.0")]
-[assembly: AssemblyFileVersion("1.4.0.0")]
+[assembly: AssemblyVersion("1.4.1.0")]
+[assembly: AssemblyFileVersion("1.4.1.0")]
 
 static class Launcher
 {

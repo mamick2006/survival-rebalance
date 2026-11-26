@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class Main {
-    static final String VERSION = "1.4.0";
+    static final String VERSION = "1.4.1";
 
     /** The version as the player sees it: with the build's note when this is not the release build. */
     static String versionText() {

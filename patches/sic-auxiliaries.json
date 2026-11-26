@@ -144,7 +144,7 @@
     {
       "id": "nomad-trailblazer",
       "title": "Trailblazer saves less fuel and halves the Transverse Jump readiness cost",
-      "why": "Fuel range is Survival's main limit on travel. With Engine Optimization, one officer cuts fuel use by about 24%, close to the game's own 25%. A free Transverse Jump would also undo Survival's tenfold readiness cost.",
+      "why": "Fuel range is Survival's main limit on travel. With Engine Optimization, one officer cuts fuel use by about 24%, close to the game's own 25%. A free Transverse Jump would also undo Survival's fivefold readiness cost.",
       "before": "-25% fuel use, no CR cost for Transverse Jump and Emergency Burn",
       "after": "-15% fuel use, half readiness cost for Transverse Jump, none for Emergency Burn",
       "ops": [
@@ -250,7 +250,7 @@
     {
       "id": "guerilla-tracker-jump-cost",
       "title": "Tracker halves the Transverse Jump readiness cost, no longer removes it",
-      "why": "Survival makes a Transverse Jump cost ten times the readiness, and a skill that removes the cost switches that rule off.",
+      "why": "Survival makes a Transverse Jump cost five times the readiness, and a skill that removes the cost switches that rule off.",
       "before": "No CR cost for Transverse Jump and Emergency Burn",
       "after": "Half readiness cost for Transverse Jump, none for Emergency Burn",
       "ops": [

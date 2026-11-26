@@ -127,7 +127,7 @@
     {
       "id": "emergency-order-cr",
       "title": "Emergency Order halves the readiness cost of a Transverse Jump, no longer removes it",
-      "why": "Survival makes a Transverse Jump cost ten times the readiness, and a free jump would switch that off.",
+      "why": "Survival makes a Transverse Jump cost five times the readiness, and a free jump would switch that off.",
       "before": "Transverse Jump and Emergency Burn cost no readiness",
       "after": "Transverse Jump costs half the usual readiness, and Emergency Burn still costs none",
       "ops": [
